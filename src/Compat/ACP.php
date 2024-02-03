@@ -21,11 +21,15 @@ class ACP
 {
 	public static function saveDBSettings(array &$vars): void
 	{
+		require_once Config::$sourcedir . DIRECTORY_SEPARATOR . 'ManageServer.php';
+
 		saveDBSettings($vars);
 	}
 
 	public static function prepareDBSettingContext(array &$vars): void
 	{
+		require_once Config::$sourcedir . DIRECTORY_SEPARATOR . 'ManageServer.php';
+
 		prepareDBSettingContext($vars);
 	}
 }
