@@ -24,6 +24,8 @@ class Topic
 			$GLOBALS['topic'] = 0;
 		}
 
-		self::$id = &$GLOBALS['topic'];
+		$id = (int) $GLOBALS['topic'];
+
+		self::$id = &$id;
 	}
 }
