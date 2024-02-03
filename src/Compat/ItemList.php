@@ -20,7 +20,7 @@ class ItemList
 {
 	public function __construct(array $listOptions)
 	{
-		require_once(Config::$sourcedir . '/Subs-List.php');
+		require_once Config::$sourcedir . DIRECTORY_SEPARATOR . 'Subs-List.php';
 
 		createList($listOptions);
 	}
