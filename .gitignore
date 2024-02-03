@@ -1,0 +1,6 @@
+.idea/
+.phpunit.result.cache
+.vscode/
+coverage.xml
+coverage/
+vendor/
