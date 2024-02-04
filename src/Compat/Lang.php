@@ -30,25 +30,21 @@ class Lang
 	public static string $forum_copyright;
 
 	private array $vars = [
-		'txt'       => 'txt',
-		'editortxt' => 'editortxt',
-		'helptxt'   => 'helptxt',
+		'txt'             => [],
+		'editortxt'       => [],
+		'helptxt'         => [],
+		'forum_copyright' => '',
 	];
 
 	public function __construct()
 	{
 		foreach ($this->vars as $key => $value) {
-			if (! isset($GLOBALS[$value])) {
-				$GLOBALS[$value] = [];
+			if (! isset($GLOBALS[$key])) {
+				$GLOBALS[$key] = $value;
 			}
 
-			self::${$key} = &$GLOBALS[$value];
+			self::${$key} = &$GLOBALS[$key];
 		}
-
-		if (! isset($GLOBALS['forum_copyright']))
-			$GLOBALS['forum_copyright'] = '';
-
-		self::$forum_copyright = &$GLOBALS['forum_copyright'];
 	}
 
 	public static function censorText(string &$text): void
