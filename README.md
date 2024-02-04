@@ -3,6 +3,8 @@
 ![SMF 2.1](https://img.shields.io/badge/SMF-2.1-ed6033.svg?style=flat)
 ![PHP](https://img.shields.io/badge/PHP-^8.0-blue.svg?style=flat)
 
+[По-русски](README.ru.md)
+
 ## Description
 
 The package is designed to prepare current SMF 2.1 modifications for the future migration to 3.0.
@@ -27,7 +29,7 @@ require_once __DIR__ . '/vendor/autoload.php';
 
 ## Usage
 
-### Old code
+### Legacy code
 
 ```php
 <?php
@@ -88,117 +90,101 @@ After upgrading to SMF 3.0, it will be enough to replace the used classes:
 +use SMF\Config;
 ```
 
-Or use class aliases in `app.php` (or other similar _entry point_) of your application:
+Or you can leave it as it is. In this case, your modification will support both versions of SMF.
 
-```php
-<?php
+## List of suggested replacements
 
-if (str_starts_with(SMF_VERSION, '3.0')) {
-    class_alias('SMF\\Lang', 'Bugo\\Compat\\Lang');
-    class_alias('SMF\\User', 'Bugo\\Compat\\User');
-    class_alias('SMF\\Config', 'Bugo\\Compat\\Config');
-}
-```
+### Global variables
 
-In this case, your modification will be able to support both versions of SMF.
+| Legacy code (SMF 2.1.x) |     New code (SMF 3.0)      |
+| ----------------------- | :-------------------------: |
+| `$board`                |        `Board::$id`         |
+| `$boards`               |      `Board::$loaded`       |
+| `board_info`            |       `Board::$info`        |
+| `$modSettings`          |   `Config::$modSettings`    |
+| `$scripturl`            |    `Config::$scripturl`     |
+| `$boardurl`             |     `Config::$boardurl`     |
+| `$boarddir`             |     `Config::$boarddir`     |
+| `$sourcedir`            |    `Config::$sourcedir`     |
+| `$cachedir`             |     `Config::$cachedir`     |
+| `$db_type`              |     `Config::$db_type`      |
+| `$db_prefix`            |    `Config::$db_prefix`     |
+| `$language`             |     `Config::$language`     |
+| `$cache_enable`         |   `Config::$cache_enable`   |
+| `$db_show_debug`        |  `Config::$db_show_debug`   |
+| `$db_count`             |     `Database::$count`      |
+| `$db_cache`             |     `Database::$cache`      |
+| `$txt`                  |        `Lang::$txt`         |
+| `$editortxt`            |     `Lang::$editortxt`      |
+| `$helptxt`              |      `Lang::$helptxt`       |
+| `$forum_copyright`      |  `Lang::$forum_copyright`   |
+| `$settings`             | `Theme::$current->settings` |
+| `$options`              | `Theme::$current->options`  |
+| `$topic`                |        `Topic::$id`         |
+| `$user_info`            |        `User::$info`        |
+| `$user_profile`         |      `User::$profiles`      |
+| `$user_settings`        |      `User::$settings`      |
+| `$memberContext`        |   `User::$memberContext`    |
+| `$context`              |      `Utils::$context`      |
+| `$smcFunc`              |      `Utils::$smcFunc`      |
 
----
+### Functions
 
-## Описание
+| Legacy code (SMF 2.1.x)    |                   New code (SMF 3.0)                   |
+| -------------------------- | :----------------------------------------------------: |
+| `saveDBSettings`           |                 `ACP::saveDBSettings`                  |
+| `prepareDBSettingContext`  |             `ACP::prepareDBSettingContext`             |
+| `parse_bbc`                |             `BBCodeParser::load()->parse`              |
+| `cache_get_data`           |                    `CacheApi::get`                     |
+| `cache_put_data`           |                    `CacheApi::put`                     |
+| `clean_cache`              |                   `CacheApi::clean`                    |
+| `updateSettings`           |              `Config::updateModSettings`               |
+| `db_extend`                |                   `Database::extend`                   |
+| `fatal_error`              |                 `ErrorHandler::fatal`                  |
+| `fatal_lang_error`         |               `ErrorHandler::fatalLang`                |
+| `log_error`                |                  `ErrorHandler::log`                   |
+| `add_integration_function` |                 `IntegrationHook::add`                 |
+| `call_integration_hook`    |                `IntegrationHook::call`                 |
+| `createList`               |                     `new ItemList`                     |
+| `censorText`               |                   `Lang::censorText`                   |
+| `getLanguages`             |                      `Lang::get`                       |
+| `loadLanguage`             |                      `Lang::load`                      |
+| `sentence_list`            |                  `Lang::sentenceList`                  |
+| `logAction`                |                  `Logging::logAction`                  |
+| `loadEmailTemplate`        |               `Mail::loadEmailTemplate`                |
+| `sendmail`                 |                      `Mail::send`                      |
+| `preparsecode`             |                  `Msg::preparseCode`                   |
+| `un_preparsecode`          |                 `Msg::unPreparseCode`                  |
+| `getNotifyPrefs`           |                `Notify::getNotifyPrefs`                |
+| `constructPageIndex`       |                    `new PageIndex`                     |
+| `memoryReturnBytes`        |               `Sapi::memoryReturnBytes`                |
+| `sm_temp_dir`              |                   `Sapi::getTempDir`                   |
+| `set_time_limit`           |                  `Sapi::setTimeLimit`                  |
+| `checkSubmitOnce`          |              `Security::checkSubmitOnce`               |
+| `addJavaScriptVar`         |               `Theme::addJavaScriptVar`                |
+| `addInlineCss`             |                 `Theme::addInlineCss`                  |
+| `addInlineJavaScript`      |              `Theme::addInlineJavaScript`              |
+| `loadCSSFile`              |                  `Theme::loadCSSFile`                  |
+| `loadJavaScriptFile`       |              `Theme::loadJavaScriptFile`               |
+| `loadEssentialThemeData`   |                 `Theme::loadEssential`                 |
+| `loadTemplate`             |                 `Theme::loadTemplate`                  |
+| `allowedTo`                |    `User::$me->allowedTo` or `User::hasPermission`     |
+| `checkSession`             |   `User::$me->checkSession` or `User::sessionCheck`    |
+| `isAllowedTo`              | `User::$me->isAllowedTo` or `User::mustHavePermission` |
+| `loadMemberData`           |                 `User::loadMemberData`                 |
+| `loadMemberContext`        |               `User::loadMemberContext`                |
+| `membersAllowedTo`         |                `User::membersAllowedTo`                |
+| `updateMemberData`         |                `User::updateMemberData`                |
+| `JavaScriptEscape`         |               `Utils::escapeJavaScript`                |
+| `obExit`                   |                    `Utils::obExit`                     |
+| `redirectexit`             |                 `Utils::redirectexit`                  |
+| `send_http_status`         |                `Utils::sendHttpStatus`                 |
+| `shorten_subject`          |                    `Utils::shorten`                    |
+| `smf_chmod`                |                 `Utils::makeWritable`                  |
+| `smf_json_decode`          |                  `Utils::jsonDecode`                   |
+| `un_htmlspecialchars`      |            `Utils::htmlspecialcharsDecode`             |
+| `fetch_web_data`           |               `WebFetchApi::WebFetchApi`               |
 
-Пакет предназначен для подготовки текущих модификаций SMF 2.1 к будущей миграции на 3.0.
+#### SSI functions
 
-Предлагаемые утилитарные классы позволяют избавиться от необходимости объявлять глобальные переменные в коде ваших модификаций.
-
-В результате ваши модификации смогут работать в обеих линейках SMF, с минимальными изменениями.
-
-## Установка
-
-В корневой директории вашей модификации выполните команду:
-
-```bash
-composer require bugo/smf-compat
-```
-
-Затем в `app.php` (или в другой аналогичной _точке входа_) подключите `autoload.php`:
-
-```php
-require_once __DIR__ . '/vendor/autoload.php';
-```
-
-## Использование
-
-### Старый код
-
-```php
-<?php
-
-class Example
-{
-    public function method1()
-    {
-        global $txt;
-
-        echo $txt['hello_world'];
-    }
-
-    public function method2()
-    {
-        global $user_info, $modSettings;
-
-        echo $user_info['name'];
-
-        var_dump($modSettings);
-    }
-}
-```
-
-### Новый код
-
-```php
-<?php
-
-use Bugo\Compat\Lang;
-use Bugo\Compat\User;
-use Bugo\Compat\Config;
-
-class Example
-{
-    public function method1()
-    {
-        echo Lang::$txt['hello_world'];
-    }
-
-    public function method2()
-    {
-        echo User::$info['name'];
-
-        var_dump(Config::$modSettings);
-    }
-}
-```
-
-После перехода на SMF 3.0 достаточно будет заменить используемые классы:
-
-```diff
--use Bugo\Compat\Lang;
-+use SMF\Lang;
--use Bugo\Compat\User;
-+use SMF\User;
--use Bugo\Compat\Config;
-+use SMF\Config;
-```
-
-Или использовать алиасы в `app.php` (или в другой аналогичной _точке входа_) вашего приложения:
-
-```php
-<?php
-
-if (str_starts_with(SMF_VERSION, '3.0')) {
-    class_alias('SMF\\Lang', 'Bugo\\Compat\\Lang');
-    class_alias('SMF\\User', 'Bugo\\Compat\\User');
-    class_alias('SMF\\Config', 'Bugo\\Compat\\Config');
-}
-```
-
-В этом случае ваша модификация сможет поддерживать обе версии SMF.
+All functions in SSI.php that were called via `ssi_function_name` before 3.0 are called this way in 3.0: `ServerSideIncludes::function_name`.
