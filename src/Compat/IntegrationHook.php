@@ -19,13 +19,13 @@ use function call_integration_hook;
 
 class IntegrationHook
 {
-	public static function call(string $name, array $parameters = []): array
-	{
-		return call_integration_hook($name, $parameters);
-	}
-
 	public static function add(string $name, string $function, bool $permanent = true, string $file = ''): void
 	{
 		add_integration_function($name, $function, $permanent, $file);
+	}
+
+	public static function call(string $name, array $parameters = []): array
+	{
+		return call_integration_hook($name, $parameters);
 	}
 }
