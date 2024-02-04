@@ -32,15 +32,16 @@
     "php": "^8.0"
   },
   "require-dev": {
-    "pestphp/pest": "^1.23",
-    "rector/rector": "^0.19"
+    "pestphp/pest": "^2.33.4",
+    "rector/rector": "^0.19",
+    "pestphp/pest-plugin-drift": "^2.5"
   },
   "scripts": {
     "check": "vendor/bin/rector process --dry-run --clear-cache",
-    "tests": "vendor/bin/pest",
-    "tests-coverage": "vendor/bin/pest --coverage --min=90",
-    "tests-coverage-clover": "vendor/bin/pest --min=90 --coverage-clover coverage.xml",
-    "tests-coverage-html": "vendor/bin/pest --min=90 --coverage-html coverage"
+    "tests": "vendor/bin/pest --colors=always",
+    "tests-coverage": "vendor/bin/pest --colors=always --coverage --min=90",
+    "tests-coverage-clover": "vendor/bin/pest --colors=always --min=90 --coverage-clover coverage.xml",
+    "tests-coverage-html": "vendor/bin/pest --colors=always --min=90 --coverage-html coverage"
   },
   "config": {
     "allow-plugins": {
