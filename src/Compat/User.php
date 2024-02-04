@@ -56,19 +56,34 @@ class User
 		self::$me = $this;
 	}
 
+	public function allowedTo(string $permission): bool
+	{
+		return self::hasPermission($permission);
+	}
+
+	public function checkSession(string $type = 'post'): string
+	{
+		return self::sessionCheck($type);
+	}
+
+	public function isAllowedTo(string|array $permission): bool
+	{
+		return self::mustHavePermission($permission);
+	}
+
 	public static function hasPermission(string $permission): bool
 	{
 		return allowedTo($permission);
 	}
 
-	public static function checkSession(): void
+	public static function sessionCheck(string $type = 'post'): string
 	{
-		checkSession();
+		return checkSession($type);
 	}
 
-	public static function mustHavePermission(string|array $permission): void
+	public static function mustHavePermission(string|array $permission): bool
 	{
-		isAllowedTo($permission);
+		return isAllowedTo($permission);
 	}
 
 	public static function loadMemberData(array $users, int $type = self::LOAD_BY_ID, string $set = 'normal'): array

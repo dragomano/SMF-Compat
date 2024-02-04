@@ -51,14 +51,16 @@ if (! function_exists('allowedTo')) {
 }
 
 if (! function_exists('checkSession')) {
-	function checkSession(): void
+	function checkSession(): string
 	{
+		return '';
 	}
 }
 
 if (! function_exists('isAllowedTo')) {
-	function isAllowedTo(string|array $permission): void
+	function isAllowedTo(string|array $permission): bool
 	{
+		return $permission === 'foo_bar';
 	}
 }
 

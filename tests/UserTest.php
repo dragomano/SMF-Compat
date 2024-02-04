@@ -39,18 +39,11 @@ class UserTest extends AbstractBase
 	}
 
 	/**
-	 * @covers User::checkSession
+	 * @covers User::$me->checkSession
 	 */
 	public function testCheckSession()
 	{
-		try {
-			User::checkSession();
-			$result = 'success';
-		} catch (Exception $e) {
-			$result = $e->getMessage();
-		}
-
-		$this->assertSame('success', $result);
+		$this->assertEmpty(User::$me->checkSession());
 	}
 
 	/**
@@ -58,14 +51,8 @@ class UserTest extends AbstractBase
 	 */
 	public function testMustHavePermission()
 	{
-		try {
-			User::mustHavePermission('foo_bar');
-			$result = 'success';
-		} catch (Exception $e) {
-			$result = $e->getMessage();
-		}
-
-		$this->assertSame('success', $result);
+		$this->assertTrue(User::mustHavePermission('foo_bar'));
+		$this->assertFalse(User::mustHavePermission('foo'));
 	}
 
 	/**
