@@ -103,9 +103,8 @@ if (! function_exists('checkSession')) {
 }
 
 if (! function_exists('isAllowedTo')) {
-	function isAllowedTo(string|array $permission): bool
+	function isAllowedTo(...$params): void
 	{
-		return $permission === 'foo_bar';
 	}
 }
 

@@ -33,13 +33,18 @@ test('sessionCheck method', function () {
 });
 
 test('isAllowedTo method', function () {
-	expect(User::$me->isAllowedTo('foo_bar'))->toBeTrue();
-	expect(User::$me->isAllowedTo('foo'))->toBeFalse();
+	try {
+		User::$me->isAllowedTo('foo_bar');
+		$result = 'success';
+	} catch (Exception $e) {
+		$result = $e->getMessage();
+	}
+
+	expect($result)->toBeSuccess();
 });
 
 test('mustHavePermission method', function () {
 	expect(User::mustHavePermission('foo_bar'))->toBeTrue();
-	expect(User::mustHavePermission('foo'))->toBeFalse();
 });
 
 test('loadMemberData method', function () {
