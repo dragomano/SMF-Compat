@@ -11,7 +11,7 @@ The package is designed to prepare current SMF 2.1 modifications for the future 
 
 The proposed utility classes eliminate the need to declare global variables in your modification code.
 
-As a result, your modifications will be able to work in both SMF branches, with minimal changes.
+As a result, your modifications will be able to work in both SMF 2.1 and 3.0, with minimal changes.
 
 ## Installation
 
@@ -188,3 +188,18 @@ Or you can leave it as it is. In this case, your modification will support both 
 #### SSI functions
 
 All functions in SSI.php that were called via `ssi_function_name` before 3.0 are called this way in 3.0: `ServerSideIncludes::function_name`.
+
+#### Working with the database
+
+In compatibility mode, you can use `Utils::$smcFunc['db_query']`, etc., but also introduced a new class `Database`, with a static property `$db` containing the class of the current database engine. The methods of this class are similar to functions in `Utils::$smcFunc`, but without the `db_` prefix. Let's show on the example of three functions:
+
+| Legacy code (SMF 2.1.x)                                  |                 New code (SMF 3.0)                 |
+| -------------------------------------------------------- | :------------------------------------------------: |
+| `global $smcFunc;`                                       |         `use Bugo\Compat\Database as Db;`          |
+| `$result = $smcFunc['db_query']('', /* Your SQL */, [])` | `$result = Db::$db->query('', /* Your SQL */, [])` |
+| `$rows = $smcFunc['db_fetch_assoc']($result)`            |      `$rows = Db::$db->fetch_assoc($result)`       |
+| `$smcFunc['db_free_result']($result)`                    |          `Db::$db->free_result($result)`           |
+
+## Examples of using this library
+
+[Optimus 3.0 Beta](https://github.com/dragomano/Optimus/tree/dev)
