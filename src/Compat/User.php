@@ -73,9 +73,6 @@ class User
 
 	public static function hasPermission(string $permission): bool
 	{
-		if (! isset(self::$me))
-			return false;
-
 		return self::$me->allowedTo($permission);
 	}
 
@@ -86,9 +83,6 @@ class User
 
 	public static function mustHavePermission(string|array $permission): bool
 	{
-		if (! isset(self::$me))
-			return false;
-
 		self::$me->isAllowedTo($permission);
 
 		return true;

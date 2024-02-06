@@ -1,7 +1,7 @@
 <?php declare(strict_types=1);
 
 /**
- * ServerSideIncludes.php
+ * Db.php
  *
  * @package SMF Compat
  * @link https://github.com/dragomano/smf-compat
@@ -14,14 +14,19 @@
 
 namespace Bugo\Compat;
 
-class ServerSideIncludes
+class Db
 {
-	public static function __callStatic(string $name, array $arguments)
+	public function __call(string $name, array $arguments)
 	{
-		$name = 'ssi_' . $name;
+		if ($name === 'search_query') {
+			$name = 'query';
+		}
 
-		if (function_exists($name))
-			return $name(...$arguments);
+		$name = 'db_' . $name;
+
+		if (array_key_exists($name, Utils::$smcFunc)) {
+			return Utils::$smcFunc[$name](...$arguments);
+		}
 
 		return false;
 	}

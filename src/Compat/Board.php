@@ -24,24 +24,20 @@ class Board extends stdClass
 
 	public static array $loaded;
 
+	private array $vars = [
+		'id'     => ['board', 0],
+		'info'   => ['board_info', []],
+		'loaded' => ['boards', []],
+	];
+
 	public function __construct()
 	{
-		if (! isset($GLOBALS['board'])) {
-			$GLOBALS['board'] = 0;
+		foreach ($this->vars as $key => $values) {
+			if (! isset($GLOBALS[$values[0]])) {
+				$GLOBALS[$values[0]] = $values[1];
+			}
+
+			self::${$key} = &$GLOBALS[$values[0]];
 		}
-
-		self::$id = &$GLOBALS['board'];
-
-		if (! isset($GLOBALS['boards'])) {
-			$GLOBALS['boards'] = [];
-		}
-
-		self::$loaded = &$GLOBALS['boards'];
-
-		if (! isset($GLOBALS['board_info'])) {
-			$GLOBALS['board_info'] = [];
-		}
-
-		self::$info = &$GLOBALS['board_info'];
 	}
 }

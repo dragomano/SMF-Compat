@@ -22,6 +22,8 @@ class Database
 
 	public static array $cache = [];
 
+	public static object $db;
+
 	public function __construct()
 	{
 		if (! isset($GLOBALS['db_count']))
@@ -33,6 +35,10 @@ class Database
 			$GLOBALS['db_cache'] = [];
 
 		self::$cache = &$GLOBALS['db_cache'];
+
+		if (! isset(self::$db)) {
+			self::$db = new Db();
+		}
 	}
 
 	public static function extend(string $type = 'extra'): void
