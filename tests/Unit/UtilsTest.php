@@ -2,22 +2,22 @@
 
 use Bugo\Compat\Utils;
 
-beforeAll(function () {
-	new Utils();
+beforeEach(function () {
+	$this->utils = new Utils();
 });
 
 test('constructor', function () {
-	expect(Utils::$context)->toBeArray();
-	expect(Utils::$smcFunc)->toBeArray();
+	expect($this->utils::$context)->toBeArray()
+		->and($this->utils::$smcFunc)->toBeArray();
 });
 
 test('escapeJavaScript method', function () {
-	expect(Utils::escapeJavaScript('foo_bar'))->toBeString();
+	expect($this->utils::escapeJavaScript('foo_bar'))->toBeString();
 });
 
 test('obExit method', function () {
 	try {
-		Utils::obExit();
+		$this->utils::obExit();
 		$result = 'success';
 	} catch (Exception $e) {
 		$result = $e->getMessage();
@@ -28,7 +28,7 @@ test('obExit method', function () {
 
 test('redirectexit method', function () {
 	try {
-		Utils::redirectexit();
+		$this->utils::redirectexit();
 		$result = 'success';
 	} catch (Exception $e) {
 		$result = $e->getMessage();
@@ -39,7 +39,7 @@ test('redirectexit method', function () {
 
 test('sendHttpStatus method', function () {
 	try {
-		Utils::sendHttpStatus(404);
+		$this->utils::sendHttpStatus(404);
 		$result = 'success';
 	} catch (Exception $e) {
 		$result = $e->getMessage();
@@ -49,17 +49,17 @@ test('sendHttpStatus method', function () {
 });
 
 test('shorten method', function () {
-	expect(Utils::shorten('foo'))->toBeString();
+	expect($this->utils::shorten('foo'))->toBeString();
 });
 
 test('makeWritable method', function () {
-	expect(Utils::makeWritable('test.php'))->toBeTrue();
+	expect($this->utils::makeWritable('test.php'))->toBeTrue();
 });
 
 test('jsonDecode method', function () {
-	expect(Utils::jsonDecode('foo'))->toBeArray();
+	expect($this->utils::jsonDecode('foo'))->toBeArray();
 });
 
 test('htmlspecialcharsDecode method', function () {
-	expect(Utils::htmlspecialcharsDecode('foo'))->toBeString();
+	expect($this->utils::htmlspecialcharsDecode('foo'))->toBeString();
 });

@@ -3,49 +3,49 @@
 use Bugo\Compat\Theme;
 use Bugo\Compat\Utils;
 
-beforeAll(function () {
-	new Theme();
+beforeEach(function () {
+	$this->theme = new Theme();
 });
 
 test('constructor', function () {
-	expect(Theme::$current->settings)->toBeArray();
-	expect(Theme::$current->options)->toBeArray();
-	expect(Theme::$current)->toBeInstanceOf(stdClass::class);
+	expect($this->theme::$current->settings)->toBeArray()
+		->and($this->theme::$current->options)->toBeArray()
+		->and($this->theme::$current)->toBeInstanceOf(stdClass::class);
 });
 
 test('addJavaScriptVar method', function () {
-	Theme::addJavaScriptVar('foo', 'bar');
+	$this->theme::addJavaScriptVar('foo', 'bar');
 
 	expect(Utils::$context['javascript_vars']['foo'])->toBe('bar');
 });
 
 test('addInlineCss method', function () {
-	Theme::addInlineCss('');
+	$this->theme::addInlineCss('');
 
 	expect(Utils::$context['css_header'])->toBeEmpty();
 
-	Theme::addInlineCss('foo');
+	$this->theme::addInlineCss('foo');
 
 	expect(Utils::$context['css_header'])->toContain('foo');
 });
 
 test('addInlineJavaScript method', function () {
-	Theme::addInlineJavaScript('');
+	$this->theme::addInlineJavaScript('');
 
 	expect(Utils::$context['javascript_inline']['standard'])->toBeEmpty();
 
-	Theme::addInlineJavaScript('foo', true);
+	$this->theme::addInlineJavaScript('foo', true);
 
 	expect(Utils::$context['javascript_inline']['defer'])->toContain('foo');
 
-	Theme::addInlineJavaScript('bar');
+	$this->theme::addInlineJavaScript('bar');
 
 	expect(Utils::$context['javascript_inline']['standard'])->toContain('bar');
 });
 
 test('loadCSSFile method', function () {
 	try {
-		Theme::loadCSSFile('test.css');
+		$this->theme::loadCSSFile('test.css');
 		$result = 'success';
 	} catch (Exception $e) {
 		$result = $e->getMessage();
@@ -56,7 +56,7 @@ test('loadCSSFile method', function () {
 
 test('loadJavaScriptFile method', function () {
 	try {
-		Theme::loadJavaScriptFile('test.js');
+		$this->theme::loadJavaScriptFile('test.js');
 		$result = 'success';
 	} catch (Exception $e) {
 		$result = $e->getMessage();
@@ -67,7 +67,7 @@ test('loadJavaScriptFile method', function () {
 
 test('loadEssential method', function () {
 	try {
-		Theme::loadEssential();
+		$this->theme::loadEssential();
 		$result = 'success';
 	} catch (Exception $e) {
 		$result = $e->getMessage();
@@ -78,7 +78,7 @@ test('loadEssential method', function () {
 
 test('loadTemplate method', function () {
 	try {
-		Theme::loadTemplate('Test');
+		$this->theme::loadTemplate('Test');
 		$result = 'success';
 	} catch (Exception $e) {
 		$result = $e->getMessage();

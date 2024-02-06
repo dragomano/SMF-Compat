@@ -1,7 +1,6 @@
 <?php declare(strict_types=1);
 
 use Bugo\Compat\IntegrationHook;
-use Exception;
 
 test('call method', function () {
 	expect(IntegrationHook::call('foo_bar'))->toBeArray();
@@ -9,7 +8,7 @@ test('call method', function () {
 
 test('add method', function () {
 	try {
-		IntegrationHook::add('foo_bar', self::class);
+		IntegrationHook::add('foo_bar', 'some_func');
 		$result = 'success';
 	} catch (Exception $e) {
 		$result = $e->getMessage();

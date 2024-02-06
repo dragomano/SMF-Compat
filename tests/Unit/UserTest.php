@@ -2,39 +2,39 @@
 
 use Bugo\Compat\User;
 
-beforeAll(function () {
-	new User();
+beforeEach(function () {
+	$this->user = new User();
 });
 
 test('constructor', function () {
-	expect(User::$info)->toBeArray();
-	expect(User::$profiles)->toBeArray();
-	expect(User::$settings)->toBeArray();
-	expect(User::$memberContext)->toBeArray();
-	expect(User::$me)->toBeInstanceOf(User::class);
+	expect($this->user::$info)->toBeArray()
+		->and($this->user::$profiles)->toBeArray()
+		->and($this->user::$settings)->toBeArray()
+		->and($this->user::$memberContext)->toBeArray()
+		->and($this->user::$me)->toBeInstanceOf(User::class);
 });
 
 test('allowedTo method', function () {
-	expect(User::$me->allowedTo('foo_bar'))->toBeTrue();
-	expect(User::$me->allowedTo('foo'))->toBeFalse();
+	expect($this->user::$me->allowedTo('foo_bar'))->toBeTrue()
+		->and($this->user::$me->allowedTo('foo'))->toBeFalse();
 });
 
 test('hasPermission method', function () {
-	expect(User::hasPermission('foo_bar'))->toBeTrue();
-	expect(User::hasPermission('foo'))->toBeFalse();
+	expect($this->user::hasPermission('foo_bar'))->toBeTrue()
+		->and($this->user::hasPermission('foo'))->toBeFalse();
 });
 
 test('checkSession method', function () {
-	expect(User::$me->checkSession())->toBeEmpty();
+	expect($this->user::$me->checkSession())->toBeEmpty();
 });
 
 test('sessionCheck method', function () {
-	expect(User::sessionCheck())->toBeEmpty();
+	expect($this->user::sessionCheck())->toBeEmpty();
 });
 
 test('isAllowedTo method', function () {
 	try {
-		User::$me->isAllowedTo('foo_bar');
+		$this->user::$me->isAllowedTo('foo_bar');
 		$result = 'success';
 	} catch (Exception $e) {
 		$result = $e->getMessage();
@@ -44,24 +44,24 @@ test('isAllowedTo method', function () {
 });
 
 test('mustHavePermission method', function () {
-	expect(User::mustHavePermission('foo_bar'))->toBeTrue();
+	expect($this->user::mustHavePermission('foo_bar'))->toBeTrue();
 });
 
 test('loadMemberData method', function () {
-	expect(User::loadMemberData(['foo_bar']))->toBeArray();
+	expect($this->user::loadMemberData(['foo_bar']))->toBeArray();
 });
 
 test('loadMemberContext method', function () {
-	expect(User::loadMemberContext(1))->toBeTrue();
+	expect($this->user::loadMemberContext(1))->toBeTrue();
 });
 
 test('membersAllowedTo method', function () {
-	expect(User::membersAllowedTo('foo_bar'))->toBe(['foo_bar']);
+	expect($this->user::membersAllowedTo('foo_bar'))->toBe(['foo_bar']);
 });
 
 test('updateMemberData method', function () {
 	try {
-		User::updateMemberData([1], ['foo' => 'bar']);
+		$this->user::updateMemberData([1], ['foo' => 'bar']);
 		$result = 'success';
 	} catch (Exception $e) {
 		$result = $e->getMessage();

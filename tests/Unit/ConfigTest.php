@@ -2,28 +2,28 @@
 
 use Bugo\Compat\Config;
 
-beforeAll(function () {
-	new Config();
+beforeEach(function () {
+	$this->config = new Config();
 });
 
 test('constructor', function () {
-	expect(Config::$modSettings)->toBeArray();
-	expect(Config::$scripturl)->toBeString();
-	expect(Config::$boardurl)->toBeString();
-	expect(Config::$boarddir)->toBeString();
-	expect(Config::$sourcedir)->toBeString();
-	expect(Config::$cachedir)->toBeString();
-	expect(Config::$db_type)->toBeString();
-	expect(Config::$db_prefix)->toBeString();
-	expect(Config::$language)->toBeString();
-	expect(Config::$cache_enable)->toBeInt();
-	expect(Config::$db_show_debug)->toBeBool();
+	expect($this->config::$modSettings)->toBeArray()
+		->and($this->config::$scripturl)->toBeString()
+		->and($this->config::$boardurl)->toBeString()
+		->and($this->config::$boarddir)->toBeString()
+		->and($this->config::$sourcedir)->toBeString()
+		->and($this->config::$cachedir)->toBeString()
+		->and($this->config::$db_type)->toBeString()
+		->and($this->config::$db_prefix)->toBeString()
+		->and($this->config::$language)->toBeString()
+		->and($this->config::$cache_enable)->toBeInt()
+		->and($this->config::$db_show_debug)->toBeBool();
 });
 
 test('updateModSettings method', function () {
 	expect(isset(Config::$modSettings['foo']))->toBeFalse();
 
-	Config::updateModSettings(['foo' => 'bar']);
+	$this->config::updateModSettings(['foo' => 'bar']);
 
 	expect(Config::$modSettings['foo'])->toBe('bar');
 });

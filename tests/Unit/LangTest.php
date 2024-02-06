@@ -2,13 +2,13 @@
 
 use Bugo\Compat\Lang;
 
-beforeAll(function () {
-	new Lang();
+beforeEach(function () {
+	$this->lang = new Lang();
 });
 
 test('constructor', function () {
-	expect(Lang::$txt)->toBeArray();
-	expect(Lang::$editortxt)->toBeArray();
+	expect($this->lang::$txt)->toBeArray()
+		->and($this->lang::$editortxt)->toBeArray();
 });
 
 test('censorText method', function () {
@@ -20,15 +20,15 @@ test('censorText method', function () {
 });
 
 test('get method', function () {
-	expect(Lang::get())->toBeArray();
+	expect($this->lang::get())->toBeArray();
 });
 
 test('load method', function () {
-	Lang::load('bar');
+	$this->lang::load('bar');
 
 	expect(Lang::$txt['foo'])->toBe('bar');
 });
 
 test('sentenceList method', function () {
-	expect(Lang::sentenceList(['foo', 'bar']))->toBeString();
+	expect($this->lang::sentenceList(['foo', 'bar']))->toBeString();
 });

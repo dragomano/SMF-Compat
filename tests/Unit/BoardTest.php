@@ -2,12 +2,10 @@
 
 use Bugo\Compat\Board;
 
-beforeAll(function () {
-	new Board();
-});
-
 test('constructor', function () {
-	expect(Board::$id)->toBe(0);
-	expect(Board::$info)->toBeArray();
-	expect(Board::$loaded)->toBeArray();
+	$this->board = new Board();
+
+	expect($this->board::$id)->toBe(0)
+		->and($this->board::$info)->toBeArray()
+		->and($this->board::$loaded)->toBeArray();
 });

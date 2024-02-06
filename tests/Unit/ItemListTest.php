@@ -1,7 +1,6 @@
 <?php declare(strict_types=1);
 
 use Bugo\Compat\ItemList;
-use Exception;
 
 test('constructor', function () {
 	try {

@@ -2,10 +2,8 @@
 
 use Bugo\Compat\Topic;
 
-beforeAll(function () {
-	new Topic();
-});
-
 test('constructor', function () {
-	expect(Topic::$id)->toBe(0);
+	$this->topic = new Topic();
+
+	expect($this->topic::$id)->toBe(0);
 });
