@@ -32,9 +32,9 @@
     "php": "^8.0"
   },
   "require-dev": {
+    "php": "^8.1",
     "pestphp/pest": "^2.33.4",
-    "rector/rector": "^0.19",
-    "pestphp/pest-plugin-drift": "^2.5"
+    "rector/rector": "^1.0"
   },
   "scripts": {
     "check": "vendor/bin/rector process --dry-run --clear-cache",
