@@ -20,6 +20,8 @@ class Config
 {
 	public static ?array $modSettings = null;
 
+	public static string $mbname;
+
 	public static string $scripturl;
 
 	public static string $boardurl;
@@ -29,6 +31,14 @@ class Config
 	public static string $sourcedir;
 
 	public static string $cachedir;
+
+	public static string $db_server;
+
+	public static string $db_name;
+
+	public static string $db_user;
+
+	public static string $db_passwd;
 
 	public static string $db_type;
 
@@ -42,11 +52,16 @@ class Config
 
 	private array $vars = [
 		'modSettings'   => [],
+		'mbname'        => '',
 		'scripturl'     => '',
 		'boardurl'      => '',
 		'boarddir'      => '',
 		'sourcedir'     => '',
 		'cachedir'      => '',
+		'db_server'     => '',
+		'db_name'       => '',
+		'db_user'       => '',
+		'db_passwd'     => '',
 		'db_type'       => '',
 		'db_prefix'     => '',
 		'language'      => '',
