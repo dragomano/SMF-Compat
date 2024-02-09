@@ -102,11 +102,16 @@ class Example
 | `$boards`              |      `Board::$loaded`       |
 | `board_info`           |       `Board::$info`        |
 | `$modSettings`         |   `Config::$modSettings`    |
+| `$mbname`              |      `Config::$mbname`      |
 | `$scripturl`           |    `Config::$scripturl`     |
 | `$boardurl`            |     `Config::$boardurl`     |
 | `$boarddir`            |     `Config::$boarddir`     |
 | `$sourcedir`           |    `Config::$sourcedir`     |
 | `$cachedir`            |     `Config::$cachedir`     |
+| `$db_server`           |    `Config::$db_server`     |
+| `$db_name`             |     `Config::$db_name`      |
+| `$db_user`             |     `Config::$db_user`      |
+| `$db_passwd`           |    `Config::$db_passwd`     |
 | `$db_type`             |     `Config::$db_type`      |
 | `$db_prefix`           |    `Config::$db_prefix`     |
 | `$language`            |     `Config::$language`     |
@@ -203,3 +208,4 @@ class Example
 ## Примеры использования данной библиотеки
 
 [Optimus 3.0 Beta](https://github.com/dragomano/Optimus/tree/dev)
+[SMF Tracy Debugger](https://github.com/dragomano/SMF-Tracy-Debugger)
