@@ -152,9 +152,9 @@ if (! function_exists('getLanguages')) {
 }
 
 if (! function_exists('loadLanguage')) {
-	function loadLanguage(string $lang): void
+	function loadLanguage(string $template_name, string $lang = ''): void
 	{
-		Lang::$txt['foo'] = $lang;
+		Lang::$txt['foo'] = $template_name;
 	}
 }
 
