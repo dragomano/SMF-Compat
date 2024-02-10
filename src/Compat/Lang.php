@@ -14,6 +14,8 @@
 
 namespace Bugo\Compat;
 
+use IntlException;
+use MessageFormatter;
 use function censorText;
 use function getLanguages;
 use function loadLanguage;
@@ -21,6 +23,8 @@ use function sentence_list;
 
 class Lang
 {
+	public const LANG_TO_LOCALE = [];
+
 	public static array $txt;
 
 	public static array $editortxt;
@@ -65,5 +69,34 @@ class Lang
 	public static function sentenceList(array $list): string
 	{
 		return sentence_list($list);
+	}
+
+	public static function getTxt(string|array $txt_key, array $args = [], string $var = 'txt'): string
+	{
+		if (is_array($txt_key)) {
+			$txt_key = (string) key($txt_key);
+		}
+
+		if ($args === [] && is_string($txt_key)) {
+			return self::${$var}[$txt_key] ?? '';
+		}
+
+		if (! extension_loaded('intl')) {
+			ErrorHandler::log('Lang::getTxt: You should enable the intl extension in php.ini', 'critical');
+
+			return '';
+		}
+
+		$message = self::${$var}[$txt_key] ?? $key;
+
+		try {
+			$formatter = new MessageFormatter(self::$txt['lang_locale'] ?? 'en_US', $message);
+
+			return $formatter->format($args);
+		} catch (IntlException $e) {
+			ErrorHandler::log("Lang::getTxt: {$e->getMessage()} in '\${$var}[$txt_key]'", 'critical');
+
+			return '';
+		}
 	}
 }
