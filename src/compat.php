@@ -1,13 +1,11 @@
-<?php
-
-declare(strict_types=1);
+<?php declare(strict_types=1);
 
 if (! defined('SMF_VERSION'))
 	return;
 
 use Bugo\Compat\{ACP, BBCodeParser, Board, CacheApi, Config};
-use Bugo\Compat\{Database, ErrorHandler, IntegrationHook, ItemList};
-use Bugo\Compat\{Lang, Logging, Mail, Msg, Notify, PageIndex};
+use Bugo\Compat\{Database, Editor, ErrorHandler, IntegrationHook, ItemList};
+use Bugo\Compat\{Lang, Logging, Mail, MessageIndex, Msg, Notify, PageIndex};
 use Bugo\Compat\{Sapi, Security, ServerSideIncludes, Theme};
 use Bugo\Compat\{Topic, User, Utils, WebFetchApi};
 
@@ -17,6 +15,7 @@ if (str_starts_with(SMF_VERSION, '3.0')) {
 		'SMF\\IntegrationHook'       => IntegrationHook::class,
 		'SMF\\ErrorHandler'          => ErrorHandler::class,
 		'SMF\\BBCodeParser'          => BBCodeParser::class,
+		'SMF\\Actions\\MessageIndex' => MessageIndex::class,
 		'SMF\\WebFetch\\WebFetchApi' => WebFetchApi::class,
 		'SMF\\PageIndex'             => PageIndex::class,
 		'SMF\\Db\\DatabaseApi'       => Database::class,
@@ -24,6 +23,7 @@ if (str_starts_with(SMF_VERSION, '3.0')) {
 		'SMF\\ItemList'              => ItemList::class,
 		'SMF\\Security'              => Security::class,
 		'SMF\\Logging'               => Logging::class,
+		'SMF\\Editor'                => Editor::class,
 		'SMF\\Actions\\Notify'       => Notify::class,
 		'SMF\\Config'                => Config::class,
 		'SMF\\Board'                 => Board::class,
