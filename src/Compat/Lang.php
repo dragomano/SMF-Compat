@@ -61,9 +61,9 @@ class Lang
 		return getLanguages();
 	}
 
-	public static function load(string $language, string $lang = ''): void
+	public static function load(string $template_name, string $lang = ''): void
 	{
-		loadLanguage($language, $lang);
+		loadLanguage($template_name, $lang);
 	}
 
 	public static function sentenceList(array $list): string
@@ -71,30 +71,28 @@ class Lang
 		return sentence_list($list);
 	}
 
-	public static function getTxt(string|array $txt_key, array $args = [], string $var = 'txt'): string
+	public static function getTxt(string $key, array $args = [], string $var = 'txt'): string
 	{
-		if (is_array($txt_key)) {
-			$txt_key = (string) key($txt_key);
+		if ($args === []) {
+			return self::${$var}[$key] ?? '';
 		}
 
-		if ($args === [] && is_string($txt_key)) {
-			return self::${$var}[$txt_key] ?? '';
-		}
-
+		// @codeCoverageIgnoreStart
 		if (! extension_loaded('intl')) {
 			ErrorHandler::log('Lang::getTxt: You should enable the intl extension in php.ini', 'critical');
 
 			return '';
 		}
+		// @codeCoverageIgnoreEnd
 
-		$message = self::${$var}[$txt_key] ?? $key;
+		$pattern = self::${$var}[$key] ?? $key;
 
 		try {
-			$formatter = new MessageFormatter(self::$txt['lang_locale'] ?? 'en_US', $message);
+			$formatter = new MessageFormatter(self::$txt['lang_locale'] ?? 'en_US', $pattern);
 
 			return $formatter->format($args);
 		} catch (IntlException $e) {
-			ErrorHandler::log("Lang::getTxt: {$e->getMessage()} in '\${$var}[$txt_key]'", 'critical');
+			ErrorHandler::log("Lang::getTxt: {$e->getMessage()} in '\${$var}[$key]'", 'critical');
 
 			return '';
 		}
