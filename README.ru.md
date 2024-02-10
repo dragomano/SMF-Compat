@@ -145,6 +145,7 @@ class Example
 | `clean_cache`              |                    `CacheApi::clean`                    |
 | `updateSettings`           |               `Config::updateModSettings`               |
 | `db_extend`                |                   `Database::extend`                    |
+| `create_control_richedit`  |                      `new Editor`                       |
 | `fatal_error`              |                  `ErrorHandler::fatal`                  |
 | `fatal_lang_error`         |                `ErrorHandler::fatalLang`                |
 | `log_error`                |                   `ErrorHandler::log`                   |
@@ -158,6 +159,7 @@ class Example
 | `logAction`                |                  `Logging::logAction`                   |
 | `loadEmailTemplate`        |                `Mail::loadEmailTemplate`                |
 | `sendmail`                 |                      `Mail::send`                       |
+| `getBoardList`             |              `MessageIndex::getBoardList`               |
 | `preparsecode`             |                   `Msg::preparseCode`                   |
 | `un_preparsecode`          |                  `Msg::unPreparseCode`                  |
 | `getNotifyPrefs`           |                `Notify::getNotifyPrefs`                 |
@@ -188,7 +190,7 @@ class Example
 | `smf_chmod`                |                  `Utils::makeWritable`                  |
 | `smf_json_decode`          |                   `Utils::jsonDecode`                   |
 | `un_htmlspecialchars`      |             `Utils::htmlspecialcharsDecode`             |
-| `fetch_web_data`           |               `WebFetchApi::WebFetchApi`                |
+| `fetch_web_data`           |                   `WebFetchApi:fetch`                   |
 
 #### SSI-функции
 
@@ -196,14 +198,14 @@ class Example
 
 #### Работа с базой данных
 
-В режиме совместимости можно использовать `Utils::$smcFunc['db_query']` и т. д., но также введён новый класс `Database`, со статическим свойством `$db`, содержащим класс текущего движка базы данных. Методы этого класса аналогичны функциям в `Utils::$smcFunc`, но без приставки `db_`. Покажем на примере трёх функций:
+В режиме совместимости можно использовать `Utils::$smcFunc['db_query']` и т. д., но также введён новый класс `Database`, со статическим свойством `$db`, содержащим класс текущего движка базы данных. Методы этого класса аналогичны функциям в `Utils::$smcFunc`, но без приставки `db_`. Покажем на примере трёх популярных функций:
 
-| Старый код (SMF 2.1.x)                                  |                Новый код (SMF 3.0)                |
-| ------------------------------------------------------- | :-----------------------------------------------: |
-| `global $smcFunc;`                                      |         `use Bugo\Compat\Database as Db;`         |
-| `$result = $smcFunc['db_query']('', /* Ваш SQL */, [])` | `$result = Db::$db->query('', /* Ваш SQL */, [])` |
-| `$rows = $smcFunc['db_fetch_assoc']($result)`           |      `$rows = Db::$db->fetch_assoc($result)`      |
-| `$smcFunc['db_free_result']($result)`                   |          `Db::$db->free_result($result)`          |
+|                 Старый код (SMF 2.1.x)                  |                    Переходный код (SMF 3.0)                    |                Новый код (SMF 3.0)                |
+| :-----------------------------------------------------: | :------------------------------------------------------------: | :-----------------------------------------------: |
+|                   `global $smcFunc;`                    |                    `use Bugo\Compat\Utils`                     |         `use Bugo\Compat\Database as Db;`         |
+| `$result = $smcFunc['db_query']('', /* Ваш SQL */, [])` | `$result = Utils::$smcFunc['db_query']('', /* Ваш SQL */, [])` | `$result = Db::$db->query('', /* Ваш SQL */, [])` |
+|      `$rows = $smcFunc['db_fetch_assoc']($result)`      |      `$rows = Utils::$smcFunc['db_fetch_assoc']($result)`      |      `$rows = Db::$db->fetch_assoc($result)`      |
+|          `$smcFunc['db_free_result']($result)`          |          `Utils::$smcFunc['db_free_result']($result)`          |          `Db::$db->free_result($result)`          |
 
 ## Примеры использования данной библиотеки
 

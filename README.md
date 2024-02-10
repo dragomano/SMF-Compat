@@ -145,6 +145,7 @@ Or you can leave it as it is. In this case, your modification will support both 
 | `clean_cache`              |                   `CacheApi::clean`                    |
 | `updateSettings`           |              `Config::updateModSettings`               |
 | `db_extend`                |                   `Database::extend`                   |
+| `create_control_richedit`  |                      `new Editor`                      |
 | `fatal_error`              |                 `ErrorHandler::fatal`                  |
 | `fatal_lang_error`         |               `ErrorHandler::fatalLang`                |
 | `log_error`                |                  `ErrorHandler::log`                   |
@@ -158,6 +159,7 @@ Or you can leave it as it is. In this case, your modification will support both 
 | `logAction`                |                  `Logging::logAction`                  |
 | `loadEmailTemplate`        |               `Mail::loadEmailTemplate`                |
 | `sendmail`                 |                      `Mail::send`                      |
+| `getBoardList`             |              `MessageIndex::getBoardList`              |
 | `preparsecode`             |                  `Msg::preparseCode`                   |
 | `un_preparsecode`          |                 `Msg::unPreparseCode`                  |
 | `getNotifyPrefs`           |                `Notify::getNotifyPrefs`                |
@@ -188,7 +190,7 @@ Or you can leave it as it is. In this case, your modification will support both 
 | `smf_chmod`                |                 `Utils::makeWritable`                  |
 | `smf_json_decode`          |                  `Utils::jsonDecode`                   |
 | `un_htmlspecialchars`      |            `Utils::htmlspecialcharsDecode`             |
-| `fetch_web_data`           |               `WebFetchApi::WebFetchApi`               |
+| `fetch_web_data`           |                  `WebFetchApi::fetch`                  |
 
 #### SSI functions
 
@@ -196,14 +198,14 @@ All functions in SSI.php that were called via `ssi_function_name` before 3.0 are
 
 #### Working with the database
 
-In compatibility mode, you can use `Utils::$smcFunc['db_query']`, etc., but also introduced a new class `Database`, with a static property `$db` containing the class of the current database engine. The methods of this class are similar to functions in `Utils::$smcFunc`, but without the `db_` prefix. Let's show on the example of three functions:
+In compatibility mode, you can use `Utils::$smcFunc['db_query']`, etc., but also introduced a new class `Database`, with a static property `$db` containing the class of the current database engine. The methods of this class are similar to functions in `Utils::$smcFunc`, but without the `db_` prefix. Let's show on the example of three popular functions:
 
-| Legacy code (SMF 2.1.x)                                  |                 New code (SMF 3.0)                 |
-| -------------------------------------------------------- | :------------------------------------------------: |
-| `global $smcFunc;`                                       |         `use Bugo\Compat\Database as Db;`          |
-| `$result = $smcFunc['db_query']('', /* Your SQL */, [])` | `$result = Db::$db->query('', /* Your SQL */, [])` |
-| `$rows = $smcFunc['db_fetch_assoc']($result)`            |      `$rows = Db::$db->fetch_assoc($result)`       |
-| `$smcFunc['db_free_result']($result)`                    |          `Db::$db->free_result($result)`           |
+|                 Legacy code (SMF 2.1.x)                  |                    Transition code (SMF 3.0)                    |                 New code (SMF 3.0)                 |
+| :------------------------------------------------------: | :-------------------------------------------------------------: | :------------------------------------------------: |
+|                    `global $smcFunc;`                    |                     `use Bugo\Compat\Utils`                     |         `use Bugo\Compat\Database as Db;`          |
+| `$result = $smcFunc['db_query']('', /* Your SQL */, [])` | `$result = Utils::$smcFunc['db_query']('', /* Your SQL */, [])` | `$result = Db::$db->query('', /* Your SQL */, [])` |
+|      `$rows = $smcFunc['db_fetch_assoc']($result)`       |      `$rows = Utils::$smcFunc['db_fetch_assoc']($result)`       |      `$rows = Db::$db->fetch_assoc($result)`       |
+|          `$smcFunc['db_free_result']($result)`           |          `Utils::$smcFunc['db_free_result']($result)`           |          `Db::$db->free_result($result)`           |
 
 ## Examples of using this library
 
