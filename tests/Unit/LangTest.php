@@ -48,6 +48,18 @@ describe('getTxt method', function () {
 			->toBe('');
 	});
 
+	test('with array key', function () {
+		Lang::$txt['foo_bars'] = ['foo', 'bar'];
+
+		expect($this->lang::getTxt(['foo_bars', 1]))
+			->toBe('bar');
+	});
+
+	test('with array key that does not exist', function () {
+		expect($this->lang::getTxt(['unknown']))
+			->toBe('');
+	});
+
 	test('with replacements', function () {
 		Lang::$txt['test'] = 'This word is {foo}';
 

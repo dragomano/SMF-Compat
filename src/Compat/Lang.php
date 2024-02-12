@@ -71,10 +71,18 @@ class Lang
 		return sentence_list($list);
 	}
 
-	public static function getTxt(string $key, array $args = [], string $var = 'txt'): string
+	public static function getTxt(string|array $key, array $args = [], string $var = 'txt'): string
 	{
-		if ($args === []) {
+		if ($args === [] && is_string($key)) {
 			return self::${$var}[$key] ?? '';
+		}
+
+		if (is_array($key)) {
+			if (isset($key[0], $key[1])) {
+				return self::${$var}[$key[0]][$key[1]] ?? '';
+			}
+
+			return '';
 		}
 
 		// @codeCoverageIgnoreStart
