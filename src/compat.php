@@ -5,7 +5,7 @@ if (! defined('SMF_VERSION'))
 
 use Bugo\Compat\{ACP, BBCodeParser, Board, CacheApi, Config};
 use Bugo\Compat\{Database, Editor, ErrorHandler, IntegrationHook, ItemList};
-use Bugo\Compat\{Lang, Logging, Mail, MessageIndex, Msg, Notify, PageIndex};
+use Bugo\Compat\{Lang, Logging, Mail, Menu, MessageIndex, Msg, Notify, PageIndex};
 use Bugo\Compat\{Sapi, Security, ServerSideIncludes, Theme};
 use Bugo\Compat\{Topic, User, Utils, WebFetchApi};
 
@@ -32,6 +32,7 @@ if (str_starts_with(SMF_VERSION, '3.0')) {
 		'SMF\\Utils'                 => Utils::class,
 		'SMF\\Lang'                  => Lang::class,
 		'SMF\\Mail'                  => Mail::class,
+		'SMF\\Menu'                  => Menu::class,
 		'SMF\\User'                  => User::class,
 		'SMF\\Sapi'                  => Sapi::class,
 		'SMF\\Actions\\Admin\\ACP'   => ACP::class,
