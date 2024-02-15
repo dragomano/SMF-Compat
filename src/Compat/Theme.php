@@ -39,7 +39,7 @@ class Theme
 		if (! isset($GLOBALS['options']))
 			$GLOBALS['options'] = [];
 
-		self::$current->options  = &$GLOBALS['options'];
+		self::$current->options = &$GLOBALS['options'];
 	}
 
 	public static function addJavaScriptVar(string $key, string $value, bool $escape = false): void
