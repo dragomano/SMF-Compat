@@ -4,7 +4,7 @@ if (! defined('SMF_VERSION'))
 	return;
 
 use Bugo\Compat\{ACP, BBCodeParser, Board, CacheApi, Config};
-use Bugo\Compat\{Database, Editor, ErrorHandler, IntegrationHook, ItemList};
+use Bugo\Compat\{Db, Editor, ErrorHandler, IntegrationHook, ItemList};
 use Bugo\Compat\{Lang, Logging, Mail, Menu, MessageIndex, Msg, Notify, PageIndex};
 use Bugo\Compat\{Sapi, Security, ServerSideIncludes, Theme};
 use Bugo\Compat\{Topic, User, Utils, WebFetchApi};
@@ -18,7 +18,6 @@ if (str_starts_with(SMF_VERSION, '3.0')) {
 		'SMF\\Actions\\MessageIndex' => MessageIndex::class,
 		'SMF\\WebFetch\\WebFetchApi' => WebFetchApi::class,
 		'SMF\\PageIndex'             => PageIndex::class,
-		'SMF\\Db\\DatabaseApi'       => Database::class,
 		'SMF\\Cache\\CacheApi'       => CacheApi::class,
 		'SMF\\ItemList'              => ItemList::class,
 		'SMF\\Security'              => Security::class,
@@ -37,6 +36,7 @@ if (str_starts_with(SMF_VERSION, '3.0')) {
 		'SMF\\Sapi'                  => Sapi::class,
 		'SMF\\Actions\\Admin\\ACP'   => ACP::class,
 		'SMF\\Msg'                   => Msg::class,
+		'SMF\\Db\\DatabaseApi'       => Db::class,
 	];
 
 	$applyAlias = static fn($class, $alias) => class_alias($class, $alias);
@@ -51,6 +51,6 @@ if (str_starts_with(SMF_VERSION, '3.0')) {
 		Topic::class,
 		Utils::class,
 		Config::class,
-		Database::class,
+		Db::class,
 	]);
 }

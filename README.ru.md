@@ -117,8 +117,8 @@ class Example
 | `$language`            |     `Config::$language`     |
 | `$cache_enable`        |   `Config::$cache_enable`   |
 | `$db_show_debug`       |  `Config::$db_show_debug`   |
-| `$db_count`            |     `Database::$count`      |
-| `$db_cache`            |     `Database::$cache`      |
+| `$db_count`            |        `Db::$count`         |
+| `$db_cache`            |        `Db::$cache`         |
 | `$txt`                 |        `Lang::$txt`         |
 | `$editortxt`           |     `Lang::$editortxt`      |
 | `$helptxt`             |      `Lang::$helptxt`       |
@@ -144,7 +144,7 @@ class Example
 | `cache_put_data`           |                     `CacheApi::put`                     |
 | `clean_cache`              |                    `CacheApi::clean`                    |
 | `updateSettings`           |               `Config::updateModSettings`               |
-| `db_extend`                |                   `Database::extend`                    |
+| `db_extend`                |                      `Db::extend`                       |
 | `create_control_richedit`  |                      `new Editor`                       |
 | `fatal_error`              |                  `ErrorHandler::fatal`                  |
 | `fatal_lang_error`         |                `ErrorHandler::fatalLang`                |
@@ -198,11 +198,11 @@ class Example
 
 #### Работа с базой данных
 
-В режиме совместимости можно использовать `Utils::$smcFunc['db_query']` и т. д., но также введён новый класс `Database`, со статическим свойством `$db`, содержащим класс текущего движка базы данных. Методы этого класса аналогичны функциям в `Utils::$smcFunc`, но без приставки `db_`. Покажем на примере трёх популярных функций:
+В режиме совместимости можно использовать `Utils::$smcFunc['db_query']` и т. д., но также введён новый класс `Db`, со статическим свойством `$db`, содержащим класс текущего движка базы данных. Методы этого класса аналогичны функциям в `Utils::$smcFunc`, но без приставки `db_`. Покажем на примере трёх популярных функций:
 
 |                 Старый код (SMF 2.1.x)                  |                    Переходный код (SMF 3.0)                    |                Новый код (SMF 3.0)                |
 | :-----------------------------------------------------: | :------------------------------------------------------------: | :-----------------------------------------------: |
-|                   `global $smcFunc;`                    |                    `use Bugo\Compat\Utils`                     |         `use Bugo\Compat\Database as Db;`         |
+|                   `global $smcFunc;`                    |                    `use Bugo\Compat\Utils`                     |               `use Bugo\Compat\Db;`               |
 | `$result = $smcFunc['db_query']('', /* Ваш SQL */, [])` | `$result = Utils::$smcFunc['db_query']('', /* Ваш SQL */, [])` | `$result = Db::$db->query('', /* Ваш SQL */, [])` |
 |      `$rows = $smcFunc['db_fetch_assoc']($result)`      |      `$rows = Utils::$smcFunc['db_fetch_assoc']($result)`      |      `$rows = Db::$db->fetch_assoc($result)`      |
 |          `$smcFunc['db_free_result']($result)`          |          `Utils::$smcFunc['db_free_result']($result)`          |          `Db::$db->free_result($result)`          |
@@ -211,3 +211,4 @@ class Example
 
 [Optimus 3.0 Beta](https://github.com/dragomano/Optimus/tree/dev)
 [SMF Tracy Debugger](https://github.com/dragomano/SMF-Tracy-Debugger)
+[Light Portal](https://github.com/dragomano/Light-Portal)

@@ -117,8 +117,8 @@ Or you can leave it as it is. In this case, your modification will support both 
 | `$language`             |     `Config::$language`     |
 | `$cache_enable`         |   `Config::$cache_enable`   |
 | `$db_show_debug`        |  `Config::$db_show_debug`   |
-| `$db_count`             |     `Database::$count`      |
-| `$db_cache`             |     `Database::$cache`      |
+| `$db_count`             |        `Db::$count`         |
+| `$db_cache`             |        `Db::$cache`         |
 | `$txt`                  |        `Lang::$txt`         |
 | `$editortxt`            |     `Lang::$editortxt`      |
 | `$helptxt`              |      `Lang::$helptxt`       |
@@ -144,7 +144,7 @@ Or you can leave it as it is. In this case, your modification will support both 
 | `cache_put_data`           |                    `CacheApi::put`                     |
 | `clean_cache`              |                   `CacheApi::clean`                    |
 | `updateSettings`           |              `Config::updateModSettings`               |
-| `db_extend`                |                   `Database::extend`                   |
+| `db_extend`                |                      `Db::extend`                      |
 | `create_control_richedit`  |                      `new Editor`                      |
 | `fatal_error`              |                 `ErrorHandler::fatal`                  |
 | `fatal_lang_error`         |               `ErrorHandler::fatalLang`                |
@@ -198,11 +198,11 @@ All functions in SSI.php that were called via `ssi_function_name` before 3.0 are
 
 #### Working with the database
 
-In compatibility mode, you can use `Utils::$smcFunc['db_query']`, etc., but also introduced a new class `Database`, with a static property `$db` containing the class of the current database engine. The methods of this class are similar to functions in `Utils::$smcFunc`, but without the `db_` prefix. Let's show on the example of three popular functions:
+In compatibility mode, you can use `Utils::$smcFunc['db_query']`, etc., but also introduced a new class `Db`, with a static property `$db` containing the class of the current database engine. The methods of this class are similar to functions in `Utils::$smcFunc`, but without the `db_` prefix. Let's show on the example of three popular functions:
 
 |                 Legacy code (SMF 2.1.x)                  |                    Transition code (SMF 3.0)                    |                 New code (SMF 3.0)                 |
 | :------------------------------------------------------: | :-------------------------------------------------------------: | :------------------------------------------------: |
-|                    `global $smcFunc;`                    |                     `use Bugo\Compat\Utils`                     |         `use Bugo\Compat\Database as Db;`          |
+|                    `global $smcFunc;`                    |                     `use Bugo\Compat\Utils`                     |               `use Bugo\Compat\Db;`                |
 | `$result = $smcFunc['db_query']('', /* Your SQL */, [])` | `$result = Utils::$smcFunc['db_query']('', /* Your SQL */, [])` | `$result = Db::$db->query('', /* Your SQL */, [])` |
 |      `$rows = $smcFunc['db_fetch_assoc']($result)`       |      `$rows = Utils::$smcFunc['db_fetch_assoc']($result)`       |      `$rows = Db::$db->fetch_assoc($result)`       |
 |          `$smcFunc['db_free_result']($result)`           |          `Utils::$smcFunc['db_free_result']($result)`           |          `Db::$db->free_result($result)`           |
@@ -211,3 +211,4 @@ In compatibility mode, you can use `Utils::$smcFunc['db_query']`, etc., but also
 
 [Optimus 3.0 Beta](https://github.com/dragomano/Optimus/tree/dev)
 [SMF Tracy Debugger](https://github.com/dragomano/SMF-Tracy-Debugger)
+[Light Portal](https://github.com/dragomano/Light-Portal)
