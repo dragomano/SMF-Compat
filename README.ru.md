@@ -209,6 +209,6 @@ class Example
 
 ## Примеры использования данной библиотеки
 
-[Optimus 3.0 Beta](https://github.com/dragomano/Optimus/tree/dev)
-[SMF Tracy Debugger](https://github.com/dragomano/SMF-Tracy-Debugger)
-[Light Portal](https://github.com/dragomano/Light-Portal)
+- [Optimus 3.0 Beta](https://github.com/dragomano/Optimus/tree/dev)
+- [SMF Tracy Debugger](https://github.com/dragomano/SMF-Tracy-Debugger)
+- [Light Portal](https://github.com/dragomano/Light-Portal)
