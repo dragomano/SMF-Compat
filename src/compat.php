@@ -3,7 +3,7 @@
 if (! defined('SMF_VERSION'))
 	return;
 
-use Bugo\Compat\{ACP, BBCodeParser, Board, CacheApi, Config};
+use Bugo\Compat\{ACP, BBCodeParser, Board, CacheApi, Calendar, Config};
 use Bugo\Compat\{Db, Editor, ErrorHandler, IntegrationHook, ItemList};
 use Bugo\Compat\{Lang, Logging, Mail, Menu, MessageIndex, Msg, Notify, PageIndex};
 use Bugo\Compat\{Sapi, Security, ServerSideIncludes, Theme};
@@ -21,6 +21,7 @@ if (str_starts_with(SMF_VERSION, '3.0')) {
 		'SMF\\Cache\\CacheApi'       => CacheApi::class,
 		'SMF\\ItemList'              => ItemList::class,
 		'SMF\\Security'              => Security::class,
+		'SMF\\Actions\\Calendar'     => Calendar::class,
 		'SMF\\Logging'               => Logging::class,
 		'SMF\\Editor'                => Editor::class,
 		'SMF\\Actions\\Notify'       => Notify::class,

@@ -143,6 +143,9 @@ class Example
 | `cache_get_data`           |                     `CacheApi::get`                     |
 | `cache_put_data`           |                     `CacheApi::put`                     |
 | `clean_cache`              |                    `CacheApi::clean`                    |
+| `getBirthdayRange`         |              `Calendar::getBirthdayRange`               |
+| `getEventRange`            |                `Calendar::getEventRange`                |
+| `getHolidayRange`          |               `Calendar::getHolidayRange`               |
 | `updateSettings`           |               `Config::updateModSettings`               |
 | `db_extend`                |                      `Db::extend`                       |
 | `create_control_richedit`  |                      `new Editor`                       |
