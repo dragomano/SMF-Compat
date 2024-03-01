@@ -22,3 +22,18 @@ test('getHolidayRange method', function () {
 	expect(Calendar::getHolidayRange($this->lowDate, $this->highDate))
 		->toBe($this->result);
 });
+
+test('getTodayInfo method', function () {
+	expect(Calendar::getTodayInfo())
+		->toBeArray();
+});
+
+test('getCalendarList method', function () {
+	expect(Calendar::getCalendarList($this->lowDate, $this->highDate, []))
+		->toBe([$this->lowDate, $this->highDate, []]);
+});
+
+test('getCalendarGrid method', function () {
+	expect(Calendar::getCalendarGrid($this->lowDate, []))
+		->toBe([$this->lowDate, [], false, true]);
+});

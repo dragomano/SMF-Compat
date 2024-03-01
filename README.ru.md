@@ -146,6 +146,9 @@ class Example
 | `getBirthdayRange`         |              `Calendar::getBirthdayRange`               |
 | `getEventRange`            |                `Calendar::getEventRange`                |
 | `getHolidayRange`          |               `Calendar::getHolidayRange`               |
+| `getTodayInfo`             |                `Calendar::getTodayInfo`                 |
+| `getCalendarList`          |               `Calendar::getCalendarList`               |
+| `getCalendarGrid`          |               `Calendar::getCalendarGrid`               |
 | `updateSettings`           |               `Config::updateModSettings`               |
 | `db_extend`                |                      `Db::extend`                       |
 | `create_control_richedit`  |                      `new Editor`                       |

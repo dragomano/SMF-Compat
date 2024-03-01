@@ -17,6 +17,9 @@ namespace Bugo\Compat;
 use function getBirthdayRange;
 use function getEventRange;
 use function getHolidayRange;
+use function getTodayInfo;
+use function getCalendarList;
+use function getCalendarGrid;
 
 class Calendar
 {
@@ -39,5 +42,31 @@ class Calendar
 		require_once Config::$sourcedir . DIRECTORY_SEPARATOR . 'Subs-Calendar.php';
 
 		return getHolidayRange($low_date, $high_date);
+	}
+
+	public static function getTodayInfo(): array
+	{
+		require_once Config::$sourcedir . DIRECTORY_SEPARATOR . 'Subs-Calendar.php';
+
+		return getTodayInfo();
+	}
+
+	public static function getCalendarList(string $start_date, string $end_date, array $calendarOptions): array
+	{
+		require_once Config::$sourcedir . DIRECTORY_SEPARATOR . 'Subs-Calendar.php';
+
+		return getCalendarList($start_date, $end_date, $calendarOptions);
+	}
+
+	public static function getCalendarGrid(
+		string $selected_date,
+		array $calendarOptions,
+		bool $is_previous = false,
+		bool $has_picker = true
+	): array
+	{
+		require_once Config::$sourcedir . DIRECTORY_SEPARATOR . 'Subs-Calendar.php';
+
+		return getCalendarGrid($selected_date, $calendarOptions, $is_previous, $has_picker);
 	}
 }
