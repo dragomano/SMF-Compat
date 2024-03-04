@@ -13,6 +13,20 @@ test('constructor', function () {
 		->and($this->theme::$current)->toBeInstanceOf(stdClass::class);
 });
 
+test('load method', function () {
+	Utils::$context['current_action'] = null;
+	Utils::$context['current_subaction'] = null;
+	$_REQUEST['action'] = 'foo';
+	$_REQUEST['sa'] = 'bar';
+
+	$this->theme::load();
+
+	expect(Utils::$context['current_action'])->toBe('foo');
+	expect(Utils::$context['current_subaction'])->toBe('bar');
+
+	unset($_REQUEST);
+});
+
 test('addJavaScriptVar method', function () {
 	$this->theme::addJavaScriptVar('foo', 'bar');
 

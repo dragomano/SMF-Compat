@@ -42,6 +42,12 @@ class Theme
 		self::$current->options = &$GLOBALS['options'];
 	}
 
+	public static function load(): void
+	{
+		Utils::$context['current_action'] = isset($_REQUEST['action']) ? Utils::htmlspecialchars($_REQUEST['action']) : null;
+		Utils::$context['current_subaction'] = $_REQUEST['sa'] ?? null;
+	}
+
 	public static function addJavaScriptVar(string $key, string $value, bool $escape = false): void
 	{
 		addJavaScriptVar($key, $value, $escape);
