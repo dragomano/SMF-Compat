@@ -60,6 +60,13 @@ test('jsonDecode method', function () {
 	expect($this->utils::jsonDecode('foo'))->toBeArray();
 });
 
+test('htmlspecialchars method', function () {
+	$source = '<a href="test">Test</a>';
+	$result = htmlspecialchars($source);
+
+	expect($this->utils::htmlspecialchars($source))->toBe($result);
+});
+
 test('htmlspecialcharsDecode method', function () {
 	expect($this->utils::htmlspecialcharsDecode('foo'))->toBeString();
 });

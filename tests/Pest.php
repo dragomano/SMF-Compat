@@ -19,6 +19,7 @@ uses()->beforeAll(function () {
 
 	Utils::$context['css_header'] = [];
 	Utils::$context['javascript_inline'] = ['defer' => [], 'standard' => []];
+	Utils::$smcFunc['htmlspecialchars'] = fn(...$params) => htmlspecialchars(...$params);
 })->in(__DIR__);
 
 /*
