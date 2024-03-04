@@ -45,6 +45,7 @@ if (str_starts_with(SMF_VERSION, '3.0')) {
 	array_map($applyAlias, array_keys($aliases), $aliases);
 } else {
 	array_map(fn($u) => new $u(), [
+		Db::class,
 		Lang::class,
 		User::class,
 		Theme::class,
@@ -52,6 +53,5 @@ if (str_starts_with(SMF_VERSION, '3.0')) {
 		Topic::class,
 		Utils::class,
 		Config::class,
-		Db::class,
 	]);
 }
