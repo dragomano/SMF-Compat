@@ -2,6 +2,7 @@
 
 ![SMF 2.1](https://img.shields.io/badge/SMF-2.1-ed6033.svg?style=flat)
 ![PHP](https://img.shields.io/badge/PHP-^8.0-blue.svg?style=flat)
+![Coverage](https://badgen.net/coveralls/c/github/dragomano/smf-compat/main)
 
 [По-русски](README.ru.md)
 
