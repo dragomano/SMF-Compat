@@ -216,6 +216,6 @@ In compatibility mode, you can use `Utils::$smcFunc['db_query']`, etc., but also
 
 ## Examples of using this library
 
-- [Optimus 3.0 Beta](https://github.com/dragomano/Optimus/tree/dev)
+- [Optimus 3.0](https://github.com/dragomano/Optimus)
 - [SMF Tracy Debugger](https://github.com/dragomano/SMF-Tracy-Debugger)
 - [Light Portal](https://github.com/dragomano/Light-Portal)
