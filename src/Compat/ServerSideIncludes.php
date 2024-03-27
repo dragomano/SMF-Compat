@@ -20,8 +20,9 @@ class ServerSideIncludes
 	{
 		$name = 'ssi_' . $name;
 
-		if (function_exists($name))
+		if (function_exists($name)) {
 			return $name(...$arguments);
+		}
 
 		return false;
 	}

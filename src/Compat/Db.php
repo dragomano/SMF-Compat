@@ -26,13 +26,15 @@ class Db
 
 	public function __construct()
 	{
-		if (! isset($GLOBALS['db_count']))
+		if (! isset($GLOBALS['db_count'])) {
 			$GLOBALS['db_count'] = 0;
+		}
 
 		self::$count = &$GLOBALS['db_count'];
 
-		if (! isset($GLOBALS['db_cache']))
+		if (! isset($GLOBALS['db_cache'])) {
 			$GLOBALS['db_cache'] = [];
+		}
 
 		self::$cache = &$GLOBALS['db_cache'];
 

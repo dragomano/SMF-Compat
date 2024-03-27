@@ -31,13 +31,15 @@ class Utils
 
 	public function __construct()
 	{
-		if (! isset($GLOBALS['context']))
+		if (! isset($GLOBALS['context'])) {
 			$GLOBALS['context'] = [];
+		}
 
 		self::$context = &$GLOBALS['context'];
 
-		if (! isset($GLOBALS['smcFunc']))
+		if (! isset($GLOBALS['smcFunc'])) {
 			$GLOBALS['smcFunc'] = [];
+		}
 
 		self::$smcFunc = &$GLOBALS['smcFunc'];
 	}
@@ -79,7 +81,7 @@ class Utils
 
 	public static function htmlspecialchars(string $string, int $flags = ENT_COMPAT, string $encoding = 'UTF-8'): string
 	{
-		return Utils::$smcFunc['htmlspecialchars']($string, $flags, $encoding);
+		return self::$smcFunc['htmlspecialchars']($string, $flags, $encoding);
 	}
 
 	public static function htmlspecialcharsDecode(string $string): string

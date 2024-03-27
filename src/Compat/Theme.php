@@ -31,13 +31,15 @@ class Theme
 	{
 		self::$current = new stdClass();
 
-		if (! isset($GLOBALS['settings']))
+		if (! isset($GLOBALS['settings'])) {
 			$GLOBALS['settings'] = [];
+		}
 
 		self::$current->settings = &$GLOBALS['settings'];
 
-		if (! isset($GLOBALS['options']))
+		if (! isset($GLOBALS['options'])) {
 			$GLOBALS['options'] = [];
+		}
 
 		self::$current->options = &$GLOBALS['options'];
 	}
