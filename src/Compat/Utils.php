@@ -79,6 +79,11 @@ class Utils
 		return smf_json_decode($json, $returnAsArray) ?: null;
 	}
 
+	public static function jsonEncode(mixed $value, int $flags = 0, int $depth = 512): string|false
+	{
+		return json_encode($value, $flags, $depth);
+	}
+
 	public static function htmlspecialchars(string $string, int $flags = ENT_COMPAT, string $encoding = 'UTF-8'): string
 	{
 		return self::$smcFunc['htmlspecialchars']($string, $flags, $encoding);

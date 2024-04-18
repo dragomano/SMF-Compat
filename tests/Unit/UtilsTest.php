@@ -60,6 +60,10 @@ test('jsonDecode method', function () {
 	expect($this->utils::jsonDecode('foo'))->toBeArray();
 });
 
+test('jsonEncode method', function () {
+	expect($this->utils::jsonEncode('foo'))->toBe(json_encode('foo'));
+});
+
 test('htmlspecialchars method', function () {
 	$source = '<a href="test">Test</a>';
 	$result = htmlspecialchars($source);
