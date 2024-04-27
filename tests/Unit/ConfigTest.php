@@ -27,3 +27,9 @@ test('updateModSettings method', function () {
 
 	expect(Config::$modSettings['foo'])->toBe('bar');
 });
+
+test('updateSettingsFile method', function () {
+	$this->config::$sourcedir = dirname(__DIR__) . '/files';
+
+	expect($this->config::updateSettingsFile(['foo' => 'bar']))->toBeBool();
+});

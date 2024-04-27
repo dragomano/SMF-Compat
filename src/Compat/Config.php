@@ -15,6 +15,7 @@
 namespace Bugo\Compat;
 
 use function updateSettings;
+use function updateSettingsFile;
 
 class Config
 {
@@ -83,5 +84,12 @@ class Config
 	public static function updateModSettings(array $settings): void
 	{
 		updateSettings($settings);
+	}
+
+	public static function updateSettingsFile(array $config_vars, ?bool $keep_quotes = null, bool $rebuild = false): bool
+	{
+		require_once self::$sourcedir . DIRECTORY_SEPARATOR . 'Subs-Admin.php';
+
+		return updateSettingsFile($config_vars, $keep_quotes, $rebuild);
 	}
 }

@@ -6,3 +6,10 @@ if (! function_exists('sm_temp_dir')) {
 		return '';
 	}
 }
+
+if (! function_exists('updateSettingsFile')) {
+	function updateSettingsFile(...$args): bool
+	{
+		return true;
+	}
+}

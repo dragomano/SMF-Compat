@@ -151,6 +151,7 @@ Or you can leave it as it is. In this case, your modification will support both 
 | `getCalendarList`          |              `Calendar::getCalendarList`               |
 | `getCalendarGrid`          |              `Calendar::getCalendarGrid`               |
 | `updateSettings`           |              `Config::updateModSettings`               |
+| `updateSettingsFile`       |              `Config::updateSettingsFile`              |
 | `db_extend`                |                      `Db::extend`                      |
 | `create_control_richedit`  |                      `new Editor`                      |
 | `fatal_error`              |                 `ErrorHandler::fatal`                  |
