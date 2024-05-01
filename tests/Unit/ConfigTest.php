@@ -8,14 +8,21 @@ beforeEach(function () {
 
 test('constructor', function () {
 	expect($this->config::$modSettings)->toBeArray()
+		->and($this->config::$mbname)->toBeString()
 		->and($this->config::$scripturl)->toBeString()
 		->and($this->config::$boardurl)->toBeString()
 		->and($this->config::$boarddir)->toBeString()
 		->and($this->config::$sourcedir)->toBeString()
 		->and($this->config::$cachedir)->toBeString()
+		->and($this->config::$db_server)->toBeString()
+		->and($this->config::$db_name)->toBeString()
+		->and($this->config::$db_user)->toBeString()
+		->and($this->config::$db_passwd)->toBeString()
 		->and($this->config::$db_type)->toBeString()
+		->and($this->config::$db_port)->toBeInt()
 		->and($this->config::$db_prefix)->toBeString()
 		->and($this->config::$language)->toBeString()
+		->and($this->config::$db_mb4)->toBeNull()
 		->and($this->config::$cache_enable)->toBeInt()
 		->and($this->config::$db_show_debug)->toBeBool();
 });
