@@ -43,9 +43,13 @@ class Config
 
 	public static string $db_type;
 
+	public static int $db_port;
+
 	public static string $db_prefix;
 
 	public static string $language;
+
+	public static ?bool $db_mb4;
 
 	public static int $cache_enable;
 
@@ -64,8 +68,10 @@ class Config
 		'db_user'       => '',
 		'db_passwd'     => '',
 		'db_type'       => '',
+		'db_port'       => 0,
 		'db_prefix'     => '',
 		'language'      => '',
+		'db_mb4'        => null,
 		'cache_enable'  => 0,
 		'db_show_debug' => false,
 	];
