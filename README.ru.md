@@ -164,6 +164,7 @@ class Example
 | `getLanguages`             |                       `Lang::get`                       |
 | `loadLanguage`             |                      `Lang::load`                       |
 | `sentence_list`            |                  `Lang::sentenceList`                   |
+| `tokenTxtReplace`          |                 `Lang::tokenTxtReplace`                 |
 | `logAction`                |                  `Logging::logAction`                   |
 | `loadEmailTemplate`        |                `Mail::loadEmailTemplate`                |
 | `sendmail`                 |                      `Mail::send`                       |

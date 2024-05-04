@@ -350,3 +350,10 @@ if (! function_exists('un_htmlspecialchars')) {
 		return $string;
 	}
 }
+
+if (! function_exists('tokenTxtReplace')) {
+	function tokenTxtReplace(string $string): string
+	{
+		return trim($string, '{}');
+	}
+}

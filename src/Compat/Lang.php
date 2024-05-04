@@ -20,6 +20,7 @@ use function censorText;
 use function getLanguages;
 use function loadLanguage;
 use function sentence_list;
+use function tokenTxtReplace;
 
 class Lang
 {
@@ -104,5 +105,10 @@ class Lang
 
 			return '';
 		}
+	}
+
+	public static function tokenTxtReplace(string $string = ''): string
+	{
+		return tokenTxtReplace($string);
 	}
 }

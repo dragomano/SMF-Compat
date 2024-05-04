@@ -164,6 +164,7 @@ Or you can leave it as it is. In this case, your modification will support both 
 | `getLanguages`             |                      `Lang::get`                       |
 | `loadLanguage`             |                      `Lang::load`                      |
 | `sentence_list`            |                  `Lang::sentenceList`                  |
+| `tokenTxtReplace`          |                `Lang::tokenTxtReplace`                 |
 | `logAction`                |                  `Logging::logAction`                  |
 | `loadEmailTemplate`        |               `Mail::loadEmailTemplate`                |
 | `sendmail`                 |                      `Mail::send`                      |

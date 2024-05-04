@@ -112,3 +112,7 @@ describe('getTxt method', function () {
 			->toBe('10 пользователей');
 	});
 })->skip(! extension_loaded('intl'));
+
+test('tokenTxtReplace method', function () {
+	expect($this->lang::tokenTxtReplace('{user}'))->toBe('user');
+});
