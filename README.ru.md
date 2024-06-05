@@ -141,6 +141,7 @@ class Example
 | `saveDBSettings`           |                  `ACP::saveDBSettings`                  |
 | `prepareDBSettingContext`  |             `ACP::prepareDBSettingContext`              |
 | `parse_bbc`                |              `BBCodeParser::load()->parse`              |
+| `BoardIndex`               |                  `BoardIndex::call()`                   |
 | `cache_get_data`           |                     `CacheApi::get`                     |
 | `cache_put_data`           |                     `CacheApi::put`                     |
 | `clean_cache`              |                    `CacheApi::clean`                    |
