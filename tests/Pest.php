@@ -228,6 +228,12 @@ if (! function_exists('add_integration_function')) {
 	}
 }
 
+if (! function_exists('remove_integration_function')) {
+	function remove_integration_function(...$params): void
+	{
+	}
+}
+
 if (! function_exists('fetch_web_data')) {
 	function fetch_web_data(string $url): bool|string
 	{

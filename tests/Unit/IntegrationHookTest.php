@@ -16,3 +16,14 @@ test('add method', function () {
 
 	expect($result)->toBeSuccess();
 });
+
+test('remove method', function () {
+	try {
+		IntegrationHook::remove('foo_bar', 'some_func');
+		$result = 'success';
+	} catch (Exception $e) {
+		$result = $e->getMessage();
+	}
+
+	expect($result)->toBeSuccess();
+});
