@@ -20,7 +20,7 @@
       "Bugo\\Compat\\": "src/Compat/"
     },
     "files": [
-      "src/compat.php"
+      "src/app.php"
     ]
   },
   "autoload-dev": {
