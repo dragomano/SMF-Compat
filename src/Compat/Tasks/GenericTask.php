@@ -12,7 +12,7 @@
  * @version 0.1
  */
 
-namespace Bugo\Compat;
+namespace Bugo\Compat\Tasks;
 
 use function call_helper;
 use function call_user_func_array;

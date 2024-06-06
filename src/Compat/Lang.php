@@ -16,8 +16,12 @@ namespace Bugo\Compat;
 
 use IntlException;
 use MessageFormatter;
+
 use function censorText;
+use function extension_loaded;
 use function getLanguages;
+use function is_array;
+use function is_string;
 use function loadLanguage;
 use function sentence_list;
 use function tokenTxtReplace;

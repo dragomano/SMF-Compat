@@ -15,6 +15,7 @@
 namespace Bugo\Compat;
 
 use stdClass;
+
 use function addJavaScriptVar;
 use function addInlineCss;
 use function addInlineJavaScript;

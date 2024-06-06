@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-use Bugo\Compat\BoardIndex;
+use Bugo\Compat\Actions\BoardIndex;
 
 test('call method', function () {
 	try {

@@ -92,7 +92,11 @@ class Config
 		updateSettings($settings);
 	}
 
-	public static function updateSettingsFile(array $config_vars, ?bool $keep_quotes = null, bool $rebuild = false): bool
+	public static function updateSettingsFile(
+		array $config_vars,
+		?bool $keep_quotes = null,
+		bool $rebuild = false
+	): bool
 	{
 		require_once self::$sourcedir . DIRECTORY_SEPARATOR . 'Subs-Admin.php';
 

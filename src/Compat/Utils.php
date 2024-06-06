@@ -15,6 +15,7 @@
 namespace Bugo\Compat;
 
 use function JavaScriptEscape;
+use function json_encode;
 use function obExit;
 use function redirectexit;
 use function send_http_status;

@@ -14,6 +14,8 @@
 
 namespace Bugo\Compat;
 
+use function function_exists;
+
 class ServerSideIncludes
 {
 	public static function __callStatic(string $name, array $arguments)

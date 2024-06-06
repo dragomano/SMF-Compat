@@ -15,6 +15,7 @@
 namespace Bugo\Compat;
 
 use Exception;
+
 use function allowedTo;
 use function checkSession;
 use function isAllowedTo;

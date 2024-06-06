@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-use Bugo\Compat\GenericTask;
+use Bugo\Compat\Tasks\GenericTask;
 
 test('execute method', function () {
 	$callable = new class {

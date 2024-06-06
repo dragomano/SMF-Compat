@@ -3,11 +3,12 @@
 if (! defined('SMF_VERSION'))
 	return;
 
-use Bugo\Compat\{ACP, BackgroundTask, BBCodeParser, Board, BoardIndex, CacheApi, Calendar, Config};
-use Bugo\Compat\{Db, Editor, ErrorHandler, GenericTask, IntegrationHook, ItemList};
-use Bugo\Compat\{Lang, Logging, Mail, Menu, MessageIndex, Msg, Notify};
-use Bugo\Compat\{PageIndex, Permissions, Sapi, ScheduledTask, Security, ServerSideIncludes};
+use Bugo\Compat\{BBCodeParser, Board, CacheApi, Config, Db, Editor};
+use Bugo\Compat\{ErrorHandler, IntegrationHook, ItemList, Lang, Logging};
+use Bugo\Compat\{Mail, Menu, Msg, PageIndex, Sapi, Security, ServerSideIncludes};
 use Bugo\Compat\{Theme, Topic, User, Utils, WebFetchApi};
+use Bugo\Compat\Actions\{ACP, BoardIndex, Calendar, MessageIndex, Notify, Permissions};
+use Bugo\Compat\Tasks\{BackgroundTask, GenericTask, ScheduledTask};
 
 if (str_starts_with(SMF_VERSION, '3.0')) {
 	$aliases = [

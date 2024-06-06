@@ -109,7 +109,7 @@ if (! function_exists('allowedTo')) {
 }
 
 if (! function_exists('checkSession')) {
-	function checkSession(): string
+	function checkSession(string $type = 'post'): string
 	{
 		return '';
 	}
@@ -179,21 +179,21 @@ if (! function_exists('sentence_list')) {
 }
 
 if (! function_exists('parse_bbc')) {
-	function parse_bbc(string $string): string
+	function parse_bbc(...$params): string
 	{
-		return $string;
+		return implode(',', $params);
 	}
 }
 
 if (! function_exists('cache_get_data')) {
-	function cache_get_data(string $key): mixed
+	function cache_get_data(string $key, int $ttl = 0): mixed
 	{
 		return Utils::$context['tmp'][$key] ?? null;
 	}
 }
 
 if (! function_exists('cache_put_data')) {
-	function cache_put_data(string $key, mixed $value): void
+	function cache_put_data(string $key, mixed $value, int $ttl = 0): void
 	{
 		Utils::$context['tmp'][$key] = $value;
 	}

@@ -14,6 +14,8 @@
 
 namespace Bugo\Compat;
 
+use function array_key_exists;
+
 class DbFuncMapper
 {
 	public function __call(string $name, array $arguments)

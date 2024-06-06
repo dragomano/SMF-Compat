@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-use Bugo\Compat\Calendar;
+use Bugo\Compat\Actions\Calendar;
 
 beforeEach(function () {
 	$this->lowDate = date('Y-m-d', time());

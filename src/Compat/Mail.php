@@ -15,6 +15,7 @@
 namespace Bugo\Compat;
 
 use ErrorException;
+
 use function loadEmailTemplate;
 use function sendmail;
 

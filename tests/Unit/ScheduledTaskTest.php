@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-use Bugo\Compat\ScheduledTask;
+use Bugo\Compat\Tasks\ScheduledTask;
 
 test('updateNextTaskTime method', function () {
 	$task = new class(['foo' => 'bar']) extends ScheduledTask {

@@ -12,7 +12,12 @@
  * @version 0.1
  */
 
-namespace Bugo\Compat;
+namespace Bugo\Compat\Tasks;
+
+use Bugo\Compat\Config;
+use Bugo\Compat\Db;
+
+use function time;
 
 abstract class ScheduledTask extends BackgroundTask
 {

@@ -12,14 +12,16 @@
  * @version 0.1
  */
 
-namespace Bugo\Compat;
+namespace Bugo\Compat\Actions;
+
+use Bugo\Compat\Config;
 
 use function getBirthdayRange;
+use function getCalendarGrid;
+use function getCalendarList;
 use function getEventRange;
 use function getHolidayRange;
 use function getTodayInfo;
-use function getCalendarList;
-use function getCalendarGrid;
 
 class Calendar
 {

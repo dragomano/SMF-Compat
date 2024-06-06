@@ -15,6 +15,7 @@
 namespace Bugo\Compat;
 
 use Stringable;
+
 use function constructPageIndex;
 
 class PageIndex implements Stringable
