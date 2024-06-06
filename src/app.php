@@ -3,10 +3,10 @@
 if (! defined('SMF_VERSION'))
 	return;
 
-use Bugo\Compat\{ACP, BBCodeParser, Board, BoardIndex, CacheApi, Calendar, Config};
-use Bugo\Compat\{Db, Editor, ErrorHandler, IntegrationHook, ItemList};
+use Bugo\Compat\{ACP, BackgroundTask, BBCodeParser, Board, BoardIndex, CacheApi, Calendar, Config};
+use Bugo\Compat\{Db, Editor, ErrorHandler, GenericTask, IntegrationHook, ItemList};
 use Bugo\Compat\{Lang, Logging, Mail, Menu, MessageIndex, Msg, Notify};
-use Bugo\Compat\{PageIndex, Permissions, Sapi, Security, ServerSideIncludes};
+use Bugo\Compat\{PageIndex, Permissions, Sapi, ScheduledTask, Security, ServerSideIncludes};
 use Bugo\Compat\{Theme, Topic, User, Utils, WebFetchApi};
 
 if (str_starts_with(SMF_VERSION, '3.0')) {
@@ -35,6 +35,9 @@ if (str_starts_with(SMF_VERSION, '3.0')) {
 		'SMF\\Sapi'                        => Sapi::class,
 		'SMF\\Security'                    => Security::class,
 		'SMF\\ServerSideIncludes'          => ServerSideIncludes::class,
+		'SMF\\Tasks\\BackgroundTask'       => BackgroundTask::class,
+		'SMF\\Tasks\\GenericTask'          => GenericTask::class,
+		'SMF\\Tasks\\ScheduledTask'        => ScheduledTask::class,
 		'SMF\\Theme'                       => Theme::class,
 		'SMF\\Topic'                       => Topic::class,
 		'SMF\\User'                        => User::class,

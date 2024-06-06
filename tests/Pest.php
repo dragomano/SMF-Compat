@@ -48,6 +48,18 @@ expect()->extend('toBeSuccess', function () {
 |
 */
 
+if (! class_exists('SMF_BackgroundTask')) {
+	abstract class SMF_BackgroundTask
+	{
+		protected array $_details;
+
+		public function __construct(array $details)
+		{
+			$this->_details = $details;
+		}
+	}
+}
+
 if (! function_exists('logAction')) {
 	function logAction(string $action, array $extra = []): int
 	{
@@ -361,5 +373,12 @@ if (! function_exists('tokenTxtReplace')) {
 	function tokenTxtReplace(string $string): string
 	{
 		return trim($string, '{}');
+	}
+}
+
+if (! function_exists('call_helper')) {
+	function call_helper(mixed $string, bool $return = false): mixed
+	{
+		return is_callable($string) && $return ? $string : false;
 	}
 }
