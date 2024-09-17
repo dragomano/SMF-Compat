@@ -95,7 +95,7 @@ class Example
 
 ## Список предлагаемых замен
 
-### Глобальные еременные
+### Глобальные переменные
 
 | Старый код (SMF 2.1.x) |     Новый код (SMF 3.0)     |
 | ---------------------- | :-------------------------: |
@@ -201,6 +201,7 @@ class Example
 | `smf_json_decode`          |                   `Utils::jsonDecode`                   |
 | `un_htmlspecialchars`      |             `Utils::htmlspecialcharsDecode`             |
 | `fetch_web_data`           |                   `WebFetchApi:fetch`                   |
+| `timeformat`               |                   `Time::timeformat`                    |
 
 #### SSI-функции
 

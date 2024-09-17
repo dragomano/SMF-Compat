@@ -6,7 +6,7 @@ if (! defined('SMF_VERSION'))
 use Bugo\Compat\{BBCodeParser, Board, CacheApi, Config, Db, Editor};
 use Bugo\Compat\{ErrorHandler, IntegrationHook, ItemList, Lang, Logging};
 use Bugo\Compat\{Mail, Menu, Msg, PageIndex, Sapi, Security, ServerSideIncludes};
-use Bugo\Compat\{Theme, Topic, User, Utils, WebFetchApi};
+use Bugo\Compat\{Theme, Time, Topic, User, Utils, WebFetchApi};
 use Bugo\Compat\Actions\{ACP, BoardIndex, Calendar, MessageIndex, Notify, Permissions};
 use Bugo\Compat\Tasks\{BackgroundTask, GenericTask, ScheduledTask};
 
@@ -40,6 +40,7 @@ if (str_starts_with(SMF_VERSION, '3.0')) {
 		'SMF\\Tasks\\GenericTask'          => GenericTask::class,
 		'SMF\\Tasks\\ScheduledTask'        => ScheduledTask::class,
 		'SMF\\Theme'                       => Theme::class,
+		'SMF\\Time'                        => Time::class,
 		'SMF\\Topic'                       => Topic::class,
 		'SMF\\User'                        => User::class,
 		'SMF\\Utils'                       => Utils::class,

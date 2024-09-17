@@ -201,6 +201,7 @@ Or you can leave it as it is. In this case, your modification will support both 
 | `smf_json_decode`          |                  `Utils::jsonDecode`                   |
 | `un_htmlspecialchars`      |            `Utils::htmlspecialcharsDecode`             |
 | `fetch_web_data`           |                  `WebFetchApi::fetch`                  |
+| `timeformat`               |                   `Time::timeformat`                   |
 
 #### SSI functions
 
