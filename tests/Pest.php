@@ -382,3 +382,10 @@ if (! function_exists('call_helper')) {
 		return is_callable($string) && $return ? $string : false;
 	}
 }
+
+if (! function_exists('timeformat')) {
+	function timeformat(...$params): string
+	{
+		return '';
+	}
+}
