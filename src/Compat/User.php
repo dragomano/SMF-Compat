@@ -102,11 +102,11 @@ class User
 		return loadMemberContext($user, $display_custom_fields);
 	}
 
-	public static function membersAllowedTo(string $permission): array
+	public static function membersAllowedTo(string $permission, ?int $board_id = null): array
 	{
 		require_once Config::$sourcedir . DIRECTORY_SEPARATOR . 'Subs-Members.php';
 
-		return membersAllowedTo($permission);
+		return membersAllowedTo($permission, $board_id);
 	}
 
 	public static function updateMemberData(array $members, array $data): void
