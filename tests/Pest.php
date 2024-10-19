@@ -179,9 +179,14 @@ if (! function_exists('sentence_list')) {
 }
 
 if (! function_exists('parse_bbc')) {
-	function parse_bbc(...$params): string
+	function parse_bbc(
+		string|bool $message,
+		bool $smileys = true,
+		string|int $cache_id = '',
+		array $parse_tags = []
+	): array|string
 	{
-		return implode(',', $params);
+		return is_bool($message) ? [$message, $smileys, $cache_id, $parse_tags] : $message;
 	}
 }
 
