@@ -321,6 +321,12 @@ if (! function_exists('loadTemplate')) {
 	}
 }
 
+if (! function_exists('loadSubTemplate')) {
+	function loadSubTemplate(string $sub_template_name, bool $fatal = false): void
+	{
+	}
+}
+
 if (! function_exists('JavaScriptEscape')) {
 	function JavaScriptEscape(...$params): string
 	{

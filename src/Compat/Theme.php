@@ -23,6 +23,7 @@ use function loadCSSFile;
 use function loadJavaScriptFile;
 use function loadEssentialThemeData;
 use function loadTemplate;
+use function loadSubTemplate;
 
 class Theme
 {
@@ -86,5 +87,10 @@ class Theme
 	public static function loadTemplate(string $template): void
 	{
 		loadTemplate($template);
+	}
+
+	public static function loadSubTemplate(string $sub_template_name, bool $fatal = false): void
+	{
+		loadSubTemplate($sub_template_name, $fatal);
 	}
 }
