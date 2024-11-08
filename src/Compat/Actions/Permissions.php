@@ -14,6 +14,9 @@
 
 namespace Bugo\Compat\Actions;
 
+use Bugo\Compat\Config;
+use Bugo\Compat\Theme;
+
 class Permissions
 {
 	public static array $permission_groups = [
@@ -46,4 +49,13 @@ class Permissions
 		'topic',
 		'post',
 	];
+
+	public static function theme_inline_permissions(string $permission): void
+	{
+		Theme::loadTemplate('ManagePermissions');
+
+		require_once Config::$sourcedir . DIRECTORY_SEPARATOR . 'ManagePermissions.php';
+
+		theme_inline_permissions($permission);
+	}
 }
