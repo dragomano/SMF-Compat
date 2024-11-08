@@ -1,7 +1,7 @@
 <?php
 
 if (! function_exists('createList')) {
-	function createList(array $options)
+	function createList(array $options): void
 	{
 	}
 }
