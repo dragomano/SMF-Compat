@@ -18,8 +18,21 @@ uses()->beforeAll(function () {
 	Config::$sourcedir = __DIR__ . DIRECTORY_SEPARATOR . 'files';
 
 	Utils::$context['css_header'] = [];
+
 	Utils::$context['javascript_inline'] = ['defer' => [], 'standard' => []];
+
 	Utils::$smcFunc['htmlspecialchars'] = fn(...$params) => htmlspecialchars(...$params);
+
+	Utils::$smcFunc['db_query'] = fn(...$params) => new \stdClass();
+	Utils::$smcFunc['db_search_query'] = Utils::$smcFunc['db_query'];
+	Utils::$smcFunc['db_fetch_row'] = fn(...$params) => [];
+	Utils::$smcFunc['db_fetch_assoc'] = fn(...$params) => [];
+	Utils::$smcFunc['db_fetch_all'] = fn(...$params) => [];
+	Utils::$smcFunc['db_free_result'] = fn(...$params) => true;
+	Utils::$smcFunc['db_insert'] = fn(...$params) => 0;
+	Utils::$smcFunc['db_num_rows'] = fn(...$params) => 0;
+	Utils::$smcFunc['db_transaction'] = fn(...$params) => true;
+	Utils::$smcFunc['db_get_version'] = fn(...$params) => '';
 })->in(__DIR__);
 
 /*
