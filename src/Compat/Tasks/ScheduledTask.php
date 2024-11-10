@@ -21,12 +21,9 @@ use function time;
 
 abstract class ScheduledTask extends BackgroundTask
 {
-	/**
-	 * @codeCoverageIgnore
-	 */
+	// @codeCoverageIgnoreStart
 	public static function updateNextTaskTime(): void
 	{
-
 		$result = Db::$db->query('', '
 			SELECT next_time
 			FROM {db_prefix}scheduled_tasks
@@ -48,4 +45,5 @@ abstract class ScheduledTask extends BackgroundTask
 
 		Config::updateModSettings(['next_task_time' => $nextTaskTime]);
 	}
+	// @codeCoverageIgnoreEnd
 }
