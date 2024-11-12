@@ -24,7 +24,6 @@ uses()->beforeAll(function () {
 	Utils::$smcFunc['htmlspecialchars'] = fn(...$params) => htmlspecialchars(...$params);
 
 	Utils::$smcFunc['db_query'] = fn(...$params) => new \stdClass();
-	Utils::$smcFunc['db_search_query'] = Utils::$smcFunc['db_query'];
 	Utils::$smcFunc['db_fetch_row'] = fn(...$params) => [];
 	Utils::$smcFunc['db_fetch_assoc'] = fn(...$params) => [];
 	Utils::$smcFunc['db_fetch_all'] = fn(...$params) => [];
@@ -32,7 +31,10 @@ uses()->beforeAll(function () {
 	Utils::$smcFunc['db_insert'] = fn(...$params) => 0;
 	Utils::$smcFunc['db_num_rows'] = fn(...$params) => 0;
 	Utils::$smcFunc['db_transaction'] = fn(...$params) => true;
+	Utils::$smcFunc['db_optimize_table'] = fn(...$params) => 0;
+	Utils::$smcFunc['db_list_tables'] = fn(...$params) => [];
 	Utils::$smcFunc['db_get_version'] = fn(...$params) => '';
+	Utils::$smcFunc['db_create_table'] = fn(...$params) => false;
 })->in(__DIR__);
 
 /*
