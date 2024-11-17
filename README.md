@@ -211,12 +211,12 @@ All functions in SSI.php that were called via `ssi_function_name` before 3.0 are
 
 In compatibility mode, you can use `Utils::$smcFunc['db_query']`, etc., but also introduced a new class `Db`, with a static property `$db` containing the class of the current database engine. The methods of this class are similar to functions in `Utils::$smcFunc`, but without the `db_` prefix. Let's show on the example of three popular functions:
 
-|                 Legacy code (SMF 2.1.x)                  |                    Transition code (SMF 3.0)                    |                 New code (SMF 3.0)                 |
-| :------------------------------------------------------: | :-------------------------------------------------------------: | :------------------------------------------------: |
-|                    `global $smcFunc;`                    |                     `use Bugo\Compat\Utils`                     |               `use Bugo\Compat\Db;`                |
-| `$result = $smcFunc['db_query']('', /* Your SQL */, [])` | `$result = Utils::$smcFunc['db_query']('', /* Your SQL */, [])` | `$result = Db::$db->query('', /* Your SQL */, [])` |
-|      `$rows = $smcFunc['db_fetch_assoc']($result)`       |      `$rows = Utils::$smcFunc['db_fetch_assoc']($result)`       |      `$rows = Db::$db->fetch_assoc($result)`       |
-|          `$smcFunc['db_free_result']($result)`           |          `Utils::$smcFunc['db_free_result']($result)`           |          `Db::$db->free_result($result)`           |
+|                 Legacy code (SMF 2.1.x)                  |                 New code (SMF 3.0)                 |
+| :------------------------------------------------------: | :------------------------------------------------: |
+|                    `global $smcFunc;`                    |               `use Bugo\Compat\Db;`                |
+| `$result = $smcFunc['db_query']('', /* Your SQL */, [])` | `$result = Db::$db->query('', /* Your SQL */, [])` |
+|      `$rows = $smcFunc['db_fetch_assoc']($result)`       |      `$rows = Db::$db->fetch_assoc($result)`       |
+|          `$smcFunc['db_free_result']($result)`           |          `Db::$db->free_result($result)`           |
 
 ## Examples of using this library
 

@@ -211,12 +211,12 @@ class Example
 
 В режиме совместимости можно использовать `Utils::$smcFunc['db_query']` и т. д., но также введён новый класс `Db`, со статическим свойством `$db`, содержащим класс текущего движка базы данных. Методы этого класса аналогичны функциям в `Utils::$smcFunc`, но без приставки `db_`. Покажем на примере трёх популярных функций:
 
-|                 Старый код (SMF 2.1.x)                  |                    Переходный код (SMF 3.0)                    |                Новый код (SMF 3.0)                |
-| :-----------------------------------------------------: | :------------------------------------------------------------: | :-----------------------------------------------: |
-|                   `global $smcFunc;`                    |                    `use Bugo\Compat\Utils`                     |               `use Bugo\Compat\Db;`               |
-| `$result = $smcFunc['db_query']('', /* Ваш SQL */, [])` | `$result = Utils::$smcFunc['db_query']('', /* Ваш SQL */, [])` | `$result = Db::$db->query('', /* Ваш SQL */, [])` |
-|      `$rows = $smcFunc['db_fetch_assoc']($result)`      |      `$rows = Utils::$smcFunc['db_fetch_assoc']($result)`      |      `$rows = Db::$db->fetch_assoc($result)`      |
-|          `$smcFunc['db_free_result']($result)`          |          `Utils::$smcFunc['db_free_result']($result)`          |          `Db::$db->free_result($result)`          |
+|                 Старый код (SMF 2.1.x)                  |                Новый код (SMF 3.0)                |
+| :-----------------------------------------------------: | :-----------------------------------------------: |
+|                   `global $smcFunc;`                    |               `use Bugo\Compat\Db;`               |
+| `$result = $smcFunc['db_query']('', /* Ваш SQL */, [])` | `$result = Db::$db->query('', /* Ваш SQL */, [])` |
+|      `$rows = $smcFunc['db_fetch_assoc']($result)`      |      `$rows = Db::$db->fetch_assoc($result)`      |
+|          `$smcFunc['db_free_result']($result)`          |          `Db::$db->free_result($result)`          |
 
 ## Примеры использования данной библиотеки
 
