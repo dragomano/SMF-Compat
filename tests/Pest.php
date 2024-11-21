@@ -395,6 +395,13 @@ if (! function_exists('un_htmlspecialchars')) {
 	}
 }
 
+if (! function_exists('get_mime_type')) {
+	function get_mime_type(string $data, bool $is_path = false): string|bool
+	{
+		return $data;
+	}
+}
+
 if (! function_exists('tokenTxtReplace')) {
 	function tokenTxtReplace(string $string): string
 	{

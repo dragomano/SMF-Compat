@@ -74,3 +74,7 @@ test('htmlspecialchars method', function () {
 test('htmlspecialcharsDecode method', function () {
 	expect($this->utils::htmlspecialcharsDecode('foo'))->toBeString();
 });
+
+test('getMimeType method', function () {
+	expect($this->utils::getMimeType('foo'))->toBeString();
+});

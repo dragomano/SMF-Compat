@@ -14,6 +14,7 @@
 
 namespace Bugo\Compat;
 
+use function get_mime_type;
 use function JavaScriptEscape;
 use function json_encode;
 use function obExit;
@@ -93,5 +94,10 @@ class Utils
 	public static function htmlspecialcharsDecode(string $string): string
 	{
 		return un_htmlspecialchars($string);
+	}
+
+	public static function getMimeType(string $data, bool $is_path = false): string|bool
+	{
+		return get_mime_type($data, $is_path);
 	}
 }
