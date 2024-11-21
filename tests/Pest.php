@@ -139,7 +139,7 @@ if (! function_exists('isAllowedTo')) {
 if (! function_exists('loadMemberData')) {
 	function loadMemberData(...$params): array
 	{
-		return [$params];
+		return $params;
 	}
 }
 

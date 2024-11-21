@@ -3,7 +3,7 @@
 if (! function_exists('loadEmailTemplate')) {
 	function loadEmailTemplate(...$params): array
 	{
-		return [$params];
+		return $params;
 	}
 }
 

@@ -3,6 +3,6 @@
 if (! function_exists('getNotifyPrefs')) {
 	function getNotifyPrefs(...$params): array
 	{
-		return [$params];
+		return $params;
 	}
 }
