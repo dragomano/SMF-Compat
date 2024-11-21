@@ -3,7 +3,7 @@
 if (! defined('SMF_VERSION'))
 	return;
 
-use Bugo\Compat\{BBCodeParser, Board, CacheApi, Config, Db, Editor};
+use Bugo\Compat\{Attachment, BBCodeParser, Board, CacheApi, Config, Db, Editor};
 use Bugo\Compat\{ErrorHandler, IntegrationHook, ItemList, Lang, Logging};
 use Bugo\Compat\{Mail, Menu, Msg, PageIndex, Sapi, Security, ServerSideIncludes};
 use Bugo\Compat\{Theme, Time, Topic, User, Utils, WebFetchApi};
@@ -18,6 +18,7 @@ if (str_starts_with(SMF_VERSION, '3.0')) {
 		'SMF\\Actions\\Calendar'           => Calendar::class,
 		'SMF\\Actions\\MessageIndex'       => MessageIndex::class,
 		'SMF\\Actions\\Notify'             => Notify::class,
+		'SMF\\Attachment'                  => Attachment::class,
 		'SMF\\BBCodeParser'                => BBCodeParser::class,
 		'SMF\\Board'                       => Board::class,
 		'SMF\\Cache\\CacheApi'             => CacheApi::class,
