@@ -171,7 +171,7 @@ Or you can leave it as it is. In this case, your modification will support both 
 | `sendmail`                 |                      `Mail::send`                      |
 | `getBoardList`             |              `MessageIndex::getBoardList`              |
 | `preparsecode`             |                  `Msg::preparseCode`                   |
-| `un_preparsecode`          |                 `Msg::unPreparseCode`                  |
+| `un_preparsecode`          |                 `Msg::un_preparsecode`                 |
 | `getNotifyPrefs`           |                `Notify::getNotifyPrefs`                |
 | `constructPageIndex`       |                    `new PageIndex`                     |
 | `memoryReturnBytes`        |               `Sapi::memoryReturnBytes`                |

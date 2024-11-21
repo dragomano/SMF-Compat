@@ -10,6 +10,6 @@ test('preparseCode method', function () {
 	expect($source)->toBe('changed');
 });
 
-test('unPreparseCode method', function () {
-	expect(Msg::unPreparseCode('foo'))->toBe('foo');
+test('un_preparsecode method', function () {
+	expect(Msg::un_preparsecode('foo'))->toBe('foo');
 });

@@ -171,7 +171,7 @@ class Example
 | `sendmail`                 |                      `Mail::send`                       |
 | `getBoardList`             |              `MessageIndex::getBoardList`               |
 | `preparsecode`             |                   `Msg::preparseCode`                   |
-| `un_preparsecode`          |                  `Msg::unPreparseCode`                  |
+| `un_preparsecode`          |                  `Msg::un_preparsecode`                 |
 | `getNotifyPrefs`           |                `Notify::getNotifyPrefs`                 |
 | `constructPageIndex`       |                     `new PageIndex`                     |
 | `memoryReturnBytes`        |                `Sapi::memoryReturnBytes`                |

@@ -26,7 +26,7 @@ class Msg
 		preparsecode($message);
 	}
 
-	public static function unPreparseCode(string $message): array|string|null
+	public static function un_preparsecode(string $message): array|string|null
 	{
 		require_once Config::$sourcedir . DIRECTORY_SEPARATOR . 'Subs-Post.php';
 
