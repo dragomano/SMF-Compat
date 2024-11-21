@@ -140,6 +140,8 @@ class Example
 | -------------------------- | :-----------------------------------------------------: |
 | `saveDBSettings`           |                  `ACP::saveDBSettings`                  |
 | `prepareDBSettingContext`  |             `ACP::prepareDBSettingContext`              |
+| `createAttachment`         |                  `Attachment::create`                   |
+| `removeAttachments`        |                  `Attachment::remove`                   |
 | `parse_bbc`                |              `BBCodeParser::load()->parse`              |
 | `BoardIndex`               |                  `BoardIndex::call()`                   |
 | `cache_get_data`           |                     `CacheApi::get`                     |
@@ -171,7 +173,7 @@ class Example
 | `sendmail`                 |                      `Mail::send`                       |
 | `getBoardList`             |              `MessageIndex::getBoardList`               |
 | `preparsecode`             |                   `Msg::preparseCode`                   |
-| `un_preparsecode`          |                  `Msg::un_preparsecode`                 |
+| `un_preparsecode`          |                 `Msg::un_preparsecode`                  |
 | `getNotifyPrefs`           |                `Notify::getNotifyPrefs`                 |
 | `constructPageIndex`       |                     `new PageIndex`                     |
 | `memoryReturnBytes`        |                `Sapi::memoryReturnBytes`                |
@@ -199,6 +201,7 @@ class Example
 | `shorten_subject`          |                    `Utils::shorten`                     |
 | `smf_chmod`                |                  `Utils::makeWritable`                  |
 | `smf_json_decode`          |                   `Utils::jsonDecode`                   |
+| `get_mime_type`            |                  `Utils::getMimeType`                   |
 | `un_htmlspecialchars`      |             `Utils::htmlspecialcharsDecode`             |
 | `fetch_web_data`           |                   `WebFetchApi:fetch`                   |
 | `timeformat`               |                   `Time::timeformat`                    |

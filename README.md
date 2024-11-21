@@ -140,6 +140,8 @@ Or you can leave it as it is. In this case, your modification will support both 
 | -------------------------- | :----------------------------------------------------: |
 | `saveDBSettings`           |                 `ACP::saveDBSettings`                  |
 | `prepareDBSettingContext`  |             `ACP::prepareDBSettingContext`             |
+| `createAttachment`         |                  `Attachment::create`                  |
+| `removeAttachments`        |                  `Attachment::remove`                  |
 | `parse_bbc`                |             `BBCodeParser::load()->parse`              |
 | `BoardIndex`               |                  `BoardIndex::call()`                  |
 | `cache_get_data`           |                    `CacheApi::get`                     |
@@ -199,6 +201,7 @@ Or you can leave it as it is. In this case, your modification will support both 
 | `shorten_subject`          |                    `Utils::shorten`                    |
 | `smf_chmod`                |                 `Utils::makeWritable`                  |
 | `smf_json_decode`          |                  `Utils::jsonDecode`                   |
+| `get_mime_type`            |                  `Utils::getMimeType`                  |
 | `un_htmlspecialchars`      |            `Utils::htmlspecialcharsDecode`             |
 | `fetch_web_data`           |                  `WebFetchApi::fetch`                  |
 | `timeformat`               |                   `Time::timeformat`                   |
