@@ -20,9 +20,9 @@ use function log_error;
 
 class ErrorHandler
 {
-	public static function fatal(string $message): void
+	public static function fatal(string $error, string|bool $log = 'general', int $status = 500): void
 	{
-		fatal_error($message, false);
+		fatal_error($error, $log, $status);
 	}
 
 	public static function fatalLang(
@@ -32,11 +32,16 @@ class ErrorHandler
 		int $status = 403
 	): void
 	{
-		fatal_lang_error($error, false, null, $status);
+		fatal_lang_error($error, $log, $sprintf, $status);
 	}
 
-	public static function log(string $message, string $level = 'user'): string
+	public static function log(
+		string $error_message,
+		string|bool $error_type = 'general',
+		string $file = '',
+		int $line = 0
+	): string
 	{
-		return log_error($message, $level);
+		return log_error($error_message, $error_type, $file, $line);
 	}
 }
