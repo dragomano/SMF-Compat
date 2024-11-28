@@ -14,11 +14,21 @@
 
 namespace Bugo\Compat;
 
+use function smf_strftime;
 use function timeformat;
 
 class Time
 {
-	public static function timeformat(int|string $log_time, bool|string $show_today = true, ?string $tzid = null): string
+	public static function strftime(string $format, ?int $timestamp = null, ?string $tzid = null): string
+	{
+		return smf_strftime($format, $timestamp, $tzid);
+	}
+
+	public static function timeformat(
+		int|string $log_time,
+		bool|string $show_today = true,
+		?string $tzid = null
+	): string
 	{
 		return timeformat($log_time, $show_today, $tzid);
 	}

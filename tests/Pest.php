@@ -416,6 +416,13 @@ if (! function_exists('call_helper')) {
 	}
 }
 
+if (! function_exists('smf_strftime')) {
+	function smf_strftime(...$params): string
+	{
+		return '';
+	}
+}
+
 if (! function_exists('timeformat')) {
 	function timeformat(...$params): string
 	{
