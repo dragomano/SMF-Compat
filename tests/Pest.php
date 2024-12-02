@@ -409,6 +409,13 @@ if (! function_exists('tokenTxtReplace')) {
 	}
 }
 
+if (! function_exists('comma_format')) {
+	function comma_format(...$params): string
+	{
+		return '';
+	}
+}
+
 if (! function_exists('call_helper')) {
 	function call_helper(mixed $string, bool $return = false): mixed
 	{

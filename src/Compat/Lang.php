@@ -18,6 +18,7 @@ use IntlException;
 use MessageFormatter;
 
 use function censorText;
+use function comma_format;
 use function extension_loaded;
 use function getLanguages;
 use function is_array;
@@ -114,5 +115,10 @@ class Lang
 	public static function tokenTxtReplace(string $string = ''): string
 	{
 		return tokenTxtReplace($string);
+	}
+
+	public static function numberFormat(int|float|string $number, ?int $decimals = null): string
+	{
+		return comma_format($number, $decimals);
 	}
 }

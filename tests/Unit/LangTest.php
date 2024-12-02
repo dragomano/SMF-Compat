@@ -116,3 +116,7 @@ describe('getTxt method', function () {
 test('tokenTxtReplace method', function () {
 	expect($this->lang::tokenTxtReplace('{user}'))->toBe('user');
 });
+
+test('numberFormat method', function () {
+	expect($this->lang::numberFormat(10))->toBeString();
+});
