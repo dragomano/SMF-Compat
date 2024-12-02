@@ -49,7 +49,7 @@ class Config
 
 	public static string $language;
 
-	public static ?bool $db_mb4;
+	public static ?bool $db_mb4 = null;
 
 	public static int $cache_enable;
 
