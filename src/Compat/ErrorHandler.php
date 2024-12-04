@@ -14,6 +14,7 @@
 
 namespace Bugo\Compat;
 
+use function display_db_error;
 use function fatal_error;
 use function fatal_lang_error;
 use function log_error;
@@ -43,5 +44,10 @@ class ErrorHandler
 	): string
 	{
 		return log_error($error_message, $error_type, $file, $line);
+	}
+
+	public static function displayDbError(): void
+	{
+		display_db_error();
 	}
 }
