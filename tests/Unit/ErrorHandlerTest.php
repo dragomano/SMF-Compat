@@ -18,3 +18,11 @@ test('fatalLang method', function () {
 test('log method', function () {
 	expect(ErrorHandler::log('test'))->toBeString();
 });
+
+test('displayDbError method', function () {
+	ob_start();
+	ErrorHandler::displayDbError();
+	$result = ob_get_clean();
+
+	expect($result)->toContain('Connection Problems');
+});

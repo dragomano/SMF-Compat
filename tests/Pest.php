@@ -18,11 +18,10 @@ uses()->beforeAll(function () {
 	Config::$sourcedir = __DIR__ . DIRECTORY_SEPARATOR . 'files';
 
 	Utils::$context['css_header'] = [];
-
 	Utils::$context['javascript_inline'] = ['defer' => [], 'standard' => []];
+	Utils::$context['num_errors'] = 0;
 
 	Utils::$smcFunc['htmlspecialchars'] = fn(...$params) => htmlspecialchars(...$params);
-
 	Utils::$smcFunc['db_query'] = fn(...$params) => new \stdClass();
 	Utils::$smcFunc['db_fetch_row'] = fn(...$params) => [];
 	Utils::$smcFunc['db_fetch_assoc'] = fn(...$params) => [];
@@ -33,8 +32,17 @@ uses()->beforeAll(function () {
 	Utils::$smcFunc['db_transaction'] = fn(...$params) => true;
 	Utils::$smcFunc['db_optimize_table'] = fn(...$params) => 0;
 	Utils::$smcFunc['db_list_tables'] = fn(...$params) => [];
-	Utils::$smcFunc['db_get_version'] = fn(...$params) => '';
-	Utils::$smcFunc['db_create_table'] = fn(...$params) => false;
+	Utils::$smcFunc['db_get_version'] = fn() => '';
+	Utils::$smcFunc['db_get_vendor'] = fn() => '';
+	Utils::$smcFunc['db_add_column'] = fn(...$params) => true;
+	Utils::$smcFunc['db_add_index'] = fn(...$params) => true;
+	Utils::$smcFunc['db_change_column'] = fn(...$params) => true;
+	Utils::$smcFunc['db_create_table'] = fn(...$params) => true;
+	Utils::$smcFunc['db_table_structure'] = fn(...$params) => [];
+	Utils::$smcFunc['db_list_columns'] = fn(...$params) => [];
+	Utils::$smcFunc['db_list_indexes'] = fn(...$params) => [];
+	Utils::$smcFunc['db_remove_column'] = fn(...$params) => true;
+	Utils::$smcFunc['db_remove_index'] = fn(...$params) => true;
 })->in(__DIR__);
 
 /*
@@ -243,7 +251,16 @@ if (! function_exists('fatal_lang_error')) {
 if (! function_exists('log_error')) {
 	function log_error(...$params): string
 	{
+		Utils::$context['num_errors']++;
+
 		return '';
+	}
+}
+
+if (! function_exists('display_db_error')) {
+	function display_db_error(): void
+	{
+		echo '<h3>Connection Problems</h3>';
 	}
 }
 

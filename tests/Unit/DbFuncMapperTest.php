@@ -55,12 +55,67 @@ test('get_version method', function () {
 		->toBeString();
 });
 
-test('create_table method', function () {
-	expect($this->db->create_table('', []))
-		->toBeFalse();
+test('get_vendor method', function () {
+	expect($this->db->get_vendor())
+		->toBeString();
 });
 
-test('__call method', function () {
+test('add_column method', function () {
+	expect($this->db->add_column('', []))
+		->toBeTrue();
+});
+
+test('add_index method', function () {
+	expect($this->db->add_index('', []))
+		->toBeTrue();
+});
+
+test('change_column method', function () {
+	expect($this->db->change_column('', '', []))
+		->toBeTrue();
+});
+
+test('create_table method', function () {
+	expect($this->db->create_table('', []))
+		->toBeTrue();
+});
+
+test('table_structure method', function () {
+	expect($this->db->table_structure('name'))
+		->toBeArray();
+});
+
+test('list_columns method', function () {
+	expect($this->db->list_columns('name'))
+		->toBeArray();
+});
+
+test('list_indexes method', function () {
+	expect($this->db->list_indexes('name'))
+		->toBeArray();
+});
+
+test('remove_column method', function () {
+	expect($this->db->remove_column('', ''))
+		->toBeTrue();
+});
+
+test('remove_index method', function () {
+	expect($this->db->remove_index('', ''))
+		->toBeTrue();
+});
+
+test('__call not implemented method', function () {
+	Utils::$smcFunc['db_some_func'] = fn(...$params) => [$params];
+
+	expect(Utils::$context['num_errors'])->toBe(0);
+
+	$this->db->some_func($this->params);
+
+	expect(Utils::$context['num_errors'])->toBe(1);
+});
+
+test('__call unknown method', function () {
 	expect($this->db->unknown($this->params))
 		->toBeFalse();
 });
