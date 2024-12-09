@@ -453,3 +453,9 @@ if (! function_exists('timeformat')) {
 		return '';
 	}
 }
+
+if (! function_exists('setupThemeContext')) {
+	function setupThemeContext(bool $forceload = false): void
+	{
+	}
+}

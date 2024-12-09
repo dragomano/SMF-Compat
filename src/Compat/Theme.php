@@ -93,4 +93,9 @@ class Theme
 	{
 		loadSubTemplate($sub_template_name, $fatal);
 	}
+
+	public static function setupContext(bool $forceload = false): void
+	{
+		setupThemeContext($forceload);
+	}
 }
