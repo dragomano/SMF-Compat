@@ -18,15 +18,17 @@ use function parse_bbc;
 
 class BBCodeParser
 {
-	private static object $parser;
+	private static array $parsers;
 
-	public static function load(): object
+	public function __construct(public bool $for_print = false) {}
+
+	public static function load(bool $for_print = false): object
 	{
-		if (! isset(self::$parser)) {
-			self::$parser = new self();
+		if (! isset(self::$parsers[(int) $for_print])) {
+			self::$parsers[(int) $for_print] = new self($for_print);
 		}
 
-		return self::$parser;
+		return self::$parsers[(int) $for_print];
 	}
 
 	public function parse(
