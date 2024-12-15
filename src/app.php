@@ -19,7 +19,7 @@ if (str_starts_with(SMF_VERSION, '3.0')) {
 		'SMF\\Actions\\MessageIndex'       => MessageIndex::class,
 		'SMF\\Actions\\Notify'             => Notify::class,
 		'SMF\\Attachment'                  => Attachment::class,
-		'SMF\\BBCodeParser'                => BBCodeParser::class,
+		'SMF\\Parsers\\BBCodeParser'       => BBCodeParser::class,
 		'SMF\\Board'                       => Board::class,
 		'SMF\\Cache\\CacheApi'             => CacheApi::class,
 		'SMF\\Config'                      => Config::class,
