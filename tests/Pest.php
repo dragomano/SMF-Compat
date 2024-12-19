@@ -459,3 +459,17 @@ if (! function_exists('setupThemeContext')) {
 	{
 	}
 }
+
+if (! function_exists('detectBrowser')) {
+	function detectBrowser(): void
+	{
+		Utils::$context['browser']['chrome'] = true;
+	}
+}
+
+if (! function_exists('isBrowser')) {
+	function isBrowser(string $browser): bool
+	{
+		return Utils::$context['browser'][$browser] ?? false;
+	}
+}

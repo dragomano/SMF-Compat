@@ -3,7 +3,7 @@
 if (! defined('SMF_VERSION'))
 	return;
 
-use Bugo\Compat\{Attachment, BBCodeParser, Board, CacheApi, Config, Db, Editor};
+use Bugo\Compat\{Attachment, BBCodeParser, Board, BrowserDetector, CacheApi, Config, Db, Editor};
 use Bugo\Compat\{ErrorHandler, IntegrationHook, ItemList, Lang, Logging};
 use Bugo\Compat\{Mail, Menu, Msg, PageIndex, Sapi, Security, ServerSideIncludes};
 use Bugo\Compat\{Theme, Time, Topic, User, Utils, WebFetchApi};
@@ -21,6 +21,7 @@ if (str_starts_with(SMF_VERSION, '3.0')) {
 		'SMF\\Attachment'                  => Attachment::class,
 		'SMF\\Parsers\\BBCodeParser'       => BBCodeParser::class,
 		'SMF\\Board'                       => Board::class,
+		'SMF\\BrowserDetector'             => BrowserDetector::class,
 		'SMF\\Cache\\CacheApi'             => CacheApi::class,
 		'SMF\\Config'                      => Config::class,
 		'SMF\\Db\\DatabaseApi'             => Db::class,
