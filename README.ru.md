@@ -204,7 +204,7 @@ class Example
 | `get_mime_type`            |                  `Utils::getMimeType`                   |
 | `un_htmlspecialchars`      |             `Utils::htmlspecialcharsDecode`             |
 | `fetch_web_data`           |                   `WebFetchApi:fetch`                   |
-| `timeformat`               |                   `Time::timeformat`                    |
+| `timeformat`               |                 `Time::stringFromUnix`                  |
 
 #### SSI-функции
 

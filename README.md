@@ -204,7 +204,7 @@ Or you can leave it as it is. In this case, your modification will support both 
 | `get_mime_type`            |                  `Utils::getMimeType`                  |
 | `un_htmlspecialchars`      |            `Utils::htmlspecialcharsDecode`             |
 | `fetch_web_data`           |                  `WebFetchApi::fetch`                  |
-| `timeformat`               |                   `Time::timeformat`                   |
+| `timeformat`               |                 `Time::stringFromUnix`                 |
 
 #### SSI functions
 

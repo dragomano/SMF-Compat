@@ -24,12 +24,8 @@ class Time
 		return smf_strftime($format, $timestamp, $tzid);
 	}
 
-	public static function timeformat(
-		int|string $log_time,
-		bool|string $show_today = true,
-		?string $tzid = null
-	): string
+	public static function stringFromUnix(int|string|null $timestamp = null): string
 	{
-		return timeformat($log_time, $show_today, $tzid);
+		return timeformat($timestamp);
 	}
 }

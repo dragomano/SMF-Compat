@@ -448,7 +448,7 @@ if (! function_exists('smf_strftime')) {
 }
 
 if (! function_exists('timeformat')) {
-	function timeformat(...$params): string
+	function timeformat(int|string|null $timestamp = null): string
 	{
 		return '';
 	}

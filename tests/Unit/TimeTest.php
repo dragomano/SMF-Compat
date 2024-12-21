@@ -6,6 +6,6 @@ test('strftime method', function () {
 	expect(Time::strftime('%Y-%m-%d', time()))->toBeString();
 });
 
-test('timeformat method', function () {
-	expect(Time::timeformat(time()))->toBeString();
+test('stringFromUnix method', function () {
+	expect(Time::stringFromUnix(time()))->toBeString();
 });
