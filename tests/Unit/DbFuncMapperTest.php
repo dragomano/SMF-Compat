@@ -35,6 +35,16 @@ test('insert method', function () {
 		->toBeInt();
 });
 
+test('insert_id method', function () {
+	expect($this->db->insert_id(''))
+		->toBeInt();
+});
+
+test('affected_rows method', function () {
+	expect($this->db->affected_rows())
+		->toBeInt();
+});
+
 test('transaction method', function () {
 	expect($this->db->transaction())
 		->toBeTrue();

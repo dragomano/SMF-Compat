@@ -28,7 +28,9 @@ uses()->beforeAll(function () {
 	Utils::$smcFunc['db_fetch_all'] = fn(...$params) => [];
 	Utils::$smcFunc['db_free_result'] = fn(...$params) => true;
 	Utils::$smcFunc['db_insert'] = fn(...$params) => 0;
+	Utils::$smcFunc['db_insert_id'] = fn(...$params) => 1;
 	Utils::$smcFunc['db_num_rows'] = fn(...$params) => 0;
+	Utils::$smcFunc['db_affected_rows'] = fn(...$params) => 0;
 	Utils::$smcFunc['db_transaction'] = fn(...$params) => true;
 	Utils::$smcFunc['db_optimize_table'] = fn(...$params) => 0;
 	Utils::$smcFunc['db_list_tables'] = fn(...$params) => [];
