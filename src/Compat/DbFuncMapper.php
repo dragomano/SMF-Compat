@@ -64,14 +64,24 @@ class DbFuncMapper
 		return Utils::$smcFunc['db_insert']($method, $table, $columns, $data, $keys, $returnmode);
 	}
 
+	public function insert_id(string $table, ?string $field = null, ?object $connection = null): int
+	{
+		return Utils::$smcFunc['db_insert_id']($table, $field, $connection);
+	}
+
 	public function num_rows(object $result): int
 	{
 		return Utils::$smcFunc['db_num_rows']($result);
 	}
 
-	public function transaction(string $type = 'commit'): bool
+	public function affected_rows(?object $connection = null): int
 	{
-		return Utils::$smcFunc['db_transaction']($type);
+		return Utils::$smcFunc['db_affected_rows']($connection);
+	}
+
+	public function transaction(string $type = 'commit', ?object $connection = null): bool
+	{
+		return Utils::$smcFunc['db_transaction']($type, $connection);
 	}
 
 	public function optimize_table(string $table): int|float
