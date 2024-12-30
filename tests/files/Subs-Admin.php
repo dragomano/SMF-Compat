@@ -13,3 +13,10 @@ if (! function_exists('updateSettingsFile')) {
 		return true;
 	}
 }
+
+if (! function_exists('safe_file_write')) {
+	function safe_file_write(...$args): bool
+	{
+		return true;
+	}
+}

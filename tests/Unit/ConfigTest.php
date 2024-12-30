@@ -4,6 +4,8 @@ use Bugo\Compat\Config;
 
 beforeEach(function () {
 	$this->config = new Config();
+
+	$this->config::$sourcedir = dirname(__DIR__) . '/files';
 });
 
 test('constructor', function () {
@@ -36,7 +38,9 @@ test('updateModSettings method', function () {
 });
 
 test('updateSettingsFile method', function () {
-	$this->config::$sourcedir = dirname(__DIR__) . '/files';
-
 	expect($this->config::updateSettingsFile(['foo' => 'bar']))->toBeBool();
+});
+
+test('safeFileWrite', function () {
+	expect($this->config::safeFileWrite('file.txt', 'some data'))->toBeBool();
 });
