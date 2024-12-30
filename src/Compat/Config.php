@@ -16,6 +16,7 @@ namespace Bugo\Compat;
 
 use function updateSettings;
 use function updateSettingsFile;
+use function safe_file_write;
 
 class Config
 {
@@ -101,5 +102,18 @@ class Config
 		require_once self::$sourcedir . DIRECTORY_SEPARATOR . 'Subs-Admin.php';
 
 		return updateSettingsFile($config_vars, $keep_quotes, $rebuild);
+	}
+
+	public static function safeFileWrite(
+		string $file,
+		string $data,
+		?string $backup_file = null,
+		?int $mtime = null,
+		bool $append = false
+	): bool
+	{
+		require_once self::$sourcedir . DIRECTORY_SEPARATOR . 'Subs-Admin.php';
+
+		return safe_file_write($file, $data, $backup_file, $mtime, $append);
 	}
 }
