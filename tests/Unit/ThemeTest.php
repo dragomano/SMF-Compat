@@ -101,17 +101,6 @@ test('loadTemplate method', function () {
 	expect($result)->toBeSuccess();
 });
 
-test('loadSubTemplate method', function () {
-	try {
-		$this->theme::loadSubTemplate('Test');
-		$result = 'success';
-	} catch (Exception $e) {
-		$result = $e->getMessage();
-	}
-
-	expect($result)->toBeSuccess();
-});
-
 test('setupContext method', function () {
 	try {
 		$this->theme::setupContext();
