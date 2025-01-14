@@ -93,7 +93,7 @@ if (! function_exists('logAction')) {
 }
 
 if (! function_exists('constructPageIndex')) {
-	function constructPageIndex(string $base_url, &$start, int $max_value, int $num_per_page): string
+	function constructPageIndex(string $base_url, ...$params): string
 	{
 		return $base_url;
 	}

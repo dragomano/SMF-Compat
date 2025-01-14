@@ -10,24 +10,24 @@
 
 namespace Bugo\Compat;
 
+use stdClass;
+
 use function get_proxied_url;
 use function is_string;
 use function normalize_iri;
 use function parse_iri;
 use function rawurldecode;
 
-class Url extends \stdClass implements \Stringable
+class Url extends stdClass implements \Stringable
 {
-	public function __construct(string $url, bool $normalize = false)
+	public function __construct(public string $url, bool $normalize = false)
 	{
-		$this->url = $url;
-
 		$normalize ? $this->normalize() : $this->parse();
 	}
 
 	public function __toString(): string
 	{
-		return (string) $this->url;
+		return $this->url;
 	}
 
 	public static function create(string $url, bool $normalize = false): self

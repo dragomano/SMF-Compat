@@ -10,11 +10,9 @@
 
 namespace Bugo\Compat;
 
-use Stringable;
-
 use function constructPageIndex;
 
-class PageIndex implements Stringable
+class PageIndex implements \Stringable
 {
 	private string $index;
 

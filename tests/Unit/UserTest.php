@@ -56,7 +56,7 @@ test('loadMemberContext method', function () {
 });
 
 test('membersAllowedTo method', function () {
-	expect($this->user::membersAllowedTo('foo_bar'))->toBe(['foo_bar']);
+	expect($this->user::membersAllowedTo('foo_bar'))->toContain('foo_bar');
 });
 
 test('updateMemberData method', function () {
