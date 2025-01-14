@@ -469,3 +469,24 @@ if (! function_exists('isBrowser')) {
 		return Utils::$context['browser'][$browser] ?? false;
 	}
 }
+
+if (! function_exists('get_proxied_url')) {
+	function get_proxied_url(string $url): string
+	{
+		return $url;
+	}
+}
+
+if (! function_exists('normalize_iri')) {
+	function normalize_iri(string $url): string
+	{
+		return $url;
+	}
+}
+
+if (! function_exists('parse_iri')) {
+	function parse_iri(string $url, int $component = -1): string|int|array|null|bool
+	{
+		return parse_url($url, $component);
+	}
+}
