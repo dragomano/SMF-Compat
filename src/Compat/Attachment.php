@@ -22,7 +22,12 @@ class Attachment
 		return createAttachment($attachmentOptions);
 	}
 
-	public static function remove(array $condition, string $query_type = '', bool $return_affected_messages = false, bool $autoThumbRemoval = true): ?array
+	public static function remove(
+		array $condition,
+		string $query_type = '',
+		bool $return_affected_messages = false,
+		bool $autoThumbRemoval = true
+	): ?array
 	{
 		require_once Config::$sourcedir . DIRECTORY_SEPARATOR . 'ManageAttachments.php';
 
