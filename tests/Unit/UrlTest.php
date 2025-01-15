@@ -3,26 +3,39 @@
 use Bugo\Compat\Url;
 
 beforeEach(function () {
-	$this->obj = new Url('https://example.com/index.php');
+	$this->obj = new Url('https://www.simplemachines.org/index.php');
 });
 
 test('constructor', function () {
-	expect($this->obj->url)->toBe('https://example.com/index.php')
-		->and((string) $this->obj)->toBe($this->obj->url);
+	expect((string) $this->obj)->toBe('https://www.simplemachines.org/index.php')
+		->and($this->obj->port)->toBeInt();
 });
 
 test('create method', function () {
-	expect((string) $this->obj::create('https://some.url'))->toBe((string) new Url('https://some.url'));
+	$obj = Url::create('https://demo.dragomano.ru');
+
+	expect($obj->parse())->toBe([
+		'scheme' => 'https',
+		'host'   => 'demo.dragomano.ru',
+	]);
 });
 
 test('normalize method', function () {
-	expect($this->obj->normalize()->url)->toBeString();
+	expect((string) $this->obj->normalize())->toBeString();
 });
 
 test('parse method', function () {
-	expect($this->obj->parse(PHP_URL_PATH))->toBe('/index.php');
+	$obj = Url::create('https://some.url:8080');
+	$parsed = $obj->parse();
+
+	expect($obj->port)->toBeInt()
+		->and($parsed)->toBe([
+			'scheme' => 'https',
+			'host'   => 'some.url',
+			'port'   => 8080,
+		]);
 });
 
 test('proxied method', function () {
-	expect($this->obj->proxied()->url)->toBeString();
+	expect((string) $this->obj->proxied())->toBeString();
 });

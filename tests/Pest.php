@@ -432,7 +432,15 @@ if (! function_exists('comma_format')) {
 if (! function_exists('call_helper')) {
 	function call_helper(mixed $string, bool $return = false): mixed
 	{
-		return is_callable($string) && $return ? $string : false;
+		if (empty($string) || is_object($string)) {
+			return false;
+		}
+
+		if (is_array($string) || $string instanceof \Closure) {
+			return is_callable($string) ? $string : false;
+		}
+
+		return $return ? $string : (is_array($string) ? call_user_func($string) : $string());
 	}
 }
 
@@ -485,7 +493,7 @@ if (! function_exists('normalize_iri')) {
 }
 
 if (! function_exists('parse_iri')) {
-	function parse_iri(string $url, int $component = -1): string|int|array|null|bool
+	function parse_iri(string $url, int $component = -1): int|string|array|null|false
 	{
 		return parse_url($url, $component);
 	}

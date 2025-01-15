@@ -10,20 +10,20 @@
 
 namespace Bugo\Compat\Tasks;
 
-use function call_helper;
+use Bugo\Compat\Utils;
+
 use function call_user_func_array;
-use function is_callable;
 
 class GenericTask extends BackgroundTask
 {
 	public function execute(): bool
 	{
-		$callableTask = call_helper($this->_details['callable'], true);
+		$callableTask = Utils::getCallable($this->_details['callable']);
 
 		$args = $this->_details;
 		unset($args['callable']);
 
-		if (is_callable($callableTask)) {
+		if (! empty($callableTask)) {
 			call_user_func_array($callableTask, $args);
 		}
 

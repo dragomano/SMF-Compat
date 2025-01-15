@@ -15,7 +15,6 @@ use MessageFormatter;
 
 use function censorText;
 use function comma_format;
-use function extension_loaded;
 use function getLanguages;
 use function is_array;
 use function is_string;
@@ -86,14 +85,6 @@ class Lang
 
 			return '';
 		}
-
-		// @codeCoverageIgnoreStart
-		if (! extension_loaded('intl')) {
-			ErrorHandler::log('Lang::getTxt: You should enable the intl extension in php.ini', 'critical');
-
-			return '';
-		}
-		// @codeCoverageIgnoreEnd
 
 		$pattern = self::${$var}[$key] ?? $key;
 

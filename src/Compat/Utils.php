@@ -10,6 +10,7 @@
 
 namespace Bugo\Compat;
 
+use function call_helper;
 use function get_mime_type;
 use function JavaScriptEscape;
 use function json_encode;
@@ -95,5 +96,10 @@ class Utils
 	public static function getMimeType(string $data, bool $is_path = false): string|bool
 	{
 		return get_mime_type($data, $is_path);
+	}
+
+	public static function getCallable(mixed $input): callable|false
+	{
+		return call_helper($input);
 	}
 }

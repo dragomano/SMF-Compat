@@ -20,7 +20,9 @@ use function rawurldecode;
 
 class Url extends stdClass implements \Stringable
 {
-	public function __construct(public string $url, bool $normalize = false)
+	public int $port;
+
+	public function __construct(protected string $url, bool $normalize = false)
 	{
 		$normalize ? $this->normalize() : $this->parse();
 	}
@@ -28,6 +30,11 @@ class Url extends stdClass implements \Stringable
 	public function __toString(): string
 	{
 		return $this->url;
+	}
+
+	public function __get(string $name): string|int
+	{
+		return $this->$name ?? ($name === 'port' ? 0 : '');
 	}
 
 	public static function create(string $url, bool $normalize = false): self
@@ -40,19 +47,33 @@ class Url extends stdClass implements \Stringable
 		return self::create(normalize_iri($this->url));
 	}
 
-	public function parse(int $component = -1): string|int|array|null|bool
+	public function parse(int $component = -1): int|string|array|null|false
 	{
 		$parsed = parse_iri($this->url, $component);
 
 		foreach (['scheme', 'host', 'port', 'user', 'pass', 'path', 'query', 'fragment'] as $prop) {
 			unset($this->{$prop});
 
-			if (isset($parsed[$prop])) {
-				$this->{$prop} = $parsed[$prop] = is_string($parsed[$prop]) ? rawurldecode($parsed[$prop]) : $parsed[$prop];
+			if (! isset($parsed[$prop])) continue;
+
+			if ($prop === 'port') {
+				$parsed['port'] = (int) $parsed['port'];
 			}
+
+			$this->{$prop} = $parsed[$prop] = is_string($parsed[$prop]) ? rawurldecode($parsed[$prop]) : $parsed[$prop];
 		}
 
-		return $parsed;
+		return match ($component) {
+			PHP_URL_SCHEME   => $this->scheme ?? null,
+			PHP_URL_HOST     => $this->host ?? null,
+			PHP_URL_PORT     => $this->port ?? null,
+			PHP_URL_USER     => $this->user ?? null,
+			PHP_URL_PASS     => $this->pass ?? null,
+			PHP_URL_PATH     => $this->path ?? null,
+			PHP_URL_QUERY    => $this->query ?? null,
+			PHP_URL_FRAGMENT => $this->fragment ?? null,
+			default          => $parsed,
+		};
 	}
 
 	public function proxied(): self

@@ -12,7 +12,7 @@ test('execute method', function () {
 
 	expect($callable)->toBeCallable();
 
-	$task = new class(['callable' => $callable, 'number' => 2]) extends GenericTask {};
+	$task = new class(['callable' => [$callable, '__invoke'], 'number' => 2]) extends GenericTask {};
 
 	expect($task->execute())->toBeTrue();
 });
