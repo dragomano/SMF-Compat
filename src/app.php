@@ -8,6 +8,7 @@ use Bugo\Compat\{ErrorHandler, IntegrationHook, ItemList, Lang, Logging};
 use Bugo\Compat\{Mail, Menu, Msg, PageIndex, Sapi, Security, ServerSideIncludes};
 use Bugo\Compat\{Theme, Time, Topic, User, Url, Utils, WebFetchApi};
 use Bugo\Compat\Actions\{ACP, BoardIndex, Calendar, MessageIndex, Notify, Permissions};
+use Bugo\Compat\Graphics\Image;
 use Bugo\Compat\Tasks\{BackgroundTask, GenericTask, ScheduledTask};
 
 if (str_starts_with(SMF_VERSION, '3.0')) {
@@ -19,7 +20,6 @@ if (str_starts_with(SMF_VERSION, '3.0')) {
 		'SMF\\Actions\\MessageIndex'       => MessageIndex::class,
 		'SMF\\Actions\\Notify'             => Notify::class,
 		'SMF\\Attachment'                  => Attachment::class,
-		'SMF\\Parsers\\BBCodeParser'       => BBCodeParser::class,
 		'SMF\\Board'                       => Board::class,
 		'SMF\\BrowserDetector'             => BrowserDetector::class,
 		'SMF\\Cache\\CacheApi'             => CacheApi::class,
@@ -27,6 +27,7 @@ if (str_starts_with(SMF_VERSION, '3.0')) {
 		'SMF\\Db\\DatabaseApi'             => Db::class,
 		'SMF\\Editor'                      => Editor::class,
 		'SMF\\ErrorHandler'                => ErrorHandler::class,
+		'SMF\\Graphics\\Image'             => Image::class,
 		'SMF\\IntegrationHook'             => IntegrationHook::class,
 		'SMF\\ItemList'                    => ItemList::class,
 		'SMF\\Lang'                        => Lang::class,
@@ -35,6 +36,7 @@ if (str_starts_with(SMF_VERSION, '3.0')) {
 		'SMF\\Menu'                        => Menu::class,
 		'SMF\\Msg'                         => Msg::class,
 		'SMF\\PageIndex'                   => PageIndex::class,
+		'SMF\\Parsers\\BBCodeParser'       => BBCodeParser::class,
 		'SMF\\Sapi'                        => Sapi::class,
 		'SMF\\Security'                    => Security::class,
 		'SMF\\ServerSideIncludes'          => ServerSideIncludes::class,
@@ -44,8 +46,8 @@ if (str_starts_with(SMF_VERSION, '3.0')) {
 		'SMF\\Theme'                       => Theme::class,
 		'SMF\\Time'                        => Time::class,
 		'SMF\\Topic'                       => Topic::class,
-		'SMF\\User'                        => User::class,
 		'SMF\\Url'                         => Url::class,
+		'SMF\\User'                        => User::class,
 		'SMF\\Utils'                       => Utils::class,
 		'SMF\\WebFetch\\WebFetchApi'       => WebFetchApi::class,
 	];
