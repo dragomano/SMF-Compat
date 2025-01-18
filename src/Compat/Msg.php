@@ -10,7 +10,11 @@
 
 namespace Bugo\Compat;
 
+use function approvePosts;
+use function createPost;
+use function modifyPost;
 use function preparsecode;
+use function removeMessage;
 use function un_preparsecode;
 
 class Msg
@@ -27,5 +31,33 @@ class Msg
 		require_once Config::$sourcedir . DIRECTORY_SEPARATOR . 'Subs-Post.php';
 
 		return un_preparsecode($message);
+	}
+
+	public static function create(array &$msgOptions, array &$topicOptions, array &$posterOptions): bool
+	{
+		require_once Config::$sourcedir . DIRECTORY_SEPARATOR . 'Subs-Post.php';
+
+		return createPost($msgOptions, $topicOptions, $posterOptions);
+	}
+
+	public static function modify(array &$msgOptions, array &$topicOptions, array &$posterOptions): bool
+	{
+		require_once Config::$sourcedir . DIRECTORY_SEPARATOR . 'Subs-Post.php';
+
+		return modifyPost($msgOptions, $topicOptions, $posterOptions);
+	}
+
+	public static function approve(array|int $msgs, bool $approve = true, bool $notify = true): bool
+	{
+		require_once Config::$sourcedir . DIRECTORY_SEPARATOR . 'Subs-Post.php';
+
+		return approvePosts($msgs, $approve, $notify);
+	}
+
+	public static function remove(int $message, bool $decreasePostCount = true): bool
+	{
+		require_once Config::$sourcedir . DIRECTORY_SEPARATOR . 'RemoveTopic.php';
+
+		return removeMessage($message, $decreasePostCount);
 	}
 }
