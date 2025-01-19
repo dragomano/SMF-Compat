@@ -146,6 +146,13 @@ if (! function_exists('isAllowedTo')) {
 	}
 }
 
+if (! function_exists('boardsAllowedTo')) {
+	function boardsAllowedTo(...$params): array
+	{
+		return [];
+	}
+}
+
 if (! function_exists('loadMemberData')) {
 	function loadMemberData(...$params): array
 	{

@@ -69,3 +69,7 @@ test('updateMemberData method', function () {
 
 	expect($result)->toBeSuccess();
 });
+
+test('hasPermissionInBoards method', function () {
+	expect($this->user::$me->hasPermissionInBoards('post_new'))->toBeArray();
+});

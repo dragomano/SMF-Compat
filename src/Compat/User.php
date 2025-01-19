@@ -13,6 +13,7 @@ namespace Bugo\Compat;
 use Exception;
 
 use function allowedTo;
+use function boardsAllowedTo;
 use function checkSession;
 use function isAllowedTo;
 use function loadMemberContext;
@@ -108,5 +109,23 @@ class User
 	public static function updateMemberData(array $members, array $data): void
 	{
 		updateMemberData($members, $data);
+	}
+
+	public static function hasPermissionInBoards(
+		string|array $permission,
+		bool $check_access = true,
+		bool $simple = true
+	): array|bool
+	{
+		return self::$me->boardsAllowedTo($permission, $check_access, $simple);
+	}
+
+	public static function boardsAllowedTo(
+		string|array $permissions,
+		bool $check_access = true,
+		bool $simple = true
+	): array
+	{
+		return boardsAllowedTo($permissions, $check_access, $simple);
 	}
 }
