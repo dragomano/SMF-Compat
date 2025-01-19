@@ -98,7 +98,7 @@ class Utils
 		return get_mime_type($data, $is_path);
 	}
 
-	public static function getCallable(mixed $input): callable|false
+	public static function getCallable(string|callable $input): callable|false
 	{
 		return call_helper($input);
 	}
