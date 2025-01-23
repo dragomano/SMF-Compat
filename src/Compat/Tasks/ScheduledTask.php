@@ -11,8 +11,7 @@
 namespace Bugo\Compat\Tasks;
 
 use Bugo\Compat\Config;
-use Bugo\Compat\Db;
-
+use Bugo\Compat\Db\DatabaseApi;
 use function time;
 
 abstract class ScheduledTask extends BackgroundTask
@@ -22,7 +21,7 @@ abstract class ScheduledTask extends BackgroundTask
 	 */
 	public static function updateNextTaskTime(): void
 	{
-		$result = Db::$db->query('', '
+		$result = DatabaseApi::$db->query('', '
 			SELECT next_time
 			FROM {db_prefix}scheduled_tasks
 			WHERE disabled = {int:not_disabled}
@@ -33,13 +32,13 @@ abstract class ScheduledTask extends BackgroundTask
 			],
 		);
 
-		if (Db::$db->num_rows($result) === 0) {
+		if (DatabaseApi::$db->num_rows($result) === 0) {
 			$nextTaskTime = time() + 86400;
 		} else {
-			[$nextTaskTime] = Db::$db->fetch_row($result);
+			[$nextTaskTime] = DatabaseApi::$db->fetch_row($result);
 		}
 
-		Db::$db->free_result($result);
+		DatabaseApi::$db->free_result($result);
 
 		Config::updateModSettings(['next_task_time' => $nextTaskTime]);
 	}

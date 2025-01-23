@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-use Bugo\Compat\Actions\Permissions;
+use Bugo\Compat\Actions\Admin\Permissions;
 
 test('theme_inline_permissions', function () {
 	try {

@@ -1,13 +1,13 @@
 <?php declare(strict_types=1);
 
-use Bugo\Compat\DbFuncMapper;
+use Bugo\Compat\Db\FuncMapper;
 use Bugo\Compat\Utils;
 
 beforeEach(function () {
-	$this->db = new DbFuncMapper();
+	$this->db = new FuncMapper();
 
 	$this->params = ['', '', []];
-	$this->resourse = new \stdClass();
+	$this->resourse = new stdClass();
 });
 
 test('query method', function () {

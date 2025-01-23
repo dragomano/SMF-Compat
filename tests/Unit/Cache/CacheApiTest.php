@@ -1,7 +1,7 @@
 <?php declare(strict_types=1);
 
+use Bugo\Compat\Cache\CacheApi;
 use Bugo\Compat\Utils;
-use Bugo\Compat\CacheApi;
 
 beforeEach(function () {
 	Utils::$context['tmp'] = [];

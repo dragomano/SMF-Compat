@@ -22,7 +22,7 @@ In the root directory of your modification, run the command:
 composer require bugo/smf-compat
 ```
 
-Then in `app.php` (or other similar _entry point_), inlcude `autoload.php`:
+Then in `app.php` (or other similar _entry point_), include `autoload.php`:
 
 ```php
 require_once __DIR__ . '/vendor/autoload.php';
@@ -89,6 +89,9 @@ After upgrading to SMF 3.0, it will be enough to replace the used classes:
 +use SMF\User;
 -use Bugo\Compat\Config;
 +use SMF\Config;
+-use Bugo\Compat\Db;
++use SMF\Db\DatabaseApi as Db;
+// etc.
 ```
 
 Or you can leave it as it is. In this case, your modification will support both versions of SMF.
@@ -212,11 +215,13 @@ All functions in SSI.php that were called via `ssi_function_name` before 3.0 are
 
 #### Working with the database
 
-In compatibility mode, you can use `Utils::$smcFunc['db_query']`, etc., but also introduced a new class `Db`, with a static property `$db` containing the class of the current database engine. The methods of this class are similar to functions in `Utils::$smcFunc`, but without the `db_` prefix. Let's show on the example of three popular functions:
+In compatibility mode, you can use `Utils::$smcFunc['db_query']`, etc., but also introduced a new class `DatabaseApi`, with a static property `$db` containing the class of the current database engine.
+The methods of this class are similar to functions in `Utils::$smcFunc`, but without the `db_` prefix.
+Let's show on the example of three popular functions:
 
 |                 Legacy code (SMF 2.1.x)                  |                 New code (SMF 3.0)                 |
-| :------------------------------------------------------: | :------------------------------------------------: |
-|                    `global $smcFunc;`                    |               `use Bugo\Compat\Db;`                |
+| :------------------------------------------------------: |:--------------------------------------------------:|
+|                    `global $smcFunc;`                    |      `use Bugo\Compat\Db\DatabaseApi as Db;`       |
 | `$result = $smcFunc['db_query']('', /* Your SQL */, [])` | `$result = Db::$db->query('', /* Your SQL */, [])` |
 |      `$rows = $smcFunc['db_fetch_assoc']($result)`       |      `$rows = Db::$db->fetch_assoc($result)`       |
 |          `$smcFunc['db_free_result']($result)`           |          `Db::$db->free_result($result)`           |

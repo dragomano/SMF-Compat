@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-use Bugo\Compat\Actions\ACP;
+use Bugo\Compat\Actions\Admin\ACP;
 
 beforeEach(function () {
 	$this->vars = ['foo' => 'bar'];
