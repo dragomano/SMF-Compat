@@ -293,9 +293,9 @@ if (! function_exists('remove_integration_function')) {
 }
 
 if (! function_exists('fetch_web_data')) {
-	function fetch_web_data(string $url): bool|string
+	function fetch_web_data(string $url, array|string $post_data = '', bool $keep_alive = false): bool|string
 	{
-		return $url !== '';
+		return $url;
 	}
 }
 

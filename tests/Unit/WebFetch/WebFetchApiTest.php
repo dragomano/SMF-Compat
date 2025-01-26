@@ -3,5 +3,5 @@
 use Bugo\Compat\WebFetch\WebFetchApi;
 
 test('fetch method', function () {
-	expect(WebFetchApi::fetch('https://foo.bar'))->toBeTrue();
+	expect(WebFetchApi::fetch('https://foo.bar'))->toBeString();
 });
