@@ -10,12 +10,14 @@
 
 namespace Bugo\Compat\WebFetch;
 
+use Bugo\Compat\Url;
+
 use function fetch_web_data;
 
-class WebFetchApi
+abstract class WebFetchApi
 {
-	public static function fetch(string $url): bool|string
+    public static function fetch(Url|string $url, string|array $post_data = [], bool $keep_alive = false): string|false
 	{
-		return fetch_web_data($url);
+		return fetch_web_data($url, $post_data, $keep_alive);
 	}
 }
