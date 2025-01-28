@@ -3,13 +3,18 @@
 if (! defined('SMF_VERSION'))
 	return;
 
-use Bugo\Compat\{Attachment, BBCodeParser, Board, BrowserDetector, CacheApi, Config, Db, Editor};
+use Bugo\Compat\{Attachment, Board, BrowserDetector, Config, Db, Editor};
 use Bugo\Compat\{ErrorHandler, IntegrationHook, ItemList, Lang, Logging};
 use Bugo\Compat\{Mail, Menu, Msg, PageIndex, Sapi, Security, ServerSideIncludes};
-use Bugo\Compat\{Theme, Time, Topic, User, Url, Utils, WebFetchApi};
-use Bugo\Compat\Actions\{ACP, BoardIndex, Calendar, MessageIndex, Notify, Permissions};
+use Bugo\Compat\{Theme, Time, Topic, Url, User, Utils};
+use Bugo\Compat\Actions\{BoardIndex, Calendar, MessageIndex, Notify};
+use Bugo\Compat\Actions\Admin\{ACP, Permissions};
+use Bugo\Compat\Cache\CacheApi;
+use Bugo\Compat\Db\DatabaseApi;
 use Bugo\Compat\Graphics\Image;
+use Bugo\Compat\Parsers\BBCodeParser;
 use Bugo\Compat\Tasks\{BackgroundTask, GenericTask, ScheduledTask};
+use Bugo\Compat\WebFetch\WebFetchApi;
 
 if (str_starts_with(SMF_VERSION, '3.0')) {
 	$aliases = [
@@ -24,7 +29,7 @@ if (str_starts_with(SMF_VERSION, '3.0')) {
 		'SMF\\BrowserDetector'             => BrowserDetector::class,
 		'SMF\\Cache\\CacheApi'             => CacheApi::class,
 		'SMF\\Config'                      => Config::class,
-		'SMF\\Db\\DatabaseApi'             => Db::class,
+		'SMF\\Db\\DatabaseApi'             => DatabaseApi::class,
 		'SMF\\Editor'                      => Editor::class,
 		'SMF\\ErrorHandler'                => ErrorHandler::class,
 		'SMF\\Graphics\\Image'             => Image::class,

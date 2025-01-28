@@ -8,7 +8,7 @@
  * @license https://opensource.org/license/mit/ MIT
  */
 
-namespace Bugo\Compat;
+namespace Bugo\Compat\Parsers;
 
 use function parse_bbc;
 

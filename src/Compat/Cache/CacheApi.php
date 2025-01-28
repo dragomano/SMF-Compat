@@ -8,7 +8,7 @@
  * @license https://opensource.org/license/mit/ MIT
  */
 
-namespace Bugo\Compat;
+namespace Bugo\Compat\Cache;
 
 use function cache_get_data;
 use function cache_put_data;

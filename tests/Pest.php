@@ -22,7 +22,7 @@ uses()->beforeAll(function () {
 	Utils::$context['num_errors'] = 0;
 
 	Utils::$smcFunc['htmlspecialchars'] = fn(...$params) => htmlspecialchars(...$params);
-	Utils::$smcFunc['db_query'] = fn(...$params) => new \stdClass();
+	Utils::$smcFunc['db_query'] = fn(...$params) => new stdClass();
 	Utils::$smcFunc['db_fetch_row'] = fn(...$params) => [];
 	Utils::$smcFunc['db_fetch_assoc'] = fn(...$params) => [];
 	Utils::$smcFunc['db_fetch_all'] = fn(...$params) => [];
@@ -293,9 +293,9 @@ if (! function_exists('remove_integration_function')) {
 }
 
 if (! function_exists('fetch_web_data')) {
-	function fetch_web_data(string $url): bool|string
+	function fetch_web_data(string $url, array|string $post_data = '', bool $keep_alive = false): bool|string
 	{
-		return $url !== '';
+		return $url;
 	}
 }
 
@@ -443,7 +443,7 @@ if (! function_exists('call_helper')) {
 			return false;
 		}
 
-		if (is_array($string) || $string instanceof \Closure) {
+		if (is_array($string) || $string instanceof Closure) {
 			return is_callable($string) ? $string : false;
 		}
 

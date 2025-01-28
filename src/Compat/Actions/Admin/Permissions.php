@@ -8,7 +8,7 @@
  * @license https://opensource.org/license/mit/ MIT
  */
 
-namespace Bugo\Compat\Actions;
+namespace Bugo\Compat\Actions\Admin;
 
 use Bugo\Compat\Config;
 use Bugo\Compat\Theme;
