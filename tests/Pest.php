@@ -134,7 +134,7 @@ if (! function_exists('allowedTo')) {
 }
 
 if (! function_exists('checkSession')) {
-	function checkSession(string $type = 'post'): string
+	function checkSession(...$params): string
 	{
 		return '';
 	}
@@ -154,16 +154,16 @@ if (! function_exists('boardsAllowedTo')) {
 }
 
 if (! function_exists('loadMemberData')) {
-	function loadMemberData(...$params): array
+	function loadMemberData(array|string $users, bool $is_name = false, string $set = 'normal'): array
 	{
-		return $params;
+		return $users;
 	}
 }
 
 if (! function_exists('loadMemberContext')) {
 	function loadMemberContext(...$params): bool|array
 	{
-		return true;
+		return [];
 	}
 }
 
