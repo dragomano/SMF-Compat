@@ -3,9 +3,10 @@
 if (! defined('SMF_VERSION'))
 	return;
 
-use Bugo\Compat\{Attachment, Board, BrowserDetector, Config, Db, Editor};
-use Bugo\Compat\{ErrorHandler, IntegrationHook, ItemList, Lang, Logging};
-use Bugo\Compat\{Mail, Menu, Msg, PageIndex, Sapi, Security, ServerSideIncludes};
+use Bugo\Compat\{Attachment, Board, BrowserDetector, Config, Db};
+use Bugo\Compat\{Editor, ErrorHandler, IntegrationHook, ItemList};
+use Bugo\Compat\{Lang, Logging, Mail, Menu, Msg, PageIndex};
+use Bugo\Compat\{QueryString, Sapi, Security, ServerSideIncludes};
 use Bugo\Compat\{Theme, Time, Topic, Url, User, Utils};
 use Bugo\Compat\Actions\{BoardIndex, Calendar, MessageIndex, Notify};
 use Bugo\Compat\Actions\Admin\{ACP, Permissions};
@@ -42,6 +43,7 @@ if (str_starts_with(SMF_VERSION, '3.0')) {
 		'SMF\\Msg'                         => Msg::class,
 		'SMF\\PageIndex'                   => PageIndex::class,
 		'SMF\\Parsers\\BBCodeParser'       => BBCodeParser::class,
+		'SMF\\QueryString'                 => QueryString::class,
 		'SMF\\Sapi'                        => Sapi::class,
 		'SMF\\Security'                    => Security::class,
 		'SMF\\ServerSideIncludes'          => ServerSideIncludes::class,
