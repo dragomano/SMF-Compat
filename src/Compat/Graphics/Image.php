@@ -12,9 +12,11 @@ namespace Bugo\Compat\Graphics;
 
 use Bugo\Compat\Config;
 
+use function createThumbnail;
+
 class Image
 {
-	public static function makeThumbnail(string $source, int $max_width, int $max_height): bool
+	public static function createThumbnail(string $source, int $max_width, int $max_height): bool
 	{
 		require_once Config::$sourcedir . DIRECTORY_SEPARATOR . 'Subs-Graphics.php';
 

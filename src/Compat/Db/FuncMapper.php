@@ -14,6 +14,7 @@ use Bugo\Compat\ErrorHandler;
 use Bugo\Compat\Utils;
 
 use function array_key_exists;
+use function db_extend;
 
 class FuncMapper
 {
@@ -85,28 +86,28 @@ class FuncMapper
 
 	public function optimize_table(string $table): int|float
 	{
-		DatabaseApi::extend();
+		$this->extend();
 
 		return Utils::$smcFunc['db_optimize_table']($table);
 	}
 
 	public function list_tables(string|bool $db = false, string|bool $filter = false): array
 	{
-		DatabaseApi::extend();
+		$this->extend();
 
 		return Utils::$smcFunc['db_list_tables']($db, $filter);
 	}
 
 	public function get_version(): string
 	{
-		DatabaseApi::extend();
+		$this->extend();
 
 		return Utils::$smcFunc['db_get_version']();
 	}
 
 	public function get_vendor(): string
 	{
-		DatabaseApi::extend();
+		$this->extend();
 
 		return Utils::$smcFunc['db_get_vendor']();
 	}
@@ -119,7 +120,7 @@ class FuncMapper
 		string $error = 'fatal'
 	): bool
 	{
-		DatabaseApi::extend('packages');
+		$this->extend('packages');
 
 		return Utils::$smcFunc['db_add_column']($table_name, $column_info, $parameters, $if_exists, $error);
 	}
@@ -132,14 +133,14 @@ class FuncMapper
 		string $error = 'fatal'
 	): bool
 	{
-		DatabaseApi::extend('packages');
+		$this->extend('packages');
 
 		return Utils::$smcFunc['db_add_index']($table_name, $index_info, $parameters, $if_exists, $error);
 	}
 
 	public function change_column(string $table_name, string $old_column, array $column_info): bool
 	{
-		DatabaseApi::extend('packages');
+		$this->extend('packages');
 
 		return Utils::$smcFunc['db_change_column']($table_name, $old_column, $column_info);
 	}
@@ -153,28 +154,28 @@ class FuncMapper
 		string $error = 'fatal'
 	): bool
 	{
-		DatabaseApi::extend('packages');
+		$this->extend('packages');
 
 		return Utils::$smcFunc['db_create_table']($table_name, $columns, $indexes, $parameters, $if_exists, $error);
 	}
 
 	public function table_structure(string $table_name): array
 	{
-		DatabaseApi::extend('packages');
+		$this->extend('packages');
 
 		return Utils::$smcFunc['db_table_structure']($table_name);
 	}
 
 	public function list_columns(string $table_name, bool $detail = false, array $parameters = []): array
 	{
-		DatabaseApi::extend('packages');
+		$this->extend('packages');
 
 		return Utils::$smcFunc['db_list_columns']($table_name, $detail, $parameters);
 	}
 
 	public function list_indexes(string $table_name, bool $detail = false, array $parameters = []): array
 	{
-		DatabaseApi::extend('packages');
+		$this->extend('packages');
 
 		return Utils::$smcFunc['db_list_indexes']($table_name, $detail, $parameters);
 	}
@@ -186,7 +187,7 @@ class FuncMapper
 		string $error = 'fatal'
 	): bool
 	{
-		DatabaseApi::extend('packages');
+		$this->extend('packages');
 
 		return Utils::$smcFunc['db_remove_column']($table_name, $column_name, $parameters, $error);
 	}
@@ -198,8 +199,13 @@ class FuncMapper
 		string $error = 'fatal'
 	): bool
 	{
-		DatabaseApi::extend('packages');
+		$this->extend('packages');
 
 		return Utils::$smcFunc['db_remove_index']($table_name, $index_name, $parameters, $error);
+	}
+
+	protected function extend(string $type = 'extra'): void
+	{
+		db_extend($type);
 	}
 }

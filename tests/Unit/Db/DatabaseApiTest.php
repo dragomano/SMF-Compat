@@ -12,14 +12,3 @@ test('constructor', function () {
 		->and($this->db::$cache)->toBeArray()
 		->and($this->db::$db)->toEqual(new FuncMapper());
 });
-
-test('extend method', function () {
-	try {
-		$this->db::extend();
-		$result = 'success';
-	} catch (Exception $e) {
-		$result = $e->getMessage();
-	}
-
-	expect($result)->toBeSuccess();
-});

@@ -24,6 +24,12 @@ class User
 {
 	public const LOAD_BY_ID = 0;
 
+	public int $id;
+
+	public array $formatted = [];
+
+	public static array $loaded = [];
+
 	public static self $me;
 
 	public static array $info;
@@ -34,6 +40,8 @@ class User
 
 	public static array $memberContext;
 
+	private bool $custom_fields_displayed = false;
+
 	private array $vars = [
 		'info'          => 'user_info',
 		'profiles'      => 'user_profile',
@@ -41,7 +49,7 @@ class User
 		'memberContext' => 'memberContext',
 	];
 
-	public function __construct()
+	public function __construct(?int $id = null)
 	{
 		foreach ($this->vars as $key => $value) {
 			if (! isset($GLOBALS[$value])) {
@@ -51,7 +59,12 @@ class User
 			self::${$key} = &$GLOBALS[$value];
 		}
 
+		if ($id) {
+			$this->id = $id;
+		}
+
 		self::$me = $this;
+		self::$loaded[$id] = $this;
 	}
 
 	public function allowedTo(string $permission): bool
@@ -59,44 +72,43 @@ class User
 		return allowedTo($permission);
 	}
 
-	public function checkSession(string $type = 'post'): string
+	public function boardsAllowedTo(
+		string|array $permissions,
+		bool $check_access = true,
+		bool $simple = true
+	): array
 	{
-		return checkSession($type);
+		return boardsAllowedTo($permissions, $check_access, $simple);
 	}
 
-	public function isAllowedTo(string|array $permission): void
+	public function checkSession(string $type = 'post', string $from_action = '', bool $is_fatal = true): string
 	{
-		isAllowedTo($permission);
+		return checkSession($type, $from_action, $is_fatal);
 	}
 
-	public static function hasPermission(string $permission): bool
+	public function isAllowedTo(string|array $permission, int|array|null $boards = null, bool $any = false): void
 	{
-		return self::$me->allowedTo($permission);
-	}
-
-	public static function sessionCheck(string $type = 'post'): string
-	{
-		return self::$me->checkSession($type);
-	}
-
-	public static function mustHavePermission(string|array $permission): bool
-	{
-		self::$me->isAllowedTo($permission);
-
-		return true;
-	}
-
-	public static function loadMemberData(array $users, int $type = self::LOAD_BY_ID, string $set = 'normal'): array
-	{
-		return loadMemberData($users, (bool) $type, $set);
+		isAllowedTo($permission, $boards, $any);
 	}
 
 	/**
 	 * @throws Exception
 	 */
-	public static function loadMemberContext(int $user, bool $display_custom_fields = false): bool|array
+	public function format(bool $display_custom_fields = false): array
 	{
-		return loadMemberContext($user, $display_custom_fields);
+		if (empty(Config::$modSettings['displayFields'])) {
+			$display_custom_fields = false;
+		}
+
+		if (! empty($this->formatted) && $this->custom_fields_displayed >= $display_custom_fields) {
+			return $this->formatted;
+		}
+
+		$this->formatted = loadMemberContext($this->id, $display_custom_fields);
+
+		$this->custom_fields_displayed = ! empty($this->custom_fields_displayed) || $display_custom_fields;
+
+		return $this->formatted;
 	}
 
 	public static function membersAllowedTo(string $permission, ?int $board_id = null): array
@@ -111,21 +123,37 @@ class User
 		updateMemberData($members, $data);
 	}
 
-	public static function hasPermissionInBoards(
-		string|array $permission,
-		bool $check_access = true,
-		bool $simple = true
-	): array|bool
-	{
-		return self::$me->boardsAllowedTo($permission, $check_access, $simple);
-	}
-
-	public static function boardsAllowedTo(
-		string|array $permissions,
-		bool $check_access = true,
-		bool $simple = true
+	public static function load(
+		array|string|int $users = [],
+		int $type = self::LOAD_BY_ID,
+		?string $dataset = null
 	): array
 	{
-		return boardsAllowedTo($permissions, $check_access, $simple);
+		$users = (array) $users;
+
+		$loaded = [];
+
+		if ($users === []) {
+			$loaded[] = new self();
+		} else {
+			$dataset ??= 'normal';
+
+			$ids = self::loadUserData($users, $type, $dataset);
+
+			foreach ($ids as $id) {
+				if (! isset(self::$loaded[$id])) {
+					new self($id);
+				}
+
+				$loaded[] = self::$loaded[$id];
+			}
+		}
+
+		return $loaded;
+	}
+
+	protected static function loadUserData(array $users, int $type = self::LOAD_BY_ID, string $set = 'normal'): array
+	{
+		return loadMemberData($users, (bool) $type, $set);
 	}
 }

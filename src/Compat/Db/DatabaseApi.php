@@ -10,8 +10,6 @@
 
 namespace Bugo\Compat\Db;
 
-use function db_extend;
-
 class DatabaseApi
 {
 	public static int $count = 0;
@@ -37,10 +35,5 @@ class DatabaseApi
 		if (! isset(self::$db)) {
 			self::$db = new FuncMapper();
 		}
-	}
-
-	public static function extend(string $type = 'extra'): void
-	{
-		db_extend($type);
 	}
 }

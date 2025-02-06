@@ -6,6 +6,6 @@ beforeEach(function () {
 	$this->image = new Image();
 });
 
-test('makeThumbnail method', function () {
-	expect($this->image::makeThumbnail('picture.png', 300, 200))->toBeTrue();
+test('createThumbnail method', function () {
+	expect($this->image::createThumbnail('picture.png', 300, 200))->toBeTrue();
 });

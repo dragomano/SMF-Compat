@@ -3,7 +3,9 @@
 use Bugo\Compat\User;
 
 beforeEach(function () {
-	$this->user = new User();
+	$this->user = new User(1);
+
+	User::$me->formatted = [];
 });
 
 test('constructor', function () {
@@ -19,17 +21,12 @@ test('allowedTo method', function () {
 		->and($this->user::$me->allowedTo('foo'))->toBeFalse();
 });
 
-test('hasPermission method', function () {
-	expect($this->user::hasPermission('foo_bar'))->toBeTrue()
-		->and($this->user::hasPermission('foo'))->toBeFalse();
+test('boardsAllowedTo method', function () {
+	expect($this->user::$me->boardsAllowedTo('post_new'))->toBeArray();
 });
 
 test('checkSession method', function () {
 	expect($this->user::$me->checkSession())->toBeEmpty();
-});
-
-test('sessionCheck method', function () {
-	expect($this->user::sessionCheck())->toBeEmpty();
 });
 
 test('isAllowedTo method', function () {
@@ -43,16 +40,12 @@ test('isAllowedTo method', function () {
 	expect($result)->toBeSuccess();
 });
 
-test('mustHavePermission method', function () {
-	expect($this->user::mustHavePermission('foo_bar'))->toBeTrue();
-});
+test('format method', function () {
+	expect($this->user::$me->format())->toBeArray();
 
-test('loadMemberData method', function () {
-	expect($this->user::loadMemberData(['foo_bar']))->toBeArray();
-});
+	User::$me->formatted = [1 => []];
 
-test('loadMemberContext method', function () {
-	expect($this->user::loadMemberContext(1))->toBeTrue();
+	expect($this->user::$me->format())->toBe([1 => []]);
 });
 
 test('membersAllowedTo method', function () {
@@ -70,6 +63,8 @@ test('updateMemberData method', function () {
 	expect($result)->toBeSuccess();
 });
 
-test('hasPermissionInBoards method', function () {
-	expect($this->user::$me->hasPermissionInBoards('post_new'))->toBeArray();
+test('load method', function () {
+	expect($this->user::load())->toBeArray()
+		->and($this->user::load(2))->toBeArray()
+		->and($this->user::load([3, 4]))->toBeArray();
 });
