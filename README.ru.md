@@ -80,7 +80,7 @@ class Example
 }
 ```
 
-После перехода на SMF 3.0 достаточно будет заменить используемые классы:
+После перехода на SMF 3.0 достаточно будет заменить используемые классы. Например:
 
 ```diff
 -use Bugo\Compat\Lang;
@@ -97,6 +97,8 @@ class Example
 Или можно оставить как есть. В этом случае ваша модификация будет поддерживать обе версии SMF.
 
 ## Список предлагаемых замен
+
+Ниже перечислены некоторые (не все) изменения переменных и функций.
 
 ### Глобальные переменные
 
@@ -139,75 +141,71 @@ class Example
 
 ### Функции
 
-| Старый код (SMF 2.1.x)     |                   Новый код (SMF 3.0)                   |
-| -------------------------- | :-----------------------------------------------------: |
-| `saveDBSettings`           |                  `ACP::saveDBSettings`                  |
-| `prepareDBSettingContext`  |             `ACP::prepareDBSettingContext`              |
-| `createAttachment`         |                  `Attachment::create`                   |
-| `removeAttachments`        |                  `Attachment::remove`                   |
-| `parse_bbc`                |              `BBCodeParser::load()->parse`              |
-| `BoardIndex`               |                  `BoardIndex::call()`                   |
-| `cache_get_data`           |                     `CacheApi::get`                     |
-| `cache_put_data`           |                     `CacheApi::put`                     |
-| `clean_cache`              |                    `CacheApi::clean`                    |
-| `getBirthdayRange`         |              `Calendar::getBirthdayRange`               |
-| `getEventRange`            |                `Calendar::getEventRange`                |
-| `getHolidayRange`          |               `Calendar::getHolidayRange`               |
-| `getTodayInfo`             |                `Calendar::getTodayInfo`                 |
-| `getCalendarList`          |               `Calendar::getCalendarList`               |
-| `getCalendarGrid`          |               `Calendar::getCalendarGrid`               |
-| `updateSettings`           |               `Config::updateModSettings`               |
-| `updateSettingsFile`       |              `Config::updateSettingsFile`               |
-| `db_extend`                |                      `Db::extend`                       |
-| `create_control_richedit`  |                      `new Editor`                       |
-| `fatal_error`              |                  `ErrorHandler::fatal`                  |
-| `fatal_lang_error`         |                `ErrorHandler::fatalLang`                |
-| `log_error`                |                   `ErrorHandler::log`                   |
-| `add_integration_function` |                 `IntegrationHook::add`                  |
-| `call_integration_hook`    |                 `IntegrationHook::call`                 |
-| `createList`               |                     `new ItemList`                      |
-| `censorText`               |                   `Lang::censorText`                    |
-| `getLanguages`             |                       `Lang::get`                       |
-| `loadLanguage`             |                      `Lang::load`                       |
-| `sentence_list`            |                  `Lang::sentenceList`                   |
-| `tokenTxtReplace`          |                 `Lang::tokenTxtReplace`                 |
-| `logAction`                |                  `Logging::logAction`                   |
-| `loadEmailTemplate`        |                `Mail::loadEmailTemplate`                |
-| `sendmail`                 |                      `Mail::send`                       |
-| `getBoardList`             |              `MessageIndex::getBoardList`               |
-| `preparsecode`             |                   `Msg::preparseCode`                   |
-| `un_preparsecode`          |                 `Msg::un_preparsecode`                  |
-| `getNotifyPrefs`           |                `Notify::getNotifyPrefs`                 |
-| `constructPageIndex`       |                     `new PageIndex`                     |
-| `memoryReturnBytes`        |                `Sapi::memoryReturnBytes`                |
-| `sm_temp_dir`              |                   `Sapi::getTempDir`                    |
-| `set_time_limit`           |                  `Sapi::setTimeLimit`                   |
-| `checkSubmitOnce`          |               `Security::checkSubmitOnce`               |
-| `addJavaScriptVar`         |                `Theme::addJavaScriptVar`                |
-| `addInlineCss`             |                  `Theme::addInlineCss`                  |
-| `addInlineJavaScript`      |              `Theme::addInlineJavaScript`               |
-| `loadCSSFile`              |                  `Theme::loadCSSFile`                   |
-| `loadJavaScriptFile`       |               `Theme::loadJavaScriptFile`               |
-| `loadEssentialThemeData`   |                 `Theme::loadEssential`                  |
-| `loadTemplate`             |                  `Theme::loadTemplate`                  |
-| `allowedTo`                |    `User::$me->allowedTo` или `User::hasPermission`     |
-| `checkSession`             |   `User::$me->checkSession` или `User::sessionCheck`    |
-| `isAllowedTo`              | `User::$me->isAllowedTo` или `User::mustHavePermission` |
-| `loadMemberData`           |                 `User::loadMemberData`                  |
-| `loadMemberContext`        |                `User::loadMemberContext`                |
-| `membersAllowedTo`         |                `User::membersAllowedTo`                 |
-| `updateMemberData`         |                `User::updateMemberData`                 |
-| `JavaScriptEscape`         |                `Utils::escapeJavaScript`                |
-| `obExit`                   |                     `Utils::obExit`                     |
-| `redirectexit`             |                  `Utils::redirectexit`                  |
-| `send_http_status`         |                 `Utils::sendHttpStatus`                 |
-| `shorten_subject`          |                    `Utils::shorten`                     |
-| `smf_chmod`                |                  `Utils::makeWritable`                  |
-| `smf_json_decode`          |                   `Utils::jsonDecode`                   |
-| `get_mime_type`            |                  `Utils::getMimeType`                   |
-| `un_htmlspecialchars`      |             `Utils::htmlspecialcharsDecode`             |
-| `fetch_web_data`           |                   `WebFetchApi:fetch`                   |
-| `timeformat`               |                 `Time::stringFromUnix`                  |
+| Старый код (SMF 2.1.x)     |       Новый код (SMF 3.0)       |
+| -------------------------- | :-----------------------------: |
+| `saveDBSettings`           |      `ACP::saveDBSettings`      |
+| `prepareDBSettingContext`  | `ACP::prepareDBSettingContext`  |
+| `createAttachment`         |      `Attachment::create`       |
+| `removeAttachments`        |      `Attachment::remove`       |
+| `parse_bbc`                |  `BBCodeParser::load()->parse`  |
+| `cache_get_data`           |         `CacheApi::get`         |
+| `cache_put_data`           |         `CacheApi::put`         |
+| `clean_cache`              |        `CacheApi::clean`        |
+| `getBirthdayRange`         |  `Calendar::getBirthdayRange`   |
+| `getEventRange`            |    `Calendar::getEventRange`    |
+| `getHolidayRange`          |   `Calendar::getHolidayRange`   |
+| `getTodayInfo`             |    `Calendar::getTodayInfo`     |
+| `getCalendarList`          |   `Calendar::getCalendarList`   |
+| `getCalendarGrid`          |   `Calendar::getCalendarGrid`   |
+| `updateSettings`           |   `Config::updateModSettings`   |
+| `updateSettingsFile`       |  `Config::updateSettingsFile`   |
+| `create_control_richedit`  |          `new Editor`           |
+| `fatal_error`              |      `ErrorHandler::fatal`      |
+| `fatal_lang_error`         |    `ErrorHandler::fatalLang`    |
+| `log_error`                |       `ErrorHandler::log`       |
+| `add_integration_function` |     `IntegrationHook::add`      |
+| `call_integration_hook`    |     `IntegrationHook::call`     |
+| `createList`               |         `new ItemList`          |
+| `censorText`               |       `Lang::censorText`        |
+| `getLanguages`             |           `Lang::get`           |
+| `loadLanguage`             |          `Lang::load`           |
+| `sentence_list`            |      `Lang::sentenceList`       |
+| `tokenTxtReplace`          |     `Lang::tokenTxtReplace`     |
+| `logAction`                |      `Logging::logAction`       |
+| `loadEmailTemplate`        |    `Mail::loadEmailTemplate`    |
+| `sendmail`                 |          `Mail::send`           |
+| `getBoardList`             |  `MessageIndex::getBoardList`   |
+| `preparsecode`             |       `Msg::preparseCode`       |
+| `un_preparsecode`          |     `Msg::un_preparsecode`      |
+| `getNotifyPrefs`           |    `Notify::getNotifyPrefs`     |
+| `constructPageIndex`       |         `new PageIndex`         |
+| `memoryReturnBytes`        |    `Sapi::memoryReturnBytes`    |
+| `sm_temp_dir`              |       `Sapi::getTempDir`        |
+| `set_time_limit`           |      `Sapi::setTimeLimit`       |
+| `checkSubmitOnce`          |   `Security::checkSubmitOnce`   |
+| `addJavaScriptVar`         |    `Theme::addJavaScriptVar`    |
+| `addInlineCss`             |      `Theme::addInlineCss`      |
+| `addInlineJavaScript`      |  `Theme::addInlineJavaScript`   |
+| `loadCSSFile`              |      `Theme::loadCSSFile`       |
+| `loadJavaScriptFile`       |   `Theme::loadJavaScriptFile`   |
+| `loadEssentialThemeData`   |     `Theme::loadEssential`      |
+| `loadTemplate`             |      `Theme::loadTemplate`      |
+| `allowedTo`                |     `User::$me->allowedTo`      |
+| `checkSession`             |    `User::$me->checkSession`    |
+| `isAllowedTo`              |    `User::$me->isAllowedTo`     |
+| `membersAllowedTo`         |    `User::membersAllowedTo`     |
+| `updateMemberData`         |    `User::updateMemberData`     |
+| `JavaScriptEscape`         |    `Utils::escapeJavaScript`    |
+| `obExit`                   |         `Utils::obExit`         |
+| `redirectexit`             |      `Utils::redirectexit`      |
+| `send_http_status`         |     `Utils::sendHttpStatus`     |
+| `shorten_subject`          |        `Utils::shorten`         |
+| `smf_chmod`                |      `Utils::makeWritable`      |
+| `smf_json_decode`          |       `Utils::jsonDecode`       |
+| `get_mime_type`            |      `Utils::getMimeType`       |
+| `un_htmlspecialchars`      | `Utils::htmlspecialcharsDecode` |
+| `fetch_web_data`           |       `WebFetchApi:fetch`       |
+| `timeformat`               |     `Time::stringFromUnix`      |
 
 #### SSI-функции
 
@@ -220,7 +218,7 @@ class Example
 Покажем на примере трёх популярных функций:
 
 |                 Старый код (SMF 2.1.x)                  |                Новый код (SMF 3.0)                |
-| :-----------------------------------------------------: |:-------------------------------------------------:|
+| :-----------------------------------------------------: | :-----------------------------------------------: |
 |                   `global $smcFunc;`                    |      `use Bugo\Compat\Db\DatabaseApi as Db;`      |
 | `$result = $smcFunc['db_query']('', /* Ваш SQL */, [])` | `$result = Db::$db->query('', /* Ваш SQL */, [])` |
 |      `$rows = $smcFunc['db_fetch_assoc']($result)`      |      `$rows = Db::$db->fetch_assoc($result)`      |
