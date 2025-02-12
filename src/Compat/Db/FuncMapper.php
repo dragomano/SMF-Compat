@@ -10,11 +10,14 @@
 
 namespace Bugo\Compat\Db;
 
+use Bugo\Compat\Config;
 use Bugo\Compat\ErrorHandler;
 use Bugo\Compat\Utils;
 
 use function array_key_exists;
 use function db_extend;
+use function mysqli_fetch_object;
+use function pg_fetch_object;
 
 class FuncMapper
 {
@@ -45,6 +48,18 @@ class FuncMapper
 	public function fetch_all(object $request): array
 	{
 		return Utils::$smcFunc['db_fetch_all']($request) ?? [];
+	}
+
+	/**
+	 * @codeCoverageIgnore
+	 */
+	public function fetch_object(object $result, string $class = 'stdClass', array $args = []): object|false|null
+	{
+		if (Config::$db_type === 'postgresql') {
+			return pg_fetch_object($result, null, $class, $args);
+		}
+
+		return mysqli_fetch_object($result, $class, $args);
 	}
 
 	public function free_result(object $result): bool
