@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<meta-storm xmlns="meta-storm">
+	<definitions>
+		<classMethod class="\Bugo\Compat\Db\FuncMapper" method="transaction" argument="0">
+			<collection name="transaction_types"/>
+		</classMethod>
+		<classMethod class="\Bugo\Compat\ErrorHandler" method="fatal" argument="1">
+			<collection name="error_types"/>
+		</classMethod>
+		<classMethod class="\Bugo\Compat\ErrorHandler" method="fatalLang" argument="1">
+			<collection name="error_types"/>
+		</classMethod>
+		<classMethod class="\Bugo\Compat\ErrorHandler" method="log" argument="1">
+			<collection name="error_types"/>
+		</classMethod>
+		<classMethod class="\Bugo\Compat\Security" method="checkSubmitOnce" argument="0">
+			<collection name="check_submit_actions"/>
+		</classMethod>
+		<classMethod class="\Bugo\Compat\Theme" method="addInlineJavaScript" argument="0">
+			<languageInjection language="JavaScript"/>
+			<stopCompletion />
+		</classMethod>
+		<classMethod class="\Bugo\Compat\Theme" method="addInlineCss" argument="0">
+			<languageInjection language="CSS"/>
+			<stopCompletion />
+		</classMethod>
+		<classMethod class="\Bugo\Compat\User" method="checkSession" argument="0">
+			<collection name="check_session_types"/>
+		</classMethod>
+	</definitions>
+	<collections>
+		<strings name="transaction_types">
+			<value>begin</value>
+			<value>commit</value>
+			<value>rollback</value>
+		</strings>
+		<strings name="error_types">
+			<value>general</value>
+			<value>critical</value>
+			<value>database</value>
+			<value>undefined_vars</value>
+			<value>user</value>
+			<value>ban</value>
+			<value>template</value>
+			<value>debug</value>
+			<value>cron</value>
+			<value>paidsubs</value>
+			<value>backup</value>
+			<value>login</value>
+		</strings>
+		<strings name="check_submit_actions">
+			<value>register</value>
+			<value>check</value>
+			<value>free</value>
+		</strings>
+		<strings name="check_session_types">
+			<value>get</value>
+			<value>post</value>
+			<value>request</value>
+		</strings>
+	</collections>
+</meta-storm>
