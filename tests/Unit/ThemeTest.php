@@ -66,14 +66,19 @@ test('loadJavaScriptFile method', function () {
 });
 
 test('loadEssential method', function () {
-	try {
-		$this->theme::loadEssential();
-		$result = 'success';
-	} catch (Exception $e) {
-		$result = $e->getMessage();
-	}
+	$this->theme::$current->settings['default_theme_dir'] = __DIR__;
 
-	expect($result)->toBeSuccess();
+	Utils::$context['theme_loaded'] = false;
+
+	$this->theme::loadEssential();
+
+	expect(Utils::$context['theme_loaded'])->toBeFalse();
+
+	unset($this->theme::$current->settings['default_theme_dir']);
+
+	$this->theme::loadEssential();
+
+	expect(Utils::$context['theme_loaded'])->toBeTrue();
 });
 
 test('loadTemplate method', function () {

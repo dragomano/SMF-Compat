@@ -68,6 +68,9 @@ class Theme
 
 	public static function loadEssential(): void
 	{
+		if (isset(self::$current->settings['default_theme_dir']))
+			return;
+
 		require_once Config::$sourcedir . DIRECTORY_SEPARATOR . 'ScheduledTasks.php';
 
 		loadEssentialThemeData();

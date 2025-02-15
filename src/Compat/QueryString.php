@@ -12,6 +12,8 @@ namespace Bugo\Compat;
 
 class QueryString
 {
+	public static array $route_parsers = [];
+
 	public static function rewriteAsQueryless(string $buffer): string
 	{
 		return $buffer;
