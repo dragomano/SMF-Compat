@@ -16,6 +16,12 @@ test('constructor', function () {
 		->and($this->user::$me)->toBeInstanceOf(User::class);
 });
 
+test('__get method', function () {
+	$this->user::$info['is_admin'] = false;
+
+	expect($this->user::$me->is_admin)->toBe($this->user::$info['is_admin']);
+});
+
 test('allowedTo method', function () {
 	expect($this->user::$me->allowedTo('foo_bar'))->toBeTrue()
 		->and($this->user::$me->allowedTo('foo'))->toBeFalse();

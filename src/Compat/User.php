@@ -20,7 +20,7 @@ use function loadMemberContext;
 use function membersAllowedTo;
 use function updateMemberData;
 
-class User
+class User extends \stdClass
 {
 	public const LOAD_BY_ID = 0;
 
@@ -61,13 +61,18 @@ class User
 
 		if ($id) {
 			$this->id = $id;
+			self::$loaded[$id] = $this;
 		}
 
 		self::$me = $this;
-		self::$loaded[$id] = $this;
 	}
 
-	public function allowedTo(string $permission): bool
+	public function __get(string $name): mixed
+	{
+		return $this->$name ?? self::$info[$name] ?? null;
+	}
+
+	public function allowedTo(string|array $permission): bool
 	{
 		return allowedTo($permission);
 	}
