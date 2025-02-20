@@ -11,6 +11,7 @@
 namespace Bugo\Compat;
 
 use Exception;
+use stdClass;
 
 use function allowedTo;
 use function boardsAllowedTo;
@@ -20,11 +21,9 @@ use function loadMemberContext;
 use function membersAllowedTo;
 use function updateMemberData;
 
-class User extends \stdClass
+class User extends stdClass
 {
 	public const LOAD_BY_ID = 0;
-
-	public int $id;
 
 	public array $formatted = [];
 
@@ -67,9 +66,9 @@ class User extends \stdClass
 		self::$me = $this;
 	}
 
-	public function __get(string $name): mixed
+	public function __get(string $key): mixed
 	{
-		return $this->$name ?? self::$info[$name] ?? null;
+		return self::$info[$key] ?? null;
 	}
 
 	public function allowedTo(string|array $permission): bool

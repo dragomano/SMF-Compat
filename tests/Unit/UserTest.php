@@ -17,9 +17,9 @@ test('constructor', function () {
 });
 
 test('__get method', function () {
-	$this->user::$info['is_admin'] = false;
+	$GLOBALS['user_info']['name'] = 'Test';
 
-	expect($this->user::$me->is_admin)->toBe($this->user::$info['is_admin']);
+	expect($this->user::$me->name)->toBe(User::$info['name']);
 });
 
 test('allowedTo method', function () {
