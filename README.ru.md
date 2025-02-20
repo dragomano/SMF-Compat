@@ -41,14 +41,14 @@ class Example
     {
         global $txt;
 
-        echo $txt['hello_world'];
+        var_dump($txt['hello_world']);
     }
 
     public function method2()
     {
         global $user_info, $modSettings;
 
-        echo $user_info['name'];
+        var_dump($user_info['name']);
 
         var_dump($modSettings);
     }
@@ -68,12 +68,12 @@ class Example
 {
     public function method1()
     {
-        echo Lang::$txt['hello_world'];
+        var_dump(Lang::$txt['hello_world']);
     }
 
     public function method2()
     {
-        echo User::$info['name'];
+        var_dump(User::$me->name);
 
         var_dump(Config::$modSettings);
     }
