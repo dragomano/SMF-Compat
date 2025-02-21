@@ -132,10 +132,8 @@ class Example
 | `$settings`            | `Theme::$current->settings` |
 | `$options`             | `Theme::$current->options`  |
 | `$topic`               |        `Topic::$id`         |
-| `$user_info`           |        `User::$info`        |
+| `$user_info`           |         `User::$me`         |
 | `$user_profile`        |      `User::$profiles`      |
-| `$user_settings`       |      `User::$settings`      |
-| `$memberContext`       |   `User::$memberContext`    |
 | `$context`             |      `Utils::$context`      |
 | `$smcFunc`             |      `Utils::$smcFunc`      |
 
