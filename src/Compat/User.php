@@ -27,48 +27,35 @@ class User extends stdClass
 
 	public array $formatted = [];
 
-	public static array $loaded = [];
-
 	public static self $me;
 
-	public static array $info;
+	public static array $loaded = [];
 
 	public static array $profiles;
 
-	public static array $settings;
-
-	public static array $memberContext;
-
 	private bool $custom_fields_displayed = false;
-
-	private array $vars = [
-		'info'          => 'user_info',
-		'profiles'      => 'user_profile',
-		'settings'      => 'user_settings',
-		'memberContext' => 'memberContext',
-	];
 
 	public function __construct(?int $id = null)
 	{
-		foreach ($this->vars as $key => $value) {
-			if (! isset($GLOBALS[$value])) {
-				$GLOBALS[$value] = [];
-			}
-
-			self::${$key} = &$GLOBALS[$value];
+		if (! isset($GLOBALS['user_profile'])) {
+			$GLOBALS['user_profile'] = [];
 		}
+
+		self::$profiles = &$GLOBALS['user_profile'];
 
 		if ($id) {
 			$this->id = $id;
 			self::$loaded[$id] = $this;
 		}
 
-		self::$me = $this;
+		if (! isset(self::$me)) {
+			self::$me = $this;
+		}
 	}
 
 	public function __get(string $key): mixed
 	{
-		return self::$info[$key] ?? null;
+		return $GLOBALS['user_info'][$key] ?? null;
 	}
 
 	public function allowedTo(string|array $permission): bool
@@ -108,7 +95,7 @@ class User extends stdClass
 			return $this->formatted;
 		}
 
-		$this->formatted = loadMemberContext($this->id, $display_custom_fields);
+		$this->formatted = (array) loadMemberContext($this->id, $display_custom_fields);
 
 		$this->custom_fields_displayed = ! empty($this->custom_fields_displayed) || $display_custom_fields;
 

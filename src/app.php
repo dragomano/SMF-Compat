@@ -77,3 +77,5 @@ array_map(fn($u) => new $u(), [
 	Utils::class,
 	Config::class,
 ]);
+
+IntegrationHook::add('integrate_modify_modifications', Menu::class . '::__construct#', false);

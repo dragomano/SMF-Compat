@@ -9,17 +9,14 @@ beforeEach(function () {
 });
 
 test('constructor', function () {
-	expect($this->user::$info)->toBeArray()
-		->and($this->user::$profiles)->toBeArray()
-		->and($this->user::$settings)->toBeArray()
-		->and($this->user::$memberContext)->toBeArray()
+	expect($this->user::$profiles)->toBeArray()
 		->and($this->user::$me)->toBeInstanceOf(User::class);
 });
 
 test('__get method', function () {
 	$GLOBALS['user_info']['name'] = 'Test';
 
-	expect($this->user::$me->name)->toBe(User::$info['name']);
+	expect($this->user::$me->name)->toBe('Test');
 });
 
 test('allowedTo method', function () {
