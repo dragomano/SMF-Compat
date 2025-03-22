@@ -26,7 +26,9 @@ class PageIndex implements \Stringable
 		array $template_overrides = []
 	)
 	{
-		$this->index = constructPageIndex($base_url, $start, $num_items, $num_per_page, $short_format, $show_prevnext);
+		$this->index = constructPageIndex(
+			$base_url, $start, $num_items, $num_per_page, $short_format, $show_prevnext, $template_overrides
+		);
 	}
 
 	public function __toString(): string

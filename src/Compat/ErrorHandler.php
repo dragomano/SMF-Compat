@@ -36,10 +36,11 @@ class ErrorHandler
 		string $error_message,
 		string|bool $error_type = 'general',
 		string $file = '',
-		int $line = 0
+		int $line = 0,
+		?array $backtrace = null
 	): string
 	{
-		return log_error($error_message, $error_type, $file, $line);
+		return log_error($error_message, $error_type, $file, $line, $backtrace);
 	}
 
 	public static function displayDbError(): void
