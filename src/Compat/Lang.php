@@ -62,41 +62,87 @@ class Lang
 		return getLanguages();
 	}
 
-	public static function load(string $template_name, string $lang = ''): void
+	public static function load(string $filename, string $lang = ''): void
 	{
-		loadLanguage($template_name, $lang);
+        if ($filename === 'General') {
+            $filename = 'index';
+        }
+
+		loadLanguage($filename, $lang);
 	}
 
-	public static function sentenceList(array $list): string
+	public static function txtExists(
+		string|array $txt_key,
+		string $var = 'txt',
+		?string $file = null,
+		string $lang = ''
+	): bool
 	{
-		return sentence_list($list);
+        if (is_string($file)) {
+            self::load($file, $lang);
+        }
+
+		return isset(self::${$var}[$txt_key]);
 	}
 
-	public static function getTxt(string|array $key, array $args = [], string $var = 'txt'): string
+	public static function setTxt(string|array $txt_key, string|array $value, string $var = 'txt'): void
 	{
+		if (is_string($txt_key)) {
+			self::${$var}[$txt_key] = $value;
+
+            return;
+		}
+
+        if (is_array($txt_key)) {
+            $count = count($txt_key);
+
+            if ($count === 0)
+                return;
+
+            $ref = &self::${$var};
+            foreach ($txt_key as $i => $segment) {
+                if ($i === $count - 1) {
+                    $ref[$segment] = $value;
+                } else {
+                    if (! isset($ref[$segment]) || ! is_array($ref[$segment])) {
+                        $ref[$segment] = [];
+                    }
+
+                    $ref = &$ref[$segment];
+                }
+            }
+        }
+	}
+
+	public static function getTxt(
+		string|array $key,
+		array $args = [],
+		string $var = 'txt',
+		?string $file = null,
+		string $lang = ''
+	): string|array
+	{
+		if (is_string($file)) {
+			self::load($file, $lang);
+		}
+
 		if ($args === [] && is_string($key)) {
 			return self::${$var}[$key] ?? '';
 		}
 
 		if (is_array($key)) {
-			if (isset($key[0], $key[1])) {
-				return self::${$var}[$key[0]][$key[1]] ?? '';
-			}
+            if (isset($key[0], $key[1])) {
+                $pattern = self::${$var}[$key[0]][$key[1]] ?? '';
+
+                return self::format($pattern, $args, "\${$var}[$key[0]][$key[1]]");
+            }
 
 			return '';
 		}
 
-		$pattern = self::${$var}[$key] ?? $key;
+        $pattern = self::${$var}[$key] ?? $key;
 
-		try {
-			$formatter = new MessageFormatter(self::$txt['lang_locale'] ?? 'en_US', $pattern);
-
-			return $formatter->format($args);
-		} catch (IntlException $e) {
-			ErrorHandler::log("Lang::getTxt: {$e->getMessage()} in '\${$var}[$key]'", 'critical');
-
-			return '';
-		}
+        return self::format($pattern, $args, "\${$var}[$key]");
 	}
 
 	public static function tokenTxtReplace(string $string = ''): string
@@ -104,8 +150,24 @@ class Lang
 		return tokenTxtReplace($string);
 	}
 
+	public static function sentenceList(array $list): string
+	{
+		return sentence_list($list);
+	}
+
 	public static function numberFormat(int|float|string $number, ?int $decimals = null): string
 	{
 		return comma_format($number, $decimals);
 	}
+
+    private static function format(string $pattern, array $args, string $context): string
+    {
+        try {
+            $formatter = new MessageFormatter(self::$txt['lang_locale'] ?? 'en_US', $pattern);
+            return $formatter->format($args);
+        } catch (IntlException $e) {
+            ErrorHandler::log("Lang::getTxt: {$e->getMessage()} in '$context'", 'critical');
+            return '';
+        }
+    }
 }
