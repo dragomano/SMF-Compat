@@ -199,6 +199,13 @@ if (! function_exists('getLanguages')) {
 if (! function_exists('loadLanguage')) {
 	function loadLanguage(string $template_name, string $lang = ''): void
 	{
+        if (is_file(__DIR__ . '/files/Languages/' . $template_name . '.english.php')) {
+            require __DIR__ . '/files/Languages/' . $template_name . '.english.php';
+
+            $var = 'txt';
+            Lang::${$var} = array_merge(Lang::${$var}, ${$var});
+        }
+
 		Lang::$txt['foo'] = $template_name;
 	}
 }
