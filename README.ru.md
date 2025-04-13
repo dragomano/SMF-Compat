@@ -103,7 +103,7 @@ class Example
 ### Глобальные переменные
 
 | Старый код (SMF 2.1.x) |     Новый код (SMF 3.0)     |
-| ---------------------- | :-------------------------: |
+|------------------------|:---------------------------:|
 | `$board`               |        `Board::$id`         |
 | `$boards`              |      `Board::$loaded`       |
 | `board_info`           |       `Board::$info`        |
@@ -140,7 +140,7 @@ class Example
 ### Функции
 
 | Старый код (SMF 2.1.x)     |       Новый код (SMF 3.0)       |
-| -------------------------- | :-----------------------------: |
+|----------------------------|:-------------------------------:|
 | `saveDBSettings`           |      `ACP::saveDBSettings`      |
 | `prepareDBSettingContext`  | `ACP::prepareDBSettingContext`  |
 | `createAttachment`         |      `Attachment::create`       |
@@ -191,7 +191,7 @@ class Example
 | `allowedTo`                |     `User::$me->allowedTo`      |
 | `checkSession`             |    `User::$me->checkSession`    |
 | `isAllowedTo`              |    `User::$me->isAllowedTo`     |
-| `membersAllowedTo`         |    `User::membersAllowedTo`     |
+| `membersAllowedTo`         |      `User::getAllowedTo`       |
 | `updateMemberData`         |    `User::updateMemberData`     |
 | `JavaScriptEscape`         |    `Utils::escapeJavaScript`    |
 | `obExit`                   |         `Utils::obExit`         |
@@ -216,7 +216,7 @@ class Example
 Покажем на примере трёх популярных функций:
 
 |                 Старый код (SMF 2.1.x)                  |                Новый код (SMF 3.0)                |
-| :-----------------------------------------------------: | :-----------------------------------------------: |
+|:-------------------------------------------------------:|:-------------------------------------------------:|
 |                   `global $smcFunc;`                    |      `use Bugo\Compat\Db\DatabaseApi as Db;`      |
 | `$result = $smcFunc['db_query']('', /* Ваш SQL */, [])` | `$result = Db::$db->query('', /* Ваш SQL */, [])` |
 |      `$rows = $smcFunc['db_fetch_assoc']($result)`      |      `$rows = Db::$db->fetch_assoc($result)`      |

@@ -103,7 +103,7 @@ Below are some (not all) changes to variables and functions.
 ### Global variables
 
 | Legacy code (SMF 2.1.x) |     New code (SMF 3.0)      |
-| ----------------------- | :-------------------------: |
+|-------------------------|:---------------------------:|
 | `$board`                |        `Board::$id`         |
 | `$boards`               |      `Board::$loaded`       |
 | `board_info`            |       `Board::$info`        |
@@ -140,7 +140,7 @@ Below are some (not all) changes to variables and functions.
 ### Functions
 
 | Legacy code (SMF 2.1.x)    |       New code (SMF 3.0)        |
-| -------------------------- | :-----------------------------: |
+|----------------------------|:-------------------------------:|
 | `saveDBSettings`           |      `ACP::saveDBSettings`      |
 | `prepareDBSettingContext`  | `ACP::prepareDBSettingContext`  |
 | `createAttachment`         |      `Attachment::create`       |
@@ -191,7 +191,7 @@ Below are some (not all) changes to variables and functions.
 | `allowedTo`                |     `User::$me->allowedTo`      |
 | `checkSession`             |    `User::$me->checkSession`    |
 | `isAllowedTo`              |    `User::$me->isAllowedTo`     |
-| `membersAllowedTo`         |    `User::membersAllowedTo`     |
+| `membersAllowedTo`         |      `User::getAllowedTo`       |
 | `updateMemberData`         |    `User::updateMemberData`     |
 | `JavaScriptEscape`         |    `Utils::escapeJavaScript`    |
 | `obExit`                   |         `Utils::obExit`         |
@@ -216,7 +216,7 @@ The methods of this class are similar to functions in `Utils::$smcFunc`, but wit
 Let's show on the example of three popular functions:
 
 |                 Legacy code (SMF 2.1.x)                  |                 New code (SMF 3.0)                 |
-| :------------------------------------------------------: | :------------------------------------------------: |
+|:--------------------------------------------------------:|:--------------------------------------------------:|
 |                    `global $smcFunc;`                    |      `use Bugo\Compat\Db\DatabaseApi as Db;`       |
 | `$result = $smcFunc['db_query']('', /* Your SQL */, [])` | `$result = Db::$db->query('', /* Your SQL */, [])` |
 |      `$rows = $smcFunc['db_fetch_assoc']($result)`       |      `$rows = Db::$db->fetch_assoc($result)`       |
