@@ -102,7 +102,7 @@ class User extends stdClass
 		return $this->formatted;
 	}
 
-	public static function membersAllowedTo(string $permission, ?int $board_id = null): array
+	public static function getAllowedTo(string $permission, ?int $board_id = null): array
 	{
 		require_once Config::$sourcedir . DIRECTORY_SEPARATOR . 'Subs-Members.php';
 
