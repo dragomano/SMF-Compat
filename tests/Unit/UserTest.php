@@ -51,8 +51,8 @@ test('format method', function () {
 	expect($this->user::$me->format())->toBe([1 => []]);
 });
 
-test('membersAllowedTo method', function () {
-	expect($this->user::membersAllowedTo('foo_bar'))->toContain('foo_bar');
+test('getAllowedTo method', function () {
+	expect($this->user::getAllowedTo('foo_bar'))->toContain('foo_bar');
 });
 
 test('updateMemberData method', function () {
