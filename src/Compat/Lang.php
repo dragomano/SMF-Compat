@@ -26,6 +26,8 @@ class Lang
 {
 	public const LANG_TO_LOCALE = [];
 
+	public static string $default;
+
 	public static array $txt;
 
 	public static array $editortxt;
@@ -43,6 +45,10 @@ class Lang
 
 	public function __construct()
 	{
+		if (! isset(self::$default)) {
+			self::$default = &Config::$language;
+		}
+
 		foreach ($this->vars as $key => $value) {
 			if (! isset($GLOBALS[$key])) {
 				$GLOBALS[$key] = $value;
@@ -64,9 +70,9 @@ class Lang
 
 	public static function load(string $filename, string $lang = ''): void
 	{
-        if ($filename === 'General') {
-            $filename = 'index';
-        }
+		if ($filename === 'General') {
+			$filename = 'index';
+		}
 
 		loadLanguage($filename, $lang);
 	}
@@ -78,40 +84,42 @@ class Lang
 		string $lang = ''
 	): bool
 	{
-        if (is_string($file)) {
-            self::load($file, $lang);
-        }
+		if (is_string($file)) {
+			self::load($file, $lang);
+		}
 
 		return isset(self::${$var}[$txt_key]);
 	}
 
-	public static function setTxt(string|array $txt_key, string|array $value, string $var = 'txt'): void
+	public static function setTxt(
+		string|array $txt_key,
+		string|array $value,
+		string $var = 'txt'
+	): void
 	{
 		if (is_string($txt_key)) {
 			self::${$var}[$txt_key] = $value;
 
-            return;
+			return;
 		}
 
-        if (is_array($txt_key)) {
-            $count = count($txt_key);
+		$count = count($txt_key);
 
-            if ($count === 0)
-                return;
+		if ($count === 0)
+			return;
 
-            $ref = &self::${$var};
-            foreach ($txt_key as $i => $segment) {
-                if ($i === $count - 1) {
-                    $ref[$segment] = $value;
-                } else {
-                    if (! isset($ref[$segment]) || ! is_array($ref[$segment])) {
-                        $ref[$segment] = [];
-                    }
+		$ref = &self::${$var};
+		foreach ($txt_key as $i => $segment) {
+			if ($i === $count - 1) {
+				$ref[$segment] = $value;
+			} else {
+				if (! isset($ref[$segment]) || ! is_array($ref[$segment])) {
+					$ref[$segment] = [];
+				}
 
-                    $ref = &$ref[$segment];
-                }
-            }
-        }
+				$ref = &$ref[$segment];
+			}
+		}
 	}
 
 	public static function getTxt(
@@ -131,18 +139,18 @@ class Lang
 		}
 
 		if (is_array($key)) {
-            if (isset($key[0], $key[1])) {
-                $pattern = self::${$var}[$key[0]][$key[1]] ?? '';
+			if (isset($key[0], $key[1])) {
+				$pattern = self::${$var}[$key[0]][$key[1]] ?? '';
 
-                return self::format($pattern, $args, "\${$var}[$key[0]][$key[1]]");
-            }
+				return self::format($pattern, $args, "\${$var}[$key[0]][$key[1]]");
+			}
 
 			return '';
 		}
 
-        $pattern = self::${$var}[$key] ?? $key;
+		$pattern = self::${$var}[$key] ?? $key;
 
-        return self::format($pattern, $args, "\${$var}[$key]");
+		return self::format($pattern, $args, "\${$var}[$key]");
 	}
 
 	public static function tokenTxtReplace(string $string = ''): string
@@ -160,14 +168,14 @@ class Lang
 		return comma_format($number, $decimals);
 	}
 
-    private static function format(string $pattern, array $args, string $context): string
-    {
-        try {
-            $formatter = new MessageFormatter(self::$txt['lang_locale'] ?? 'en_US', $pattern);
-            return $formatter->format($args);
-        } catch (IntlException $e) {
-            ErrorHandler::log("Lang::getTxt: {$e->getMessage()} in '$context'", 'critical');
-            return '';
-        }
-    }
+	private static function format(string $pattern, array $args, string $context): string
+	{
+		try {
+			$formatter = new MessageFormatter(self::$txt['lang_locale'] ?? 'en_US', $pattern);
+			return $formatter->format($args);
+		} catch (IntlException $e) {
+			ErrorHandler::log("Lang::getTxt: {$e->getMessage()} in '$context'", 'critical');
+			return '';
+		}
+	}
 }

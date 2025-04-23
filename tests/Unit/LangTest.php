@@ -34,69 +34,69 @@ test('sentenceList method', function () {
 });
 
 test('txtExists method', function () {
-    expect($this->lang::txtExists('message_index'))->toBeFalse()
-        ->and($this->lang::txtExists('message_index', file: 'General'))->toBeTrue();
+	expect($this->lang::txtExists('message_index'))->toBeFalse()
+		->and($this->lang::txtExists('message_index', file: 'General'))->toBeTrue();
 });
 
 describe('setTxt method', function () {
-    test('sets value with string key', function () {
-        unset(Lang::$txt['foo']);
+	test('sets value with string key', function () {
+		unset(Lang::$txt['foo']);
 
-        $this->lang::setTxt('foo', 'bar');
+		$this->lang::setTxt('foo', 'bar');
 
-        expect(Lang::$txt['foo'])->toBe('bar');
-    });
+		expect(Lang::$txt['foo'])->toBe('bar');
+	});
 
-    test('sets value with array key and array value', function () {
-        Lang::$txt['export_profile_data_desc_list'] = [
-            'It may take some time for the system to finish compiling your data.',
-            'A download link will appear on this page once the export process is complete.',
-            'expiry' => '{0, plural,
-                one {Old export files are deleted after # day.}
-                other {Old export files are deleted after # days.}
-            }'
-        ];
+	test('sets value with array key and array value', function () {
+		Lang::$txt['export_profile_data_desc_list'] = [
+			'It may take some time for the system to finish compiling your data.',
+			'A download link will appear on this page once the export process is complete.',
+			'expiry' => '{0, plural,
+				one {Old export files are deleted after # day.}
+				other {Old export files are deleted after # days.}
+			}'
+		];
 
-        Lang::setTxt(
-            ['export_profile_data_desc_list', 'expiry'],
-            Lang::getTxt(['export_profile_data_desc_list', 'expiry'], [1])
-        );
+		Lang::setTxt(
+			['export_profile_data_desc_list', 'expiry'],
+			Lang::getTxt(['export_profile_data_desc_list', 'expiry'], [1])
+		);
 
-        expect(Lang::getTxt('export_profile_data_desc_list'))->toBe([
-            'It may take some time for the system to finish compiling your data.',
-            'A download link will appear on this page once the export process is complete.',
-            'expiry' => 'Old export files are deleted after 1 day.'
-        ]);
-    });
+		expect(Lang::getTxt('export_profile_data_desc_list'))->toBe([
+			'It may take some time for the system to finish compiling your data.',
+			'A download link will appear on this page once the export process is complete.',
+			'expiry' => 'Old export files are deleted after 1 day.'
+		]);
+	});
 
-    test('sets value with array key (1 level)', function () {
-        Lang::setTxt(['greeting'], 'Hi');
+	test('sets value with array key (1 level)', function () {
+		Lang::setTxt(['greeting'], 'Hi');
 
-        expect(Lang::$txt['greeting'])->toBe('Hi');
-    });
+		expect(Lang::$txt['greeting'])->toBe('Hi');
+	});
 
-    test('sets value with array key (2 levels)', function () {
-        Lang::setTxt(['messages', 'welcome'], 'Welcome!');
+	test('sets value with array key (2 levels)', function () {
+		Lang::setTxt(['messages', 'welcome'], 'Welcome!');
 
-        expect(Lang::$txt['messages']['welcome'])->toBe('Welcome!');
-    });
+		expect(Lang::$txt['messages']['welcome'])->toBe('Welcome!');
+	});
 
-    test('sets value with array key (3 levels)', function () {
-        Lang::setTxt(['a', 'b', 'c'], 'deep');
+	test('sets value with array key (3 levels)', function () {
+		Lang::setTxt(['a', 'b', 'c'], 'deep');
 
-        expect(Lang::$txt['a']['b']['c'])->toBe('deep');
-    });
+		expect(Lang::$txt['a']['b']['c'])->toBe('deep');
+	});
 
-    test('setTxt with empty array key does not modify existing data', function () {
-        Lang::$txt['foo'] = 'bar';
-        Lang::$txt['section'] = ['key' => 'value'];
+	test('setTxt with empty array key does not modify existing data', function () {
+		Lang::$txt['foo'] = 'bar';
+		Lang::$txt['section'] = ['key' => 'value'];
 
-        $before = Lang::$txt;
+		$before = Lang::$txt;
 
-        Lang::setTxt([], 'should not affect anything');
+		Lang::setTxt([], 'should not affect anything');
 
-        expect(Lang::$txt)->toEqual($before);
-    });
+		expect(Lang::$txt)->toEqual($before);
+	});
 });
 
 describe('getTxt method', function () {
@@ -121,17 +121,17 @@ describe('getTxt method', function () {
 			->toBe('1 day');
 	});
 
-    test('with array key and exception when pattern is wrong', function () {
-        Lang::$txt['foo_bars'] = ['foo', 'bar', 'param' => '{0, plural, one {# day} other {# days}'];
+	test('with array key and exception when pattern is wrong', function () {
+		Lang::$txt['foo_bars'] = ['foo', 'bar', 'param' => '{0, plural, one {# day} other {# days}'];
 
-        try {
-            $result = $this->lang::getTxt(['foo_bars', 'param'], [1]);
-        } catch (IntlException $e) {
-            $result = $e->getMessage();
-        }
+		try {
+			$result = $this->lang::getTxt(['foo_bars', 'param'], [1]);
+		} catch (IntlException $e) {
+			$result = $e->getMessage();
+		}
 
-        expect($result)->toBe('');
-    });
+		expect($result)->toBe('');
+	});
 
 	test('with array key that does not exist', function () {
 		expect($this->lang::getTxt(['unknown']))
@@ -190,13 +190,13 @@ describe('getTxt method', function () {
 			->toBe('10 пользователей');
 	});
 
-    test('with file param', function () {
-        unset(Lang::$txt['message_index']);
+	test('with file param', function () {
+		unset(Lang::$txt['message_index']);
 
-        $messageIndex = $this->lang::getTxt('message_index', file: 'General');
+		$messageIndex = $this->lang::getTxt('message_index', file: 'General');
 
-        expect($messageIndex)->toBe('Message Index');
-    });
+		expect($messageIndex)->toBe('Message Index');
+	});
 })->skip(! extension_loaded('intl'));
 
 test('tokenTxtReplace method', function () {

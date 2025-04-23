@@ -72,12 +72,20 @@ class User extends stdClass
 		return boardsAllowedTo($permissions, $check_access, $simple);
 	}
 
-	public function checkSession(string $type = 'post', string $from_action = '', bool $is_fatal = true): string
+	public function checkSession(
+		string $type = 'post',
+		string $from_action = '',
+		bool $is_fatal = true
+	): string
 	{
 		return checkSession($type, $from_action, $is_fatal);
 	}
 
-	public function isAllowedTo(string|array $permission, int|array|null $boards = null, bool $any = false): void
+	public function isAllowedTo(
+		string|array $permission,
+		int|array|null $boards = null,
+		bool $any = false
+	): void
 	{
 		isAllowedTo($permission, $boards, $any);
 	}
