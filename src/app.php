@@ -68,6 +68,7 @@ if (str_starts_with(SMF_VERSION, '3.0')) {
 }
 
 array_map(fn($u) => new $u(), [
+	Config::class,
 	Db::class,
 	Lang::class,
 	User::class,
@@ -75,7 +76,6 @@ array_map(fn($u) => new $u(), [
 	Board::class,
 	Topic::class,
 	Utils::class,
-	Config::class,
 ]);
 
 IntegrationHook::add('integrate_modify_modifications', Menu::class . '::__construct#', false);
