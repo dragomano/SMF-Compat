@@ -25,6 +25,10 @@ class User extends stdClass
 {
 	public const LOAD_BY_ID = 0;
 
+	public const LOAD_BY_NAME = 1;
+
+	public const LOAD_BY_EMAIL = 2;
+
 	public array $formatted = [];
 
 	public static self $me;
