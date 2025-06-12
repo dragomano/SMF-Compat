@@ -30,7 +30,12 @@ class FuncMapper
 		return false;
 	}
 
-	public function query(string $identifier, string $db_string, array $db_values = []): object|bool
+	public function query(
+		string $db_string,
+		array $db_values = [],
+		?object $connection = null,
+		?string $identifier = null
+	): object|bool
 	{
 		return Utils::$smcFunc['db_query']($identifier, $db_string, $db_values);
 	}

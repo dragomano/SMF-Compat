@@ -6,7 +6,7 @@ use Bugo\Compat\Utils;
 beforeEach(function () {
 	$this->db = new FuncMapper();
 
-	$this->params = ['', '', []];
+	$this->params = ['', []];
 	$this->resourse = new stdClass();
 });
 

@@ -21,7 +21,7 @@ abstract class ScheduledTask extends BackgroundTask
 	 */
 	public static function updateNextTaskTime(): void
 	{
-		$result = DatabaseApi::$db->query('', '
+		$result = DatabaseApi::$db->query('
 			SELECT next_time
 			FROM {db_prefix}scheduled_tasks
 			WHERE disabled = {int:not_disabled}
