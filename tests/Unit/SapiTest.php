@@ -20,3 +20,7 @@ test('setTimeLimit method', function () {
 
 	expect($result)->toBeSuccess();
 });
+
+test('httpsOn method', function () {
+	expect(Sapi::httpsOn())->toBeBool();
+});

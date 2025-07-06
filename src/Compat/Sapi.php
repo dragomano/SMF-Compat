@@ -10,6 +10,7 @@
 
 namespace Bugo\Compat;
 
+use function httpsOn;
 use function memoryReturnBytes;
 use function set_time_limit;
 use function sm_temp_dir;
@@ -31,5 +32,10 @@ class Sapi
 	public static function setTimeLimit(int $limit = 600): void
 	{
 		@set_time_limit($limit);
+	}
+
+	public static function httpsOn(): bool
+	{
+		return httpsOn();
 	}
 }

@@ -512,3 +512,10 @@ if (! function_exists('parse_iri')) {
 		return parse_url($url, $component);
 	}
 }
+
+if (! function_exists('httpsOn')) {
+	function httpsOn(): bool
+	{
+		return true;
+	}
+}
