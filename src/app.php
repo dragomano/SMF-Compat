@@ -5,7 +5,7 @@ if (! defined('SMF_VERSION'))
 
 use Bugo\Compat\{Attachment, Board, BrowserDetector, Config, Db};
 use Bugo\Compat\{Editor, ErrorHandler, IntegrationHook, ItemList};
-use Bugo\Compat\{Lang, Logging, Mail, Menu, Msg, PageIndex, QueryString};
+use Bugo\Compat\{Lang, Logging, Mail, Mentions, Menu, Msg, PageIndex, QueryString};
 use Bugo\Compat\{Routable, Sapi, Security, ServerSideIncludes};
 use Bugo\Compat\{Theme, Time, Topic, Url, User, Utils};
 use Bugo\Compat\Actions\{BoardIndex, Calendar, MessageIndex, Notify};
@@ -39,6 +39,7 @@ if (str_starts_with(SMF_VERSION, '3.0')) {
 		'SMF\\Lang'                        => Lang::class,
 		'SMF\\Logging'                     => Logging::class,
 		'SMF\\Mail'                        => Mail::class,
+		'SMF\\Mentions'                    => Mentions::class,
 		'SMF\\Menu'                        => Menu::class,
 		'SMF\\Msg'                         => Msg::class,
 		'SMF\\PageIndex'                   => PageIndex::class,
