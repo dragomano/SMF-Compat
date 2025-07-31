@@ -15,9 +15,19 @@ use Mentions as ExternalMentions;
 
 use function method_exists;
 
+/**
+ * @method static array getMentionsByContent(string $content_type, int $content_id, array $members = [])
+ * @method static void insertMentions(string $content_type, int $content_id, array $members, int $id_member)
+ * @method static array modifyMentions(string $content_type, int $content_id, array $members, int $id_member)
+ * @method static string getBody(string $body, array $members)
+ * @method static array getMentionedMembers(string $body)
+ * @method static array getExistingMentions(string $body)
+ * @method static array verifyMentionedMembers(string $body, array $members)
+ * @method static array getQuotedMembers(string $body, int $poster_id)
+ */
 class Mentions
 {
-	protected static $char = '@';
+	protected static string $char = '@';
 
 	public static function __callStatic(string $name, array $arguments)
 	{
