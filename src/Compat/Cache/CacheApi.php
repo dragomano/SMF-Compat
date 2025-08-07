@@ -26,8 +26,8 @@ class CacheApi
 		cache_put_data($key, $value, $ttl);
 	}
 
-	public static function clean(): void
+	public static function clean(string $type = ''): void
 	{
-		clean_cache();
+		clean_cache($type);
 	}
 }
