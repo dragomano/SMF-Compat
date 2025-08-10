@@ -37,3 +37,11 @@ test('getCalendarGrid method', function () {
 	expect(Calendar::getCalendarGrid($this->lowDate, []))
 		->toBe([$this->lowDate, [], false, true]);
 });
+
+test('unknown method', function () {
+	expect(fn() => Calendar::unknown())
+		->toThrow(
+			BadMethodCallException::class,
+			Calendar::class . ": method `unknown` does not exist"
+		);
+});

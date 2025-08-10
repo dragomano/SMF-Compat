@@ -33,10 +33,10 @@ class Mentions
 	{
 		require_once Config::$sourcedir . DIRECTORY_SEPARATOR . 'Mentions.php';
 
-		if (! method_exists(ExternalMentions::class, $name)) {
-			throw new BadMethodCallException("Method `$name` does not exist in Mentions class");
+		if (method_exists(ExternalMentions::class, $name)) {
+			return ExternalMentions::$name(...$arguments);
 		}
 
-		return ExternalMentions::$name(...$arguments);
+		throw new BadMethodCallException(__CLASS__ . ": method `$name` does not exist.");
 	}
 }

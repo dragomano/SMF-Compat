@@ -28,6 +28,6 @@ test('unknown method', function () {
 	expect(fn() => Mentions::unknown())
 		->toThrow(
 			BadMethodCallException::class,
-			"Method `unknown` does not exist in Mentions class"
+			Mentions::class . ": method `unknown` does not exist"
 		);
 });

@@ -7,5 +7,9 @@ test('topBoards method', function () {
 });
 
 test('unknown method', function () {
-	expect(ServerSideIncludes::unknown())->toBeFalse();
+	expect(fn() => ServerSideIncludes::unknown())
+		->toThrow(
+			BadMethodCallException::class,
+			ServerSideIncludes::class . ": method `unknown` does not exist"
+		);
 });

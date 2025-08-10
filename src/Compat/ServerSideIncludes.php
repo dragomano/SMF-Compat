@@ -10,18 +10,23 @@
 
 namespace Bugo\Compat;
 
+use BadMethodCallException;
+
 use function function_exists;
 
+/**
+ * @method static array|null topBoards(int $num_top = 10, string $output_method = 'echo')
+ */
 class ServerSideIncludes
 {
 	public static function __callStatic(string $name, array $arguments)
 	{
-		$name = 'ssi_' . $name;
+		$method = 'ssi_' . $name;
 
-		if (function_exists($name)) {
-			return $name(...$arguments);
+		if (function_exists($method)) {
+			return $method(...$arguments);
 		}
 
-		return false;
+		throw new BadMethodCallException(__CLASS__ . ": method `$name` does not exist.");
 	}
 }
