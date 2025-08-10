@@ -80,12 +80,11 @@ class Lang
 	public static function txtExists(
 		string|array $txt_key,
 		string $var = 'txt',
-		?string $file = null,
-		string $lang = ''
+		?string $file = null
 	): bool
 	{
 		if (is_string($file)) {
-			self::load($file, $lang);
+			self::load($file);
 		}
 
 		return isset(self::${$var}[$txt_key]);
