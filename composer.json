@@ -30,7 +30,9 @@
   },
   "require": {
     "php": "^8.0",
-    "ext-intl": "*"
+    "ext-intl": "*",
+    "ext-mysqli": "*",
+    "ext-pgsql": "*"
   },
   "require-dev": {
     "php": "^8.1",

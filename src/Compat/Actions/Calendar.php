@@ -33,6 +33,6 @@ class Calendar
 			return $name(...$arguments);
 		}
 
-		throw new BadMethodCallException(__CLASS__ . ": method `$name` does not exist.");
+		throw new BadMethodCallException(self::class . ": method `$name` does not exist.");
 	}
 }

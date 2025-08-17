@@ -37,7 +37,7 @@ class FuncMapper
 		?string $identifier = null
 	): object|bool
 	{
-		return Utils::$smcFunc['db_query']($identifier, $db_string, $db_values);
+		return Utils::$smcFunc['db_query']($identifier, $db_string, $db_values, $connection);
 	}
 
 	public function fetch_row(object $result): array|false|null
