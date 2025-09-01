@@ -12,6 +12,7 @@ use Bugo\Compat\Actions\{BoardIndex, Calendar, MessageIndex, Notify};
 use Bugo\Compat\Actions\Admin\{ACP, Permissions};
 use Bugo\Compat\Cache\CacheApi;
 use Bugo\Compat\Db\DatabaseApi;
+use Bugo\Compat\Debug\DebugUtils;
 use Bugo\Compat\Graphics\Image;
 use Bugo\Compat\Parsers\BBCodeParser;
 use Bugo\Compat\Tasks\{BackgroundTask, GenericTask, ScheduledTask};
@@ -31,6 +32,7 @@ if (str_starts_with(SMF_VERSION, '3.0')) {
 		'SMF\\Cache\\CacheApi'             => CacheApi::class,
 		'SMF\\Config'                      => Config::class,
 		'SMF\\Db\\DatabaseApi'             => DatabaseApi::class,
+		'SMF\\Debug\\DebugUtils'           => DebugUtils::class,
 		'SMF\\Editor'                      => Editor::class,
 		'SMF\\ErrorHandler'                => ErrorHandler::class,
 		'SMF\\Graphics\\Image'             => Image::class,
