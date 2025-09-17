@@ -21,29 +21,42 @@ class Mail
 		string $template,
 		array $replacements = [],
 		string $lang = '',
-		bool $loadLang = true
+		bool $load_custom = true
 	): array
 	{
 		require_once Config::$sourcedir . DIRECTORY_SEPARATOR . 'Subs-Post.php';
 
-		return loadEmailTemplate($template, $replacements, $lang, $loadLang);
+		return loadEmailTemplate($template, $replacements, $lang, $load_custom);
 	}
 
-	/**
-	 * @throws ErrorException
-	 */
 	public static function send(
-		array $to,
+		array|string $to,
 		string $subject,
 		string $message,
 		string $from = null,
 		string $message_id = null,
 		bool $send_html = false,
-		int $priority = 3
-	): void
+		int $priority = 3,
+		?bool $hotmail_fix = null,
+		bool $is_private = false
+	): bool
 	{
 		require_once Config::$sourcedir . DIRECTORY_SEPARATOR . 'Subs-Post.php';
 
-		sendmail($to, $subject, $message, $from, $message_id, $send_html, $priority);
+		try {
+			return (bool) sendmail(
+				$to,
+				$subject,
+				$message,
+				$from,
+				$message_id,
+				$send_html,
+				$priority,
+				$hotmail_fix,
+				$is_private
+			);
+		} catch (ErrorException) {}
+
+		return false;
 	}
 }

@@ -10,10 +10,8 @@
 
 namespace Bugo\Compat;
 
-use function call_helper;
 use function get_mime_type;
 use function JavaScriptEscape;
-use function json_encode;
 use function obExit;
 use function redirectexit;
 use function send_http_status;
@@ -26,7 +24,7 @@ class Utils
 {
 	public static array $context;
 
-	public static array $smcFunc;
+	public static array $smcFunc = [];
 
 	public function __construct()
 	{
@@ -37,7 +35,9 @@ class Utils
 		self::$context = &$GLOBALS['context'];
 
 		if (! isset($GLOBALS['smcFunc'])) {
-			$GLOBALS['smcFunc'] = [];
+			$GLOBALS['smcFunc'] = self::$smcFunc;
+		} else {
+			$GLOBALS['smcFunc'] = array_merge($GLOBALS['smcFunc'], self::$smcFunc);
 		}
 
 		self::$smcFunc = &$GLOBALS['smcFunc'];
@@ -73,9 +73,9 @@ class Utils
 		return smf_chmod($file);
 	}
 
-	public static function jsonDecode(string $json, ?bool $returnAsArray = null): ?array
+	public static function jsonDecode(string $json, ?bool $returnAsArray = null): mixed
 	{
-		return smf_json_decode($json, $returnAsArray) ?: null;
+		return smf_json_decode($json, $returnAsArray);
 	}
 
 	public static function jsonEncode(mixed $value, int $flags = 0, int $depth = 512): string|false
@@ -98,8 +98,23 @@ class Utils
 		return get_mime_type($data, $is_path);
 	}
 
-	public static function getCallable(string|callable $input): callable|false
+	public static function getCallable(string|callable $input): mixed
 	{
-		return call_helper($input);
+		if (is_string($input)) {
+			if (str_contains($input, '::')) {
+				[$class, $method] = explode('::', $input, 2);
+				if (method_exists($class, $method)) {
+					return [$class, $method];
+				}
+			} elseif (function_exists($input)) {
+				return ['', $input];
+			}
+		}
+
+		if (is_callable($input)) {
+			return $input;
+		}
+
+		return false;
 	}
 }

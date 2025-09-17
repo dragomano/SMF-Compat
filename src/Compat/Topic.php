@@ -10,6 +10,10 @@
 
 namespace Bugo\Compat;
 
+use function approveTopics;
+use function createPost;
+use function removeTopic;
+
 class Topic
 {
 	public static int $id;
@@ -23,5 +27,26 @@ class Topic
 		$id = (int) $GLOBALS['topic'];
 
 		self::$id = &$id;
+	}
+
+	public static function create(array &$msgOptions, array &$topicOptions, array &$posterOptions): bool
+	{
+		require_once Config::$sourcedir . DIRECTORY_SEPARATOR . 'Subs-Post.php';
+
+		return (bool) createPost($msgOptions, $topicOptions, $posterOptions);
+	}
+
+	public static function approve(array|int $topics, bool $approve = true, bool $notify = true): bool
+	{
+		require_once Config::$sourcedir . DIRECTORY_SEPARATOR . 'Subs-Post.php';
+
+		return (bool) approveTopics($topics, $approve, $notify);
+	}
+
+	public static function remove(int $topic, bool $decreasePostCount = true): bool
+	{
+		require_once Config::$sourcedir . DIRECTORY_SEPARATOR . 'RemoveTopic.php';
+
+		return (bool) removeTopic($topic, $decreasePostCount);
 	}
 }

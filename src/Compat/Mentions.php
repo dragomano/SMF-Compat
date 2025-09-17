@@ -13,8 +13,6 @@ namespace Bugo\Compat;
 use BadMethodCallException;
 use Mentions as ExternalMentions;
 
-use function method_exists;
-
 /**
  * @method static array getMentionsByContent(string $content_type, int $content_id, array $members = [])
  * @method static void insertMentions(string $content_type, int $content_id, array $members, int $id_member)

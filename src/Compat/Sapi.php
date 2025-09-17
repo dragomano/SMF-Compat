@@ -12,7 +12,6 @@ namespace Bugo\Compat;
 
 use function httpsOn;
 use function memoryReturnBytes;
-use function set_time_limit;
 use function sm_temp_dir;
 
 class Sapi

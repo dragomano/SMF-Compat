@@ -13,8 +13,6 @@ namespace Bugo\Compat\Actions;
 use BadMethodCallException;
 use Bugo\Compat\Config;
 
-use function function_exists;
-
 /**
  * @method static array getBirthdayRange(string $low_date, string $high_date)
  * @method static array getEventRange(string $low_date, string $high_date, bool $use_permissions = true)

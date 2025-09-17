@@ -20,14 +20,14 @@ class PageIndex implements \Stringable
 		string $base_url,
 		int &$start,
 		int $num_items,
-		int $num_per_page,
+		int $per_page,
 		bool $short_format = false,
 		bool $show_prevnext = true,
 		array $template_overrides = []
 	)
 	{
 		$this->index = constructPageIndex(
-			$base_url, $start, $num_items, $num_per_page, $short_format, $show_prevnext, $template_overrides
+			$base_url, $start, $num_items, $per_page, $short_format, $show_prevnext, $template_overrides
 		);
 	}
 

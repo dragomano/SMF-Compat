@@ -16,12 +16,10 @@ class BBCodeParser
 {
 	private static array $parsers;
 
-	public function __construct(public bool $for_print = false) {}
-
 	public static function load(bool $for_print = false): object
 	{
 		if (! isset(self::$parsers[(int) $for_print])) {
-			self::$parsers[(int) $for_print] = new self($for_print);
+			self::$parsers[(int) $for_print] = new self();
 		}
 
 		return self::$parsers[(int) $for_print];

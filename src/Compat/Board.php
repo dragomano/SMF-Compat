@@ -14,9 +14,9 @@ use stdClass;
 
 class Board extends stdClass
 {
-	public static int $id;
+	public static ?int $id;
 
-	public static array $info;
+	public static ?array $info;
 
 	public static array $loaded;
 
@@ -26,8 +26,18 @@ class Board extends stdClass
 		'loaded' => ['boards', []],
 	];
 
-	public function __construct()
+	public function __construct(?int $id = null, array $props = [])
 	{
+		if ($id !== null) {
+			$GLOBALS['board'] = $id;
+		}
+
+		foreach ($props as $key => $value) {
+			if ($key === 'info') {
+				$GLOBALS['board_info'] = $value;
+			}
+		}
+
 		foreach ($this->vars as $key => $values) {
 			if (! isset($GLOBALS[$values[0]])) {
 				$GLOBALS[$values[0]] = $values[1];

@@ -16,8 +16,6 @@ use MessageFormatter;
 use function censorText;
 use function comma_format;
 use function getLanguages;
-use function is_array;
-use function is_string;
 use function loadLanguage;
 use function sentence_list;
 use function tokenTxtReplace;
@@ -26,7 +24,7 @@ class Lang
 {
 	public const LANG_TO_LOCALE = [];
 
-	public static string $default;
+	public static string $default = '';
 
 	public static array $txt;
 
@@ -45,7 +43,7 @@ class Lang
 
 	public function __construct()
 	{
-		if (! isset(self::$default)) {
+		if (self::$default === '') {
 			self::$default = &Config::$language;
 		}
 
@@ -68,13 +66,18 @@ class Lang
 		return getLanguages();
 	}
 
-	public static function load(string $filename, string $lang = ''): void
+	public static function load(
+		string $filename,
+		string $lang = '',
+		bool $fatal = true,
+		bool $force_reload = false
+	): void
 	{
 		if ($filename === 'General') {
 			$filename = 'index';
 		}
 
-		loadLanguage($filename, $lang);
+		loadLanguage($filename, $lang, $fatal, $force_reload);
 	}
 
 	public static function txtExists(
@@ -162,7 +165,7 @@ class Lang
 		return sentence_list($list);
 	}
 
-	public static function numberFormat(int|float|string $number, ?int $decimals = null): string
+	public static function numberFormat(int|float|string $number, int|bool $decimals = false): string
 	{
 		return comma_format($number, $decimals);
 	}

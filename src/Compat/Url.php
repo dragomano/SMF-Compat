@@ -13,10 +13,8 @@ namespace Bugo\Compat;
 use stdClass;
 
 use function get_proxied_url;
-use function is_string;
 use function normalize_iri;
 use function parse_iri;
-use function rawurldecode;
 
 class Url extends stdClass implements \Stringable
 {
@@ -32,9 +30,9 @@ class Url extends stdClass implements \Stringable
 		return $this->url;
 	}
 
-	public function __get(string $name): string|int
+	public function __get(string $name): string|int|null
 	{
-		return $this->$name ?? ($name === 'port' ? 0 : '');
+		return $this->$name ?? ($name === 'port' ? 0 : null);
 	}
 
 	public static function create(string $url, bool $normalize = false): self
@@ -50,6 +48,10 @@ class Url extends stdClass implements \Stringable
 	public function parse(int $component = -1): int|string|array|null|false
 	{
 		$parsed = parse_iri($this->url, $component);
+
+		if (! is_array($parsed)) {
+			return $parsed;
+		}
 
 		foreach (['scheme', 'host', 'port', 'user', 'pass', 'path', 'query', 'fragment'] as $prop) {
 			unset($this->{$prop});

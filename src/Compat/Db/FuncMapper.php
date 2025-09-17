@@ -14,10 +14,7 @@ use Bugo\Compat\Config;
 use Bugo\Compat\ErrorHandler;
 use Bugo\Compat\Utils;
 
-use function array_key_exists;
 use function db_extend;
-use function mysqli_fetch_object;
-use function pg_fetch_object;
 
 class FuncMapper
 {

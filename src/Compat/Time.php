@@ -11,16 +11,15 @@
 namespace Bugo\Compat;
 
 use function smf_strftime;
-use function timeformat;
 
 class Time
 {
 	public static function strftime(string $format, ?int $timestamp = null, ?string $tzid = null): string
 	{
-		return smf_strftime($format, $timestamp, $tzid);
+		return smf_strftime($format, $timestamp, $tzid) ?: '';
 	}
 
-	public static function stringFromUnix(int|string|null $timestamp = null): string
+	public static function stringFromUnix(int|string|null $timestamp = null): string|false
 	{
 		return timeformat($timestamp);
 	}

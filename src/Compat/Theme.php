@@ -12,13 +12,14 @@ namespace Bugo\Compat;
 
 use stdClass;
 
-use function addJavaScriptVar;
 use function addInlineCss;
 use function addInlineJavaScript;
+use function addJavaScriptVar;
 use function loadCSSFile;
-use function loadJavaScriptFile;
 use function loadEssentialThemeData;
+use function loadJavaScriptFile;
 use function loadTemplate;
+use function setupThemeContext;
 
 class Theme
 {
@@ -46,14 +47,14 @@ class Theme
 		addJavaScriptVar($key, $value, $escape);
 	}
 
-	public static function addInlineCss(string $css): void
+	public static function addInlineCss(string $css): bool
 	{
-		addInlineCss($css);
+		return addInlineCss($css);
 	}
 
-	public static function addInlineJavaScript(string $javascript, $defer = false): void
+	public static function addInlineJavaScript(string $javascript, bool $defer = false): bool
 	{
-		addInlineJavaScript($javascript, $defer);
+		return addInlineJavaScript($javascript, $defer);
 	}
 
 	public static function loadCSSFile(string $fileName, array $params = [], string $id = ''): void

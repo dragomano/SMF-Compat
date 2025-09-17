@@ -14,8 +14,8 @@ use function checkSubmitOnce;
 
 class Security
 {
-	public static function checkSubmitOnce(string $action): ?bool
+	public static function checkSubmitOnce(string $action): bool
 	{
-		return checkSubmitOnce($action) ?? null;
+		return (bool) checkSubmitOnce($action);
 	}
 }

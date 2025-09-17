@@ -26,10 +26,13 @@ class ErrorHandler
 		string $error,
 		string|bool $log = 'general',
 		array $sprintf = [],
-		int $status = 403
+		int $status = 403,
+		string $file = 'Errors'
 	): void
 	{
-		fatal_lang_error($error, $log, $sprintf, $status);
+		$error_message = Lang::getTxt($error, $sprintf, 'txt', $file);
+
+		fatal_lang_error($error_message, $log, [], $status);
 	}
 
 	public static function log(

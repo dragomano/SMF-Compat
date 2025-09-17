@@ -12,8 +12,6 @@ namespace Bugo\Compat;
 
 use BadMethodCallException;
 
-use function function_exists;
-
 /**
  * @method static array|null topBoards(int $num_top = 10, string $output_method = 'echo')
  */

@@ -13,6 +13,8 @@ namespace Bugo\Compat\Actions\Admin;
 use Bugo\Compat\Config;
 use Bugo\Compat\Theme;
 
+use function theme_inline_permissions;
+
 class Permissions
 {
 	public static array $permission_groups = [
