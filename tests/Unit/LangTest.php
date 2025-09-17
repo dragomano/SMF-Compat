@@ -1,6 +1,27 @@
 <?php declare(strict_types=1);
 
+use Bugo\Compat\Config;
 use Bugo\Compat\Lang;
+
+test('constructor coverage when globals not set', function () {
+	unset($GLOBALS['txt'], $GLOBALS['editortxt'], $GLOBALS['helptxt'], $GLOBALS['forum_copyright']);
+
+	new Lang();
+
+	expect(isset($GLOBALS['txt']))->toBeTrue()
+		->and(isset($GLOBALS['editortxt']))->toBeTrue()
+		->and(isset($GLOBALS['helptxt']))->toBeTrue()
+		->and(isset($GLOBALS['forum_copyright']))->toBeTrue();
+});
+
+test('constructor coverage when default is empty', function () {
+	Lang::$default = '';
+	Config::$language = 'english';
+
+	new Lang();
+
+	expect(Lang::$default)->toBe('english');
+});
 
 beforeEach(function () {
 	$this->lang = new Lang();

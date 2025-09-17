@@ -16,6 +16,9 @@ use Bugo\Compat\{Config, Lang, Utils};
 // uses(Tests\TestCase::class)->in('Feature');
 uses()->beforeAll(function () {
 	Config::$sourcedir = __DIR__ . DIRECTORY_SEPARATOR . 'files';
+	Config::$language = 'english';
+
+	new Lang();
 
 	Utils::$context['css_header'] = [];
 	Utils::$context['javascript_inline'] = ['defer' => [], 'standard' => []];
@@ -141,8 +144,9 @@ if (! function_exists('checkSession')) {
 }
 
 if (! function_exists('isAllowedTo')) {
-	function isAllowedTo(...$params): void
+	function isAllowedTo(...$params): bool
 	{
+		return true;
 	}
 }
 
@@ -197,7 +201,7 @@ if (! function_exists('getLanguages')) {
 }
 
 if (! function_exists('loadLanguage')) {
-	function loadLanguage(string $template_name, string $lang = ''): void
+	function loadLanguage(string $template_name, string $lang = '', bool $fatal = true, bool $force_reload = false): void
 	{
 		if (is_file(__DIR__ . '/files/Languages/' . $template_name . '.english.php')) {
 			require __DIR__ . '/files/Languages/' . $template_name . '.english.php';

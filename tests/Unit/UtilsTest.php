@@ -78,3 +78,69 @@ test('htmlspecialcharsDecode method', function () {
 test('getMimeType method', function () {
 	expect($this->utils::getMimeType('foo'))->toBeString();
 });
+
+test('getCallable with function name', function () {
+	$callable = 'strlen';
+	$result = $this->utils::getCallable($callable);
+
+	expect($result)->toBe(['', 'strlen']);
+});
+
+test('getCallable with static method', function () {
+	$callable = 'Bugo\\Compat\\Utils::escapeJavaScript';
+	$result = $this->utils::getCallable($callable);
+
+	expect($result)->toBe(['Bugo\\Compat\\Utils', 'escapeJavaScript']);
+});
+
+test('getCallable with array callable', function () {
+	$callable = ['Bugo\\Compat\\Utils', 'escapeJavaScript'];
+	$result = $this->utils::getCallable($callable);
+
+	expect($result)->toBe(['Bugo\\Compat\\Utils', 'escapeJavaScript']);
+});
+
+test('getCallable with closure', function () {
+	$callable = function () {
+		return 'test';
+	};
+
+	$result = $this->utils::getCallable($callable);
+
+	expect($result)->toBe($callable);
+});
+
+test('getCallable with object method', function () {
+	$object = new class {
+		public function testMethod(): string
+		{
+			return 'object method';
+		}
+	};
+
+	$callable = [$object, 'testMethod'];
+	$result = $this->utils::getCallable($callable);
+
+	expect($result)->toBe([$object, 'testMethod']);
+});
+
+test('getCallable with invalid function', function () {
+	$callable = 'nonexistent_function';
+	$result = $this->utils::getCallable($callable);
+
+	expect($result)->toBeFalse();
+});
+
+test('getCallable with invalid static method', function () {
+	$callable = 'NonExistentClass::nonExistentMethod';
+	$result = $this->utils::getCallable($callable);
+
+	expect($result)->toBeFalse();
+});
+
+test('getCallable with invalid callable', function () {
+	$callable = 'invalid_string';
+	$result = $this->utils::getCallable($callable);
+
+	expect($result)->toBeFalse();
+});

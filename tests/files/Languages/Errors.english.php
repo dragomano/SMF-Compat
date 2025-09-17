@@ -1,0 +1,3 @@
+<?php
+
+$txt['bar'] = 'bar';

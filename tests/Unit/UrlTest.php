@@ -36,6 +36,13 @@ test('parse method', function () {
 		]);
 });
 
+test('parse method with component', function () {
+	$obj = Url::create('https://some.url:8080/path');
+	$host = $obj->parse(PHP_URL_HOST);
+
+	expect($host)->toBe('some.url');
+});
+
 test('proxied method', function () {
 	expect((string) $this->obj->proxied())->toBeString();
 });

@@ -37,8 +37,34 @@
   "require-dev": {
     "php": "^8.1",
     "pestphp/pest": "^2.36",
-    "rector/rector": "^2.0"
+    "rector/rector": "^2.0",
+    "simplemachines/21": "^2.1",
+    "simplemachines/30": "^3.0"
   },
+    "repositories": [
+    {
+      "type": "package",
+      "package": {
+        "name": "simplemachines/21",
+        "version": "2.1.6",
+        "dist": {
+          "url": "https://download.simplemachines.org/index.php/smf_2-1-6_install.zip",
+          "type": "zip"
+        }
+      }
+    },
+    {
+      "type": "package",
+      "package": {
+        "name": "simplemachines/30",
+        "version": "3.0",
+        "dist": {
+          "url": "https://github.com/SimpleMachines/SMF/archive/refs/heads/release-3.0.zip",
+          "type": "zip"
+        }
+      }
+    }
+  ],
   "scripts": {
     "check": "vendor/bin/rector process --dry-run --clear-cache",
     "tests": "vendor/bin/pest --colors=always",
