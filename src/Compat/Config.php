@@ -84,6 +84,13 @@ class Config
 		}
 	}
 
+	public static function set(array $settings): void
+	{
+		foreach ($settings as $key => $value) {
+			self::${$key} = $value;
+		}
+	}
+
 	public static function updateModSettings(array $settings): void
 	{
 		updateSettings($settings);
