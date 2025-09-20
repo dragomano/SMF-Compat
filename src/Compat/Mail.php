@@ -10,6 +10,7 @@
 
 namespace Bugo\Compat;
 
+use Bugo\Compat\RequireHelper;
 use ErrorException;
 
 use function loadEmailTemplate;
@@ -24,7 +25,7 @@ class Mail
 		bool $load_custom = true
 	): array
 	{
-		require_once Config::$sourcedir . DIRECTORY_SEPARATOR . 'Subs-Post.php';
+		RequireHelper::requireFile('Subs-Post.php');
 
 		return loadEmailTemplate($template, $replacements, $lang, $load_custom);
 	}
@@ -41,7 +42,7 @@ class Mail
 		bool $is_private = false
 	): bool
 	{
-		require_once Config::$sourcedir . DIRECTORY_SEPARATOR . 'Subs-Post.php';
+		RequireHelper::requireFile('Subs-Post.php');
 
 		try {
 			return (bool) sendmail(

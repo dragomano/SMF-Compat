@@ -10,7 +10,7 @@
 
 namespace Bugo\Compat\Actions\Admin;
 
-use Bugo\Compat\Config;
+use Bugo\Compat\RequireHelper;
 
 use function prepareDBSettingContext;
 use function saveDBSettings;
@@ -19,14 +19,14 @@ class ACP
 {
 	public static function saveDBSettings(array &$vars): void
 	{
-		require_once Config::$sourcedir . DIRECTORY_SEPARATOR . 'ManageServer.php';
+		RequireHelper::requireFile('ManageServer.php');
 
 		saveDBSettings($vars);
 	}
 
 	public static function prepareDBSettingContext(array &$vars): void
 	{
-		require_once Config::$sourcedir . DIRECTORY_SEPARATOR . 'ManageServer.php';
+		RequireHelper::requireFile('ManageServer.php');
 
 		prepareDBSettingContext($vars);
 	}

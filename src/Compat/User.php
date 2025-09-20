@@ -116,7 +116,7 @@ class User extends stdClass
 
 	public static function getAllowedTo(string $permission, ?int $board_id = null): array
 	{
-		require_once Config::$sourcedir . DIRECTORY_SEPARATOR . 'Subs-Members.php';
+		RequireHelper::requireFile('Subs-Members.php');
 
 		return membersAllowedTo($permission, $board_id);
 	}

@@ -10,14 +10,16 @@
 
 namespace Bugo\Compat;
 
-use function createList;
+use Bugo\Compat\Config;
 
-class ItemList
+class RequireHelper
 {
-	public function __construct(array $listOptions)
+	public static function requireFile(string $file): void
 	{
-		RequireHelper::requireFile('Subs-List.php');
+		$file = Config::$sourcedir . DIRECTORY_SEPARATOR . $file;
 
-		createList($listOptions);
+		if (file_exists($file)) {
+			require_once($file);
+		}
 	}
 }

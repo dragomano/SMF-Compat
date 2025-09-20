@@ -10,7 +10,7 @@
 
 namespace Bugo\Compat\Actions;
 
-use Bugo\Compat\Config;
+use Bugo\Compat\RequireHelper;
 
 use function BoardIndex;
 
@@ -18,7 +18,7 @@ class BoardIndex
 {
 	public static function call(): void
 	{
-		require_once Config::$sourcedir . DIRECTORY_SEPARATOR . 'BoardIndex.php';
+		RequireHelper::requireFile('BoardIndex.php');
 
 		BoardIndex();
 	}

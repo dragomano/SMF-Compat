@@ -44,3 +44,16 @@ test('updateSettingsFile method', function () {
 test('safeFileWrite', function () {
 	expect($this->config::safeFileWrite('file.txt', 'some data'))->toBeBool();
 });
+
+test('set method', function () {
+	// Test setting multiple properties
+	Config::set([
+		'mbname' => 'Test Forum',
+		'db_server' => 'localhost',
+		'cache_enable' => 1
+	]);
+
+	expect(Config::$mbname)->toBe('Test Forum')
+		->and(Config::$db_server)->toBe('localhost')
+		->and(Config::$cache_enable)->toBe(1);
+});

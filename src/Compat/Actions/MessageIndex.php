@@ -10,7 +10,7 @@
 
 namespace Bugo\Compat\Actions;
 
-use Bugo\Compat\Config;
+use Bugo\Compat\RequireHelper;
 
 use function getBoardList;
 
@@ -18,7 +18,7 @@ class MessageIndex
 {
 	public static function getBoardList(array $boardListOptions = []): array
 	{
-		require_once Config::$sourcedir . DIRECTORY_SEPARATOR . 'Subs-MessageIndex.php';
+		RequireHelper::requireFile('Subs-MessageIndex.php');
 
 		return getBoardList($boardListOptions);
 	}

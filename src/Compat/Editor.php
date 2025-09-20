@@ -16,7 +16,7 @@ class Editor
 {
 	public function __construct(array $options)
 	{
-		require_once Config::$sourcedir . DIRECTORY_SEPARATOR . 'Subs-Editor.php';
+		RequireHelper::requireFile('Subs-Editor.php');
 
 		create_control_richedit($options);
 

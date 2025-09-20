@@ -10,6 +10,8 @@
 
 namespace Bugo\Compat;
 
+use Bugo\Compat\RequireHelper;
+
 use function createAttachment;
 use function removeAttachments;
 
@@ -17,7 +19,7 @@ class Attachment
 {
 	public static function create(array &$attachmentOptions): bool
 	{
-		require_once Config::$sourcedir . DIRECTORY_SEPARATOR . 'Subs-Attachments.php';
+		RequireHelper::requireFile('Subs-Attachments.php');
 
 		return createAttachment($attachmentOptions);
 	}
@@ -29,7 +31,7 @@ class Attachment
 		bool $autoThumbRemoval = true
 	): ?array
 	{
-		require_once Config::$sourcedir . DIRECTORY_SEPARATOR . 'ManageAttachments.php';
+		RequireHelper::requireFile('ManageAttachments.php');
 
 		return removeAttachments($condition, $query_type, $return_affected_messages, $autoThumbRemoval);
 	}

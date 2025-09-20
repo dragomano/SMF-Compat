@@ -10,7 +10,7 @@
 
 namespace Bugo\Compat\Actions\Admin;
 
-use Bugo\Compat\Config;
+use Bugo\Compat\RequireHelper;
 use Bugo\Compat\Theme;
 
 use function theme_inline_permissions;
@@ -52,7 +52,7 @@ class Permissions
 	{
 		Theme::loadTemplate('ManagePermissions');
 
-		require_once Config::$sourcedir . DIRECTORY_SEPARATOR . 'ManagePermissions.php';
+		RequireHelper::requireFile('ManagePermissions.php');
 
 		theme_inline_permissions($permission);
 	}

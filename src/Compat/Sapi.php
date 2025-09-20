@@ -23,7 +23,7 @@ class Sapi
 
 	public static function getTempDir(): string
 	{
-		require_once Config::$sourcedir . DIRECTORY_SEPARATOR . 'Subs-Admin.php';
+		RequireHelper::requireFile('Subs-Admin.php');
 
 		return sm_temp_dir();
 	}

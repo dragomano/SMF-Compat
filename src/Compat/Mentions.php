@@ -29,7 +29,7 @@ class Mentions
 
 	public static function __callStatic(string $name, array $arguments)
 	{
-		require_once Config::$sourcedir . DIRECTORY_SEPARATOR . 'Mentions.php';
+		RequireHelper::requireFile('Mentions.php');
 
 		if (method_exists(ExternalMentions::class, $name)) {
 			return ExternalMentions::$name(...$arguments);

@@ -10,7 +10,7 @@
 
 namespace Bugo\Compat\Actions;
 
-use Bugo\Compat\Config;
+use Bugo\Compat\RequireHelper;
 
 use function getNotifyPrefs;
 
@@ -22,7 +22,7 @@ class Notify
 		bool $process_default = false
 	): array
 	{
-		require_once Config::$sourcedir . DIRECTORY_SEPARATOR . 'Subs-Notify.php';
+		RequireHelper::requireFile('Subs-Notify.php');
 
 		return getNotifyPrefs($members, $prefs, $process_default);
 	}

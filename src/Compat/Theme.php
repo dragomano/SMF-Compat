@@ -72,7 +72,7 @@ class Theme
 		if (isset(self::$current->settings['default_theme_dir']))
 			return;
 
-		require_once Config::$sourcedir . DIRECTORY_SEPARATOR . 'ScheduledTasks.php';
+		RequireHelper::requireFile('ScheduledTasks.php');
 
 		loadEssentialThemeData();
 	}

@@ -10,24 +10,24 @@
 
 namespace Bugo\Compat\WebFetch\APIs;
 
-use Bugo\Compat\Config;
+use Bugo\Compat\RequireHelper;
 use Bugo\Compat\Url;
 use Bugo\Compat\WebFetch\WebFetchApi;
 use curl_fetch_web_data;
 
 class CurlFetcher extends WebFetchApi
 {
-    private curl_fetch_web_data $data;
+	private curl_fetch_web_data $data;
 
-    public function __construct(array $options = [])
-    {
-        require_once Config::$sourcedir . DIRECTORY_SEPARATOR . 'Class-CurlFetchWeb.php';
+	public function __construct(array $options = [])
+	{
+		RequireHelper::requireFile('Class-CurlFetchWeb.php');
 
-        $this->data = new curl_fetch_web_data($options);
-    }
+		$this->data = new curl_fetch_web_data($options);
+	}
 
-    public function request(string|Url $url, array|string $post_data = []): object
-    {
-        return $this->data->get_url_data($url, $post_data);
-    }
+	public function request(string|Url $url, array|string $post_data = []): object
+	{
+		return $this->data->get_url_data($url, $post_data);
+	}
 }

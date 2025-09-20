@@ -21,42 +21,42 @@ class Msg
 {
 	public static function preparseCode(string &$message): void
 	{
-		require_once Config::$sourcedir . DIRECTORY_SEPARATOR . 'Subs-Post.php';
+		RequireHelper::requireFile('Subs-Post.php');
 
 		preparsecode($message);
 	}
 
 	public static function un_preparsecode(string $message): array|string|null
 	{
-		require_once Config::$sourcedir . DIRECTORY_SEPARATOR . 'Subs-Post.php';
+		RequireHelper::requireFile('Subs-Post.php');
 
 		return un_preparsecode($message);
 	}
 
 	public static function create(array &$msgOptions, array &$topicOptions, array &$posterOptions): bool
 	{
-		require_once Config::$sourcedir . DIRECTORY_SEPARATOR . 'Subs-Post.php';
+		RequireHelper::requireFile('Subs-Post.php');
 
 		return (bool) createPost($msgOptions, $topicOptions, $posterOptions);
 	}
 
 	public static function modify(array &$msgOptions, array &$topicOptions, array &$posterOptions): bool
 	{
-		require_once Config::$sourcedir . DIRECTORY_SEPARATOR . 'Subs-Post.php';
+		RequireHelper::requireFile('Subs-Post.php');
 
 		return (bool) modifyPost($msgOptions, $topicOptions, $posterOptions);
 	}
 
 	public static function approve(array|int $msgs, bool $approve = true, bool $notify = true): bool
 	{
-		require_once Config::$sourcedir . DIRECTORY_SEPARATOR . 'Subs-Post.php';
+		RequireHelper::requireFile('Subs-Post.php');
 
 		return (bool) approvePosts($msgs, $approve, $notify);
 	}
 
 	public static function remove(int $message, bool $decreasePostCount = true): bool
 	{
-		require_once Config::$sourcedir . DIRECTORY_SEPARATOR . 'RemoveTopic.php';
+		RequireHelper::requireFile('RemoveTopic.php');
 
 		return (bool) removeMessage($message, $decreasePostCount);
 	}

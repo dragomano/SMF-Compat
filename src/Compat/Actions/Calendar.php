@@ -11,7 +11,7 @@
 namespace Bugo\Compat\Actions;
 
 use BadMethodCallException;
-use Bugo\Compat\Config;
+use Bugo\Compat\RequireHelper;
 
 /**
  * @method static array getBirthdayRange(string $low_date, string $high_date)
@@ -25,7 +25,7 @@ class Calendar
 {
 	public static function __callStatic(string $name, array $arguments)
 	{
-		require_once Config::$sourcedir . DIRECTORY_SEPARATOR . 'Subs-Calendar.php';
+		RequireHelper::requireFile('Subs-Calendar.php');
 
 		if (function_exists($name)) {
 			return $name(...$arguments);

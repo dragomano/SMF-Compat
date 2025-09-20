@@ -102,7 +102,7 @@ class Config
 		bool $rebuild = false
 	): bool
 	{
-		require_once self::$sourcedir . DIRECTORY_SEPARATOR . 'Subs-Admin.php';
+		RequireHelper::requireFile('Subs-Admin.php');
 
 		return updateSettingsFile($config_vars, $keep_quotes, $rebuild);
 	}
@@ -115,7 +115,7 @@ class Config
 		bool $append = false
 	): bool
 	{
-		require_once self::$sourcedir . DIRECTORY_SEPARATOR . 'Subs-Admin.php';
+		RequireHelper::requireFile('Subs-Admin.php');
 
 		return safe_file_write($file, $data, $backup_file, $mtime, $append);
 	}
