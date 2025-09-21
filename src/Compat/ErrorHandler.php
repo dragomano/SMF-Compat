@@ -30,9 +30,11 @@ class ErrorHandler
 		string $file = 'Errors'
 	): void
 	{
-		$error_message = Lang::getTxt($error, $sprintf, 'txt', $file);
+		if ($file !== 'Errors') {
+			Lang::load($file);
+		}
 
-		fatal_lang_error($error_message, $log, [], $status);
+		fatal_lang_error($error, $log, $sprintf, $status);
 	}
 
 	public static function log(

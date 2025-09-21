@@ -15,6 +15,12 @@ test('fatalLang method', function () {
 	expect(Utils::$context['error_title'])->toBe('bar');
 });
 
+test('fatalLang method with custom file', function () {
+	ErrorHandler::fatalLang('bar', 'general', [], 403, 'CustomErrors');
+
+	expect(Utils::$context['error_title'])->toBe('bar');
+});
+
 test('log method', function () {
 	expect(ErrorHandler::log('test'))->toBeString();
 });
