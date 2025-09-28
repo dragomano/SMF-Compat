@@ -1,6 +1,7 @@
 <?php declare(strict_types=1);
 
 use Bugo\Compat\Config;
+use SMF\Config as SMFConfig;
 
 beforeEach(function () {
 	$this->config = new Config();
@@ -41,7 +42,7 @@ test('updateSettingsFile method', function () {
 	expect($this->config::updateSettingsFile(['foo' => 'bar']))->toBeBool();
 });
 
-test('safeFileWrite', function () {
+test('safeFileWrite method', function () {
 	expect($this->config::safeFileWrite('file.txt', 'some data'))->toBeBool();
 });
 
@@ -57,3 +58,31 @@ test('set method', function () {
 		->and(Config::$db_server)->toBe('localhost')
 		->and(Config::$cache_enable)->toBe(1);
 });
+
+require_once dirname(__DIR__, 2) . '/vendor/simplemachines/30/Sources/Config.php';
+
+dataset('canonical path data', [
+	[__FILE__, SMFConfig::canonicalPath(__FILE__)],
+	['non-existing.txt', SMFConfig::canonicalPath('non-existing.txt')],
+	['', SMFConfig::canonicalPath('')],
+	['foo\\bar/baz', SMFConfig::canonicalPath('foo\\bar/baz')],
+	['foo/./bar', SMFConfig::canonicalPath('foo/./bar')],
+	['foo/../bar', SMFConfig::canonicalPath('foo/../bar')],
+	['foo/bar/../baz', SMFConfig::canonicalPath('foo/bar/../baz')],
+	['../foo', SMFConfig::canonicalPath('../foo')],
+	[__DIR__, SMFConfig::canonicalPath(__DIR__)],
+	['./subdir', SMFConfig::canonicalPath('./subdir')],
+	['foo/../..', SMFConfig::canonicalPath('foo/../..')],
+	['foo//bar', SMFConfig::canonicalPath('foo//bar')],
+	['/foo/bar', SMFConfig::canonicalPath('/foo/bar')],
+	['C:\\foo\\bar', SMFConfig::canonicalPath('C:\\foo\\bar')],
+	['тест/путь', SMFConfig::canonicalPath('тест/путь')],
+]);
+
+test('canonicalPath method', function ($input, $expected) {
+	expect(Config::canonicalPath($input))->toBe($expected);
+})->with('canonical path data');
+
+test('original SMF canonicalPath method', function ($input, $expected) {
+	expect(SMFConfig::canonicalPath($input))->toBe($expected);
+})->with('canonical path data');
