@@ -20,10 +20,6 @@
 			<languageInjection language="JavaScript"/>
 			<stopCompletion />
 		</classMethod>
-		<classMethod class="\Bugo\Compat\Theme" method="addInlineCss" argument="0">
-			<languageInjection language="CSS"/>
-			<stopCompletion />
-		</classMethod>
 		<classMethod class="\Bugo\Compat\User" method="checkSession" argument="0">
 			<collection name="check_session_types"/>
 		</classMethod>
