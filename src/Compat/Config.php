@@ -155,10 +155,12 @@ class Config
 			}
 		}
 
-		// Handle absolute paths on Windows
+		// Handle absolute paths
 		if (DIRECTORY_SEPARATOR === '\\' && str_starts_with($normalized, '\\')) {
 			$root = substr(getcwd(), 0, strcspn(getcwd(), '\\'));
 			array_unshift($result, $root);
+		} elseif (DIRECTORY_SEPARATOR === '/' && str_starts_with($normalized, '/')) {
+			array_unshift($result, '');
 		}
 
 		return implode(DIRECTORY_SEPARATOR, $result);

@@ -64,17 +64,17 @@ require_once dirname(__DIR__, 2) . '/vendor/simplemachines/30/Sources/Config.php
 dataset('canonical path data', [
 	[__FILE__, __FILE__],
 	['non-existing.txt', 'non-existing.txt'],
-	['', dirname(__DIR__, 2)],
-	['foo\\bar/baz', 'foo\bar\baz'],
-	['foo/./bar', 'foo\bar'],
+	['', realpath('')],
+	['foo\\bar/baz', 'foo' . DIRECTORY_SEPARATOR . 'bar' . DIRECTORY_SEPARATOR . 'baz'],
+	['foo/./bar', 'foo' . DIRECTORY_SEPARATOR . 'bar'],
 	['foo/../bar', 'bar'],
-	['foo/bar/../baz', 'foo\baz'],
-	['../foo', '..\foo'],
+	['foo/bar/../baz', 'foo' . DIRECTORY_SEPARATOR . 'baz'],
+	['../foo', '..' . DIRECTORY_SEPARATOR . 'foo'],
 	[__DIR__, __DIR__],
 	['./subdir', 'subdir'],
 	['foo/../..', '..'],
-	['foo//bar', 'foo\bar'],
-	['/foo/bar', 'F:\foo\bar'],
+	['foo//bar', 'foo' . DIRECTORY_SEPARATOR . 'bar'],
+	['/foo/bar', (DIRECTORY_SEPARATOR === '\\' ? substr(getcwd(), 0, strcspn(getcwd(), '\\')) . '\\foo\\bar' : '/foo/bar')],
 ]);
 
 test('canonicalPath method', function ($input, $expected) {
