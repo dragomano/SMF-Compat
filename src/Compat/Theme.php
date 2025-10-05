@@ -49,12 +49,16 @@ class Theme
 
 	public static function addInlineCss(string $css): bool
 	{
-		return addInlineCss($css);
+		$result = addInlineCss($css);
+
+		return is_bool($result) ? $result : true;
 	}
 
 	public static function addInlineJavaScript(string $javascript, bool $defer = false): bool
 	{
-		return addInlineJavaScript($javascript, $defer);
+		$result = addInlineJavaScript($javascript, $defer);
+
+		return is_bool($result) ? $result : true;
 	}
 
 	public static function loadCSSFile(string $fileName, array $params = [], string $id = ''): void

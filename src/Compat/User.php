@@ -89,9 +89,9 @@ class User extends stdClass
 		string|array $permission,
 		int|array|null $boards = null,
 		bool $any = false
-	): bool
+	): void
 	{
-		return isAllowedTo($permission, $boards, $any);
+		isAllowedTo($permission, $boards, $any);
 	}
 
 	/**
