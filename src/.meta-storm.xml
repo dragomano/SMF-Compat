@@ -16,12 +16,21 @@
 		<classMethod class="\Bugo\Compat\Security" method="checkSubmitOnce" argument="0">
 			<collection name="check_submit_actions"/>
 		</classMethod>
+		<classMethod class="\Bugo\Compat\User" method="checkSession" argument="0">
+			<collection name="check_session_types"/>
+		</classMethod>
 		<classMethod class="\Bugo\Compat\Theme" method="addInlineJavaScript" argument="0">
 			<languageInjection language="JavaScript"/>
 			<stopCompletion />
 		</classMethod>
-		<classMethod class="\Bugo\Compat\User" method="checkSession" argument="0">
-			<collection name="check_session_types"/>
+		<classMethod class="\Bugo\Compat\Theme" method="loadTemplate" argument="0">
+			<files extension="template.php" xpath="$project/public/Themes/default"/>
+		</classMethod>
+		<classMethod class="\Bugo\Compat\Theme" method="loadCSSFile" argument="0">
+			<files extension="" xpath="$project/public/Themes/default/css"/>
+		</classMethod>
+		<classMethod class="\Bugo\Compat\Theme" method="loadJavaScriptFile" argument="0">
+			<files extension="" xpath="$project/public/Themes/default/scripts"/>
 		</classMethod>
 	</definitions>
 	<collections>
