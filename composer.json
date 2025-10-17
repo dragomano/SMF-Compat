@@ -41,7 +41,7 @@
     "simplemachines/21": "^2.1",
     "simplemachines/30": "^3.0"
   },
-    "repositories": [
+  "repositories": [
     {
       "type": "package",
       "package": {

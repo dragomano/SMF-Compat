@@ -10,8 +10,6 @@
 
 namespace Bugo\Compat;
 
-use Bugo\Compat\Config;
-
 class RequireHelper
 {
 	public static function requireFile(string $file): void
