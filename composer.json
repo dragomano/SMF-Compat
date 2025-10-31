@@ -35,7 +35,6 @@
     "ext-pgsql": "*"
   },
   "require-dev": {
-    "php": "^8.1",
     "pestphp/pest": "^2.36",
     "rector/rector": "^2.0",
     "simplemachines/21": "^2.1",
