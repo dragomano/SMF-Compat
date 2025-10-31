@@ -81,9 +81,9 @@ class Theme
 		loadEssentialThemeData();
 	}
 
-	public static function loadTemplate(string $template): void
+	public static function loadTemplate(string $template, array|string $style_sheets = [], bool $fatal = true): ?bool
 	{
-		loadTemplate($template);
+		return loadTemplate($template, $style_sheets, $fatal);
 	}
 
 	public static function setupContext(bool $forceload = false): void
