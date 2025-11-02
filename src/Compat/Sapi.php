@@ -37,4 +37,52 @@ class Sapi
 	{
 		return httpsOn();
 	}
+
+	public static function canonicalPath(string $path): string|false
+	{
+		$path = trim($path);
+		if ($path === '') {
+			return realpath('');
+		}
+
+		$real = realpath($path);
+		if ($real !== false) {
+			return $real;
+		}
+
+		// Normalize separators
+		$normalized = str_replace(['\\', '/'], DIRECTORY_SEPARATOR, $path);
+
+		// Resolve . and ..
+		$parts = explode(DIRECTORY_SEPARATOR, $normalized);
+		$result = [];
+
+		foreach ($parts as $part) {
+			if ($part === '' || $part === '.') {
+				continue;
+			}
+
+			if ($part === '..') {
+				if (empty($result) || $result[0] === '..') {
+					$result[] = $part;
+				} else {
+					array_pop($result);
+				}
+			} else {
+				$result[] = $part;
+			}
+		}
+
+		// Handle absolute paths
+		// @codeCoverageIgnoreStart
+		if (DIRECTORY_SEPARATOR === '\\' && str_starts_with($normalized, '\\')) {
+			$root = substr(getcwd(), 0, strcspn(getcwd(), '\\'));
+			array_unshift($result, $root);
+		} elseif (DIRECTORY_SEPARATOR === '/' && str_starts_with($normalized, '/')) {
+			array_unshift($result, '');
+		}
+		// @codeCoverageIgnoreEnd
+
+		return implode(DIRECTORY_SEPARATOR, $result);
+	}
 }
