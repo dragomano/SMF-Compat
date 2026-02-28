@@ -21,7 +21,7 @@ class FuncMapper
 	public function __call(string $name, array $arguments)
 	{
 		if (array_key_exists('db_' . $name, Utils::$smcFunc)) {
-			ErrorHandler::log('This method is not implemented yet: ' . $name);
+			ErrorHandler::log('This method is not supported: ' . $name);
 		}
 
 		return false;

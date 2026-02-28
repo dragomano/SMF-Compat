@@ -11,6 +11,7 @@
 namespace Bugo\Compat;
 
 use Bugo\Compat\Cache\CacheApi;
+use Transliterator;
 
 class Slug implements \Stringable
 {
@@ -52,12 +53,37 @@ class Slug implements \Stringable
 
 	protected function generateSlug(string $string, int $max_length): string
 	{
-		$slug = strtolower($string);
+		$slug = strtolower($this->transliterate($string));
 		$slug = preg_replace('/[^a-z0-9]+/', '-', $slug);
 		$slug = trim($slug, '-');
 		$slug = substr($slug, 0, $max_length);
 		$slug = rtrim($slug, '-');
 
 		return $slug ?: 'slug';
+	}
+
+	protected function transliterate(string $string): string
+	{
+		if (class_exists(Transliterator::class)) {
+			$transliterator = Transliterator::create('Any-Latin; Latin-ASCII');
+
+			if ($transliterator !== null) {
+				$result = $transliterator->transliterate($string);
+
+				if (is_string($result)) {
+					return $result;
+				}
+			}
+		}
+
+		if (function_exists('iconv')) {
+			$result = @iconv('UTF-8', 'ASCII//TRANSLIT//IGNORE', $string);
+
+			if ($result !== false) {
+				return $result;
+			}
+		}
+
+		return $string;
 	}
 }
