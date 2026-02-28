@@ -2,6 +2,9 @@ name: PHP Tests
 
 on: [push, pull_request]
 
+permissions:
+  contents: write
+
 jobs:
   test:
     strategy:
@@ -19,16 +22,23 @@ jobs:
         uses: shivammathur/setup-php@v2
         with:
           php-version: ${{ matrix.php }}
+          coverage: ${{ matrix.os == 'ubuntu-latest' && matrix.php == '8.5' && 'xdebug' || 'none' }}
           extensions: intl, mysqli, pgsql
 
       - name: Install dependencies
         run: composer install
 
       - name: Run tests
-        run: vendor/bin/pest --coverage-clover build/logs/clover.xml
+        shell: bash
+        run: |
+          if [ "${{ matrix.os }}" = "ubuntu-latest" ] && [ "${{ matrix.php }}" = "8.5" ]; then
+            vendor/bin/pest --colors=always --coverage-clover build/logs/clover.xml
+          else
+            vendor/bin/pest --colors=always
+          fi
 
       - name: Upload coverage results to Coveralls
-        if: matrix.os == 'ubuntu-latest'
+        if: matrix.os == 'ubuntu-latest' && matrix.php == '8.5'
         env:
           COVERALLS_REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
