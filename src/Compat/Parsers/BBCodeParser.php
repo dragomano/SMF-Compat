@@ -10,9 +10,11 @@
 
 namespace Bugo\Compat\Parsers;
 
+use Bugo\Compat\Parser;
+
 use function parse_bbc;
 
-class BBCodeParser
+class BBCodeParser extends Parser
 {
 	private static array $parsers;
 
