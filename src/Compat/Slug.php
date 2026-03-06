@@ -21,7 +21,7 @@ class Slug implements \Stringable
 
 	public function __construct(string $string, string $type, int $id, int $max_length = 30)
 	{
-		$this->slug = $this->generateSlug($string, $max_length);
+		$this->slug = $this->generateSlug($string, $max_length, $type, $id);
 	}
 
 	public function __toString(): string
@@ -51,7 +51,7 @@ class Slug implements \Stringable
 		return (string) CacheApi::get('slug_type-' . $type . '_id-' . $id);
 	}
 
-	protected function generateSlug(string $string, int $max_length): string
+	protected function generateSlug(string $string, int $max_length, string $type, int $id): string
 	{
 		$slug = strtolower($this->transliterate($string));
 		$slug = preg_replace('/[^a-z0-9]+/', '-', $slug);
@@ -59,7 +59,7 @@ class Slug implements \Stringable
 		$slug = substr($slug, 0, $max_length);
 		$slug = rtrim($slug, '-');
 
-		return $slug ?: 'slug';
+		return $slug ?: ($type . '-' . $id);
 	}
 
 	protected function transliterate(string $string): string

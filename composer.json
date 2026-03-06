@@ -1,11 +1,10 @@
 {
   "name": "bugo/smf-compat",
-  "description": "Wrappers to work with global variables and deprecated functions in SMF",
+  "description": "Wrappers for global variables and deprecated functions in SMF",
   "type": "library",
   "keywords": [
-    "smf",
-    "utilities",
-    "compatibility"
+    "smf helpers",
+    "smf compatibility"
   ],
   "homepage": "https://github.com/dragomano/smf-compat",
   "license": "MIT",
@@ -47,7 +46,7 @@
         "name": "simplemachines/21",
         "version": "2.1.6",
         "dist": {
-          "url": "https://download.simplemachines.org/index.php/smf_2-1-6_install.zip",
+          "url": "https://github.com/SimpleMachines/SMF/archive/refs/tags/v2.1.6.zip",
           "type": "zip"
         }
       }

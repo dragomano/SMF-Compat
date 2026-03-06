@@ -103,7 +103,7 @@ if (! function_exists('constructPageIndex')) {
 }
 
 if (! function_exists('preparsecode')) {
-	function preparsecode(string &$message): void
+	function preparsecode(string &$message, bool $previewing = false): void
 	{
 		$message = 'changed';
 	}

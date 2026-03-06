@@ -13,24 +13,24 @@ namespace Bugo\Compat;
 use function approvePosts;
 use function createPost;
 use function modifyPost;
-use function preparsecode;
 use function removeMessage;
-use function un_preparsecode;
 
 class Msg
 {
+	/**
+	 * @deprecated use Parser::sanitize
+	 */
 	public static function preparseCode(string &$message): void
 	{
-		RequireHelper::requireFile('Subs-Post.php');
-
-		preparsecode($message);
+		$message = Parser::sanitize($message);
 	}
 
-	public static function un_preparsecode(string $message): array|string|null
+	/**
+	 * @deprecated use Parser::getEditableString
+	 */
+	public static function un_preparsecode(string $message): string
 	{
-		RequireHelper::requireFile('Subs-Post.php');
-
-		return un_preparsecode($message);
+		return Parser::getEditableString($message);
 	}
 
 	public static function create(array &$msgOptions, array &$topicOptions, array &$posterOptions): bool
