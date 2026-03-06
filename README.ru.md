@@ -173,10 +173,10 @@ class Example
 | `loadEmailTemplate`        |    `Mail::loadEmailTemplate`    |
 | `sendmail`                 |          `Mail::send`           |
 | `getBoardList`             |  `MessageIndex::getBoardList`   |
-| `preparsecode`             |       `Msg::preparseCode`       |
-| `un_preparsecode`          |     `Msg::un_preparsecode`      |
 | `getNotifyPrefs`           |    `Notify::getNotifyPrefs`     |
 | `constructPageIndex`       |         `new PageIndex`         |
+| `preparsecode`             |       `Parser::sanitize`        |
+| `un_preparsecode`          |   `Parser::getEditableString`   |
 | `memoryReturnBytes`        |    `Sapi::memoryReturnBytes`    |
 | `sm_temp_dir`              |       `Sapi::getTempDir`        |
 | `set_time_limit`           |      `Sapi::setTimeLimit`       |
@@ -222,7 +222,7 @@ class Example
 |      `$rows = $smcFunc['db_fetch_assoc']($result)`      |      `$rows = Db::$db->fetch_assoc($result)`      |
 |          `$smcFunc['db_free_result']($result)`          |          `Db::$db->free_result($result)`          |
 
-## Примеры использования данной библиотеки
+## Примеры интеграции
 
 - [Optimus 3.0](https://github.com/dragomano/Optimus)
 - [SMF Tracy Debugger](https://github.com/dragomano/SMF-Tracy-Debugger)

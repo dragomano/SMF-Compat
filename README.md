@@ -8,21 +8,21 @@
 
 ## Description
 
-The package is designed to prepare current SMF 2.1 modifications for the future migration to 3.0.
+This package is designed to prepare existing SMF 2.1 modifications for the upcoming migration to SMF 3.0.
 
-The proposed utility classes eliminate the need to declare global variables in your modification code.
+The included utility classes eliminate the need for global variables in your modification code.
 
-As a result, your modifications will be able to work in both SMF 2.1 and 3.0, with minimal changes.
+As a result, your mods will be compatible with both SMF 2.1 and 3.0 with minimal adjustments.
 
 ## Installation
 
-In the root directory of your modification, run the command:
+In your modification's root directory, execute:
 
 ```bash
 composer require bugo/smf-compat
 ```
 
-Then in `app.php` (or other similar _entry point_), include `autoload.php`:
+Then, include `autoload.php` in `app.php` (or a similar entry point):
 
 ```php
 require_once __DIR__ . '/vendor/autoload.php';
@@ -80,7 +80,7 @@ class Example
 }
 ```
 
-After upgrading to SMF 3.0, it will be enough to replace the used classes. Example:
+After upgrading to SMF 3.0, you only need to replace the class references. For example:
 
 ```diff
 -use Bugo\Compat\Lang;
@@ -94,11 +94,11 @@ After upgrading to SMF 3.0, it will be enough to replace the used classes. Examp
 // etc.
 ```
 
-Or you can leave it as it is. In this case, your modification will support both versions of SMF.
+Alternatively, you can leave the code as is. In this case, your modification will maintain compatibility with both SMF versions.
 
 ## List of suggested replacements
 
-Below are some (not all) changes to variables and functions.
+Below is a non-exhaustive list of variable and function mappings.
 
 ### Global variables
 
@@ -173,10 +173,10 @@ Below are some (not all) changes to variables and functions.
 | `loadEmailTemplate`        |    `Mail::loadEmailTemplate`    |
 | `sendmail`                 |          `Mail::send`           |
 | `getBoardList`             |  `MessageIndex::getBoardList`   |
-| `preparsecode`             |       `Msg::preparseCode`       |
-| `un_preparsecode`          |     `Msg::un_preparsecode`      |
 | `getNotifyPrefs`           |    `Notify::getNotifyPrefs`     |
 | `constructPageIndex`       |         `new PageIndex`         |
+| `preparsecode`             |       `Parser::sanitize`        |
+| `un_preparsecode`          |   `Parser::getEditableString`   |
 | `memoryReturnBytes`        |    `Sapi::memoryReturnBytes`    |
 | `sm_temp_dir`              |       `Sapi::getTempDir`        |
 | `set_time_limit`           |      `Sapi::setTimeLimit`       |
@@ -207,13 +207,13 @@ Below are some (not all) changes to variables and functions.
 
 #### SSI functions
 
-All functions in SSI.php that were called via `ssi_function_name` before 3.0 are called this way in 3.0: `ServerSideIncludes::function_name`.
+All functions in SSI.php that were called via `ssi_function_name` prior to SMF 3.0 are now accessed as `ServerSideIncludes::function_name`.
 
 #### Working with the database
 
-In compatibility mode, you can use `Utils::$smcFunc['db_query']`, etc., but also introduced a new class `DatabaseApi`, with a static property `$db` containing the class of the current database engine.
-The methods of this class are similar to functions in `Utils::$smcFunc`, but without the `db_` prefix.
-Let's show on the example of three popular functions:
+In compatibility mode, you can still use `Utils::$smcFunc['db_query']`, etc. However, we have also introduced a new `DatabaseApi` class, which features a static property `$db` representing the current database engine.
+The methods of this class correspond to the functions in `Utils::$smcFunc`, but without the `db_` prefix.
+Here are examples of three commonly used functions:
 
 |                 Legacy code (SMF 2.1.x)                  |                 New code (SMF 3.0)                 |
 |:--------------------------------------------------------:|:--------------------------------------------------:|
@@ -222,7 +222,7 @@ Let's show on the example of three popular functions:
 |      `$rows = $smcFunc['db_fetch_assoc']($result)`       |      `$rows = Db::$db->fetch_assoc($result)`       |
 |          `$smcFunc['db_free_result']($result)`           |          `Db::$db->free_result($result)`           |
 
-## Examples of using this library
+## Examples of Integration
 
 - [Optimus 3.0](https://github.com/dragomano/Optimus)
 - [SMF Tracy Debugger](https://github.com/dragomano/SMF-Tracy-Debugger)
