@@ -26,6 +26,8 @@ class Lang
 
 	public static string $forum_copyright;
 
+	public static array $dirs = [];
+
 	private array $vars = [
 		'txt'             => [],
 		'editortxt'       => [],
@@ -45,6 +47,15 @@ class Lang
 			}
 
 			self::${$key} = &$GLOBALS[$key];
+		}
+
+		if (self::$dirs === []) {
+			self::$dirs = array_filter([
+				$GLOBALS['languagesdir'] ?? null,
+				isset($GLOBALS['settings']['default_theme_dir'])
+					? $GLOBALS['settings']['default_theme_dir'] . '/languages'
+					: null,
+			]);
 		}
 	}
 
