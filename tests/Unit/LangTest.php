@@ -3,6 +3,18 @@
 use Bugo\Compat\Config;
 use Bugo\Compat\Lang;
 
+test('constructor sets dirs from settings default_theme_dir', function () {
+	Lang::$dirs = [];
+	$GLOBALS['settings']['default_theme_dir'] = '/path/to/theme';
+	unset($GLOBALS['languagesdir']);
+
+	new Lang();
+
+	expect(Lang::$dirs)->toContain('/path/to/theme/languages');
+
+	unset($GLOBALS['settings']['default_theme_dir']);
+});
+
 test('constructor coverage when globals not set', function () {
 	unset($GLOBALS['txt'], $GLOBALS['editortxt'], $GLOBALS['helptxt'], $GLOBALS['forum_copyright']);
 

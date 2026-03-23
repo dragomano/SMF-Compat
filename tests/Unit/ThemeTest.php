@@ -13,6 +13,14 @@ test('constructor', function () {
 		->and($this->theme::$current)->toBeInstanceOf(stdClass::class);
 });
 
+test('constructor initializes settings when not set', function () {
+	unset($GLOBALS['settings']);
+
+	new Theme();
+
+	expect($GLOBALS['settings'])->toBe([]);
+});
+
 test('addJavaScriptVar method', function () {
 	$this->theme::addJavaScriptVar('foo', 'bar');
 
