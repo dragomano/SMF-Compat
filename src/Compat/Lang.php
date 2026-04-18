@@ -16,8 +16,6 @@ class Lang
 {
 	public const LANG_TO_LOCALE = [];
 
-	public static string $default = '';
-
 	public static array $txt;
 
 	public static array $editortxt;
@@ -37,10 +35,6 @@ class Lang
 
 	public function __construct()
 	{
-		if (self::$default === '') {
-			self::$default = &Config::$language;
-		}
-
 		foreach ($this->vars as $key => $value) {
 			if (! isset($GLOBALS[$key])) {
 				$GLOBALS[$key] = $value;

@@ -26,15 +26,6 @@ test('constructor coverage when globals not set', function () {
 		->and(isset($GLOBALS['forum_copyright']))->toBeTrue();
 });
 
-test('constructor coverage when default is empty', function () {
-	Lang::$default = '';
-	Config::$language = 'english';
-
-	new Lang();
-
-	expect(Lang::$default)->toBe('english');
-});
-
 beforeEach(function () {
 	$this->lang = new Lang();
 });
