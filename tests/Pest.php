@@ -96,7 +96,7 @@ if (! function_exists('logAction')) {
 }
 
 if (! function_exists('constructPageIndex')) {
-	function constructPageIndex(string $base_url, ...$params): string
+	function constructPageIndex(string $base_url, &$start, ...$params): string
 	{
 		return $base_url;
 	}
@@ -248,7 +248,7 @@ if (! function_exists('cache_put_data')) {
 }
 
 if (! function_exists('clean_cache')) {
-	function clean_cache(): void
+	function clean_cache(string $type = ''): void
 	{
 		Utils::$context['tmp'] = [];
 	}
@@ -334,8 +334,9 @@ if (! function_exists('addJavaScriptVar')) {
 if (! function_exists('addInlineCss')) {
 	function addInlineCss(string $css): bool
 	{
-		if (empty($css))
+		if (empty($css)) {
 			return false;
+		}
 
 		Utils::$context['css_header'][] = $css;
 
@@ -346,8 +347,9 @@ if (! function_exists('addInlineCss')) {
 if (! function_exists('addInlineJavaScript')) {
 	function addInlineJavaScript(string $javascript, bool $defer = false): bool
 	{
-		if (empty($javascript))
+		if (empty($javascript)) {
 			return false;
+		}
 
 		Utils::$context['javascript_inline'][($defer === true ? 'defer' : 'standard')][] = $javascript;
 
@@ -368,8 +370,9 @@ if (! function_exists('loadJavaScriptFile')) {
 }
 
 if (! function_exists('loadTemplate')) {
-	function loadTemplate(string $name): void
+	function loadTemplate(...$params): ?bool
 	{
+		return true;
 	}
 }
 

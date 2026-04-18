@@ -2,7 +2,6 @@
 
 namespace Bugo\Compat;
 
-use Bugo\Compat\RequireHelper;
 use ErrorException;
 
 use function loadEmailTemplate;

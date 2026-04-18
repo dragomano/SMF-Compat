@@ -2,8 +2,6 @@
 
 namespace Bugo\Compat;
 
-use Bugo\Compat\RequireHelper;
-
 use function createAttachment;
 use function removeAttachments;
 
