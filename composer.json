@@ -35,7 +35,7 @@
   },
   "require-dev": {
     "pestphp/pest": "^2.36|^4.4",
-    "rector/rector": "^2.3",
+    "rector/rector": "^2.4",
     "simplemachines/21": "^2.1",
     "simplemachines/30": "^3.0"
   },
@@ -44,9 +44,9 @@
       "type": "package",
       "package": {
         "name": "simplemachines/21",
-        "version": "2.1.6",
+        "version": "2.1.7",
         "dist": {
-          "url": "https://github.com/SimpleMachines/SMF/archive/refs/tags/v2.1.6.zip",
+          "url": "https://github.com/SimpleMachines/SMF/archive/refs/tags/v2.1.7.zip",
           "type": "zip"
         }
       }
@@ -74,6 +74,9 @@
   "config": {
     "allow-plugins": {
       "pestphp/pest-plugin": true
+    },
+    "audit": {
+      "block-insecure": false
     }
   }
 }
