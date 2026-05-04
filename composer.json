@@ -28,16 +28,20 @@
     }
   },
   "require": {
-    "php": "^8.0",
-    "ext-intl": "*",
-    "ext-mysqli": "*",
-    "ext-pgsql": "*"
+    "php": "^8.2",
+    "ext-intl": "*"
   },
   "require-dev": {
-    "pestphp/pest": "^2.36|^4.4",
+    "ext-mysqli": "*",
+    "ext-pgsql": "*",
+    "pestphp/pest": "^3.8|^4.6",
     "rector/rector": "^2.4",
     "simplemachines/21": "^2.1",
     "simplemachines/30": "^3.0"
+  },
+  "suggest": {
+    "ext-mysqli": "Required for MySQL/MariaDB support in production",
+    "ext-pgsql": "Required for PostgreSQL support in production"
   },
   "repositories": [
     {
