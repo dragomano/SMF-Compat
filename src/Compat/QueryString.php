@@ -42,7 +42,7 @@ class QueryString
 
 		$modified_path = preg_replace('~/([^,/]+),~', '/$1=', $path);
 		$replaced_path = strtr($modified_path, '/', '&');
-		$query_string  = substr(preg_replace('/&(\w+)(?=&|$)/', '&$1=', $replaced_path), 1);
+		$query_string  = substr((string) preg_replace('/&(\w+)(?=&|$)/', '&$1=', $replaced_path), 1);
 
 		parse_str($query_string, $new_params);
 

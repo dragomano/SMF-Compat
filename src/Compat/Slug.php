@@ -47,7 +47,7 @@ class Slug implements \Stringable
 	{
 		$slug = strtolower($this->transliterate($string));
 		$slug = preg_replace('/[^a-z0-9]+/', '-', $slug);
-		$slug = trim($slug, '-');
+		$slug = trim((string) $slug, '-');
 		$slug = substr($slug, 0, $max_length);
 		$slug = rtrim($slug, '-');
 

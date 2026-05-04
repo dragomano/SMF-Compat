@@ -6,7 +6,7 @@ use function constructPageIndex;
 
 class PageIndex implements \Stringable
 {
-	private string $index;
+	private readonly string $index;
 
 	public function __construct(
 		string $base_url,

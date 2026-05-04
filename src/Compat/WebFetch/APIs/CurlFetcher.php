@@ -9,7 +9,7 @@ use curl_fetch_web_data;
 
 class CurlFetcher extends WebFetchApi
 {
-	private curl_fetch_web_data $data;
+	private readonly curl_fetch_web_data $data;
 
 	public function __construct(array $options = [])
 	{

@@ -19,7 +19,7 @@ use Bugo\Compat\Parsers\BBCodeParser;
 use Bugo\Compat\Tasks\{BackgroundTask, GenericTask, ScheduledTask};
 use Bugo\Compat\WebFetch\WebFetchApi;
 
-if (str_starts_with(SMF_VERSION, '3.0')) {
+if (str_starts_with((string) SMF_VERSION, '3.0')) {
 	$aliases = [
 		'SMF\\Actions\\Admin\\ACP'         => ACP::class,
 		'SMF\\Actions\\Admin\\Permissions' => Permissions::class,
