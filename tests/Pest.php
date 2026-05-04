@@ -14,7 +14,7 @@ use Bugo\Compat\{Config, Lang, Utils};
 */
 
 // uses(Tests\TestCase::class)->in('Feature');
-uses()->beforeAll(function () {
+uses()->beforeEach(function () {
 	Config::$sourcedir = __DIR__ . DIRECTORY_SEPARATOR . 'files';
 	Config::$language = 'english';
 
