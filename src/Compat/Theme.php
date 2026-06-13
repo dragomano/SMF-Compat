@@ -73,7 +73,7 @@ class Theme
 		loadEssentialThemeData();
 	}
 
-	public static function loadTemplate(string $template, array|string $style_sheets = [], bool $fatal = true): ?bool
+	public static function loadTemplate(string|bool $template, array|string $style_sheets = [], bool $fatal = true): ?bool
 	{
 		return loadTemplate($template, $style_sheets, $fatal);
 	}

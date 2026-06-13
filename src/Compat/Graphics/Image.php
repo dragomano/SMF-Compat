@@ -3,15 +3,27 @@
 namespace Bugo\Compat\Graphics;
 
 use Bugo\Compat\RequireHelper;
+use Bugo\Compat\Sapi;
 
 use function createThumbnail;
 
 class Image
 {
-	public static function createThumbnail(string $source, int $max_width, int $max_height): bool
+	public string $source;
+
+	public function __construct(string $source)
+	{
+		if (is_file($source)) {
+			$this->source = realpath($source);
+		} else {
+			$this->source = tempnam(Sapi::getTempDir(), '');
+		}
+	}
+
+	public function createThumbnail(int $max_width, int $max_height): bool
 	{
 		RequireHelper::requireFile('Subs-Graphics.php');
 
-		return createThumbnail($source, $max_width, $max_height);
+		return createThumbnail($this->source, $max_width, $max_height);
 	}
 }

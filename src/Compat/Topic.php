@@ -28,11 +28,11 @@ class Topic
 		return (bool) createPost($msgOptions, $topicOptions, $posterOptions);
 	}
 
-	public static function approve(array|int $topics, bool $approve = true, bool $notify = true): bool
+	public static function approve(array|int $topics, bool $approve = true): bool
 	{
 		RequireHelper::requireFile('Subs-Post.php');
 
-		return (bool) approveTopics($topics, $approve, $notify);
+		return (bool) approveTopics($topics, $approve);
 	}
 
 	public static function remove(int $topic, bool $decreasePostCount = true): bool

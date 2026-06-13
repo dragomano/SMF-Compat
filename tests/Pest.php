@@ -158,7 +158,11 @@ if (! function_exists('boardsAllowedTo')) {
 }
 
 if (! function_exists('loadMemberData')) {
-	function loadMemberData(array|string $users, bool $is_name = false, string $set = 'normal'): array
+	function loadMemberData(
+		array|string $users,
+		bool $is_name = false,
+		string $set = 'normal'
+	): array
 	{
 		return $users;
 	}
@@ -187,9 +191,11 @@ if (! function_exists('updateSettings')) {
 }
 
 if (! function_exists('censorText')) {
-	function censorText(string &$text): void
+	function censorText(string &$text, bool $force = false): string
 	{
 		$text = 'changed';
+
+		return $text;
 	}
 }
 
@@ -201,7 +207,12 @@ if (! function_exists('getLanguages')) {
 }
 
 if (! function_exists('loadLanguage')) {
-	function loadLanguage(string $template_name, string $lang = '', bool $fatal = true, bool $force_reload = false): void
+	function loadLanguage(
+		string $template_name,
+		string $lang = '',
+		bool $fatal = true,
+		bool $force_reload = false
+	): string
 	{
 		if (is_file(__DIR__ . '/files/Languages/' . $template_name . '.english.php')) {
 			require __DIR__ . '/files/Languages/' . $template_name . '.english.php';
@@ -211,6 +222,8 @@ if (! function_exists('loadLanguage')) {
 		}
 
 		Lang::$txt['foo'] = $template_name;
+
+		return $lang;
 	}
 }
 
@@ -304,7 +317,11 @@ if (! function_exists('remove_integration_function')) {
 }
 
 if (! function_exists('fetch_web_data')) {
-	function fetch_web_data(string $url, array|string $post_data = '', bool $keep_alive = false): bool|string
+	function fetch_web_data(
+		string $url,
+		array|string $post_data = '',
+		bool $keep_alive = false
+	): bool|string
 	{
 		return $url;
 	}

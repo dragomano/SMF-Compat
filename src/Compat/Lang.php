@@ -53,14 +53,14 @@ class Lang
 		}
 	}
 
-	public static function censorText(string &$text): void
+	public static function censorText(string &$text, bool $force = false): string
 	{
-		censorText($text);
+		return censorText($text, $force);
 	}
 
-	public static function get(): array
+	public static function get(bool $use_cache = true): array
 	{
-		return getLanguages();
+		return getLanguages($use_cache);
 	}
 
 	public static function load(
@@ -68,13 +68,13 @@ class Lang
 		string $lang = '',
 		bool $fatal = true,
 		bool $force_reload = false
-	): void
+	): string
 	{
 		if ($filename === 'General') {
 			$filename = 'index';
 		}
 
-		loadLanguage($filename, $lang, $fatal, $force_reload);
+		return loadLanguage($filename, $lang, $fatal, $force_reload);
 	}
 
 	public static function txtExists(
@@ -162,7 +162,7 @@ class Lang
 		return sentence_list($list);
 	}
 
-	public static function numberFormat(int|float|string $number, int|bool $decimals = false): string
+	public static function numberFormat(int|float|string $number, ?int $decimals = null): string
 	{
 		return comma_format($number, $decimals);
 	}

@@ -83,9 +83,9 @@ class Config
 		}
 	}
 
-	public static function updateModSettings(array $settings): void
+	public static function updateModSettings(array $change_array, bool $update = false): void
 	{
-		updateSettings($settings);
+		updateSettings($change_array, $update);
 	}
 
 	public static function updateSettingsFile(
