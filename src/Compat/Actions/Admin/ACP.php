@@ -14,6 +14,8 @@ class ACP
 		RequireHelper::requireFile('ManageServer.php');
 
 		saveDBSettings($vars);
+
+		$_SESSION['adm-save'] = true;
 	}
 
 	public static function prepareDBSettingContext(array &$vars): void
