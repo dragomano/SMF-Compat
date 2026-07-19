@@ -4,7 +4,7 @@ namespace Bugo\Compat;
 
 use function approveTopics;
 use function createPost;
-use function removeTopic;
+use function removeTopics;
 
 class Topic
 {
@@ -35,10 +35,10 @@ class Topic
 		return (bool) approveTopics($topics, $approve);
 	}
 
-	public static function remove(int $topic, bool $decreasePostCount = true): bool
+	public static function remove(array|int $topics, bool $decreasePostCount = true): void
 	{
 		RequireHelper::requireFile('RemoveTopic.php');
 
-		return (bool) removeTopic($topic, $decreasePostCount);
+		removeTopics($topics, $decreasePostCount);
 	}
 }

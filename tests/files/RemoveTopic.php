@@ -7,9 +7,8 @@ if (! function_exists('removeMessage')) {
 	}
 }
 
-if (! function_exists('removeTopic')) {
-	function removeTopic(int $topic, bool $decreasePostCount = true)
+if (! function_exists('removeTopics')) {
+	function removeTopics(array|int $topics, bool $decreasePostCount = true)
 	{
-		return $topic;
 	}
 }

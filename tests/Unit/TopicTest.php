@@ -22,5 +22,5 @@ test('approve method', function () {
 });
 
 test('remove method', function () {
-	expect(Topic::remove(1))->toBeTrue();
+	expect(Topic::remove(1))->toBeNull();
 });
