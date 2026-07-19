@@ -8,7 +8,7 @@ use Bugo\Compat\{Editor, ErrorHandler, IntegrationHook, ItemList};
 use Bugo\Compat\{Lang, Logging, Mail, Mentions, Menu, Msg};
 use Bugo\Compat\{PageIndex, Parser, QueryString};
 use Bugo\Compat\{Routable, Sapi, Security, ServerSideIncludes};
-use Bugo\Compat\{Theme, Time, Topic, Url, User, Utils};
+use Bugo\Compat\{Theme, Time, Topic, Url, User, UserDataset, Utils};
 use Bugo\Compat\Actions\{BoardIndex, Calendar, MessageIndex, Notify};
 use Bugo\Compat\Actions\Admin\{ACP, Permissions};
 use Bugo\Compat\Cache\CacheApi;
@@ -61,6 +61,7 @@ if (str_starts_with((string) SMF_VERSION, '3.0')) {
 		'SMF\\Topic'                       => Topic::class,
 		'SMF\\Url'                         => Url::class,
 		'SMF\\User'                        => User::class,
+		'SMF\\UserDataset'                 => UserDataset::class,
 		'SMF\\Utils'                       => Utils::class,
 		'SMF\\WebFetch\\WebFetchApi'       => WebFetchApi::class,
 	];

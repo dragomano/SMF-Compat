@@ -121,7 +121,7 @@ class User extends stdClass
 	public static function load(
 		array|string|int $users = [],
 		int $type = self::LOAD_BY_ID,
-		?string $dataset = null
+		UserDataset $dataset = UserDataset::Normal
 	): array
 	{
 		$users = (array) $users;
@@ -131,8 +131,6 @@ class User extends stdClass
 		if ($users === []) {
 			$loaded[] = new self();
 		} else {
-			$dataset ??= 'normal';
-
 			$ids = self::loadUserData($users, $type, $dataset);
 
 			foreach ($ids as $id) {
@@ -147,8 +145,8 @@ class User extends stdClass
 		return $loaded;
 	}
 
-	protected static function loadUserData(array $users, int $type = self::LOAD_BY_ID, string $set = 'normal'): array
+	protected static function loadUserData(array $users, int $type = self::LOAD_BY_ID, UserDataset $dataset = UserDataset::Normal): array
 	{
-		return loadMemberData($users, (bool) $type, $set);
+		return loadMemberData($users, (bool) $type, $dataset->value);
 	}
 }
