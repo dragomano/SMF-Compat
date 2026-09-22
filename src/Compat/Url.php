@@ -27,6 +27,11 @@ class Url extends stdClass implements \Stringable
 		return $this->$name ?? ($name === 'port' ? 0 : null);
 	}
 
+	public function __isset(string $name): bool
+	{
+		return isset($this->$name);
+	}
+
 	public static function create(string $url, bool $normalize = false): self
 	{
 		return new self($url, $normalize);

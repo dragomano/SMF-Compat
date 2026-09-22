@@ -54,6 +54,11 @@ class User extends stdClass
 		return $GLOBALS['user_info'][$key] ?? null;
 	}
 
+	public function __isset(string $key): bool
+	{
+		return isset($GLOBALS['user_info'][$key]);
+	}
+
 	public function allowedTo(string|array $permission): bool
 	{
 		return allowedTo($permission);

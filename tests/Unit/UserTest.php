@@ -13,6 +13,14 @@ test('constructor', function () {
 		->and($this->user::$me)->toBeInstanceOf(User::class);
 });
 
+test('__isset method', function () {
+	$GLOBALS['user_info']['name']  = 'Test';
+	$GLOBALS['user_info']['email'] = 'test@example.com';
+
+	expect(isset($this->user->name))->toBeTrue()
+		->and(isset($this->user->non_existent))->toBeFalse();
+});
+
 test('__get method', function () {
 	$GLOBALS['user_info']['name'] = 'Test';
 
