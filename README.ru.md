@@ -222,6 +222,8 @@ class Example
 |      `$rows = $smcFunc['db_fetch_assoc']($result)`      |      `$rows = Db::$db->fetch_assoc($result)`      |
 |          `$smcFunc['db_free_result']($result)`          |          `Db::$db->free_result($result)`          |
 
+Режим вставки в `Db::$db->insert()` можно указывать одним из кейсов перечисления `InsertType` (`InsertType::Insert`, `InsertType::Replace`, `InsertType::Ignore`) из пространства имён `Bugo\Compat\Db` (или `SMF\Db`) — как и в SMF 3.0.
+
 ## Примеры интеграции
 
 - [Optimus 3.0](https://github.com/dragomano/Optimus)

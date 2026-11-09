@@ -62,7 +62,7 @@ class FuncMapper
 	}
 
 	public function insert(
-		string $method,
+		string|InsertType $method,
 		string $table,
 		array $columns,
 		array $data,
@@ -70,6 +70,11 @@ class FuncMapper
 		int $returnmode = 0
 	): int|array|null
 	{
+		// SMF 2.1 still expects a string
+		if ($method instanceof InsertType) {
+			$method = $method->value;
+		}
+
 		return Utils::$smcFunc['db_insert']($method, $table, $columns, $data, $keys, $returnmode);
 	}
 
