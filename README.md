@@ -222,7 +222,7 @@ Here are examples of three commonly used functions:
 |      `$rows = $smcFunc['db_fetch_assoc']($result)`       |      `$rows = Db::$db->fetch_assoc($result)`       |
 |          `$smcFunc['db_free_result']($result)`           |          `Db::$db->free_result($result)`           |
 
-The insert mode in `Db::$db->insert()` can be specified as one of the `InsertType` enum cases (`InsertType::Insert`, `InsertType::Replace`, `InsertType::Ignore`), available in the `Bugo\Compat\Db` (or `SMF\Db`) namespace — just like in SMF 3.0.
+The insert mode in `Db::$db->insert()` can be specified as one of the `InsertType` enum cases (`InsertType::Insert`, `InsertType::Replace`, `InsertType::Ignore`), and the return mode as one of the `ReturnMode` enum cases (`ReturnMode::Off`, `ReturnMode::SingleRow`, `ReturnMode::MultiRow`). Both enums are available in the `Bugo\Compat\Db` (or `SMF\Db`) namespace — just like in SMF 3.0.
 
 ## Examples of Integration
 

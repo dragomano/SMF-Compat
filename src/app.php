@@ -12,7 +12,7 @@ use Bugo\Compat\{Theme, Time, Topic, Url, User, UserDataset, Utils};
 use Bugo\Compat\Actions\{BoardIndex, Calendar, MessageIndex, Notify};
 use Bugo\Compat\Actions\Admin\{ACP, Permissions};
 use Bugo\Compat\Cache\CacheApi;
-use Bugo\Compat\Db\{DatabaseApi, InsertType};
+use Bugo\Compat\Db\{DatabaseApi, InsertType, ReturnMode};
 use Bugo\Compat\Debug\DebugUtils;
 use Bugo\Compat\Graphics\Image;
 use Bugo\Compat\Parsers\BBCodeParser;
@@ -34,6 +34,7 @@ if (str_starts_with((string) SMF_VERSION, '3.0')) {
 		'SMF\\Config'                      => Config::class,
 		'SMF\\Db\\DatabaseApi'             => DatabaseApi::class,
 		'SMF\\Db\\InsertType'              => InsertType::class,
+		'SMF\\Db\\ReturnMode'              => ReturnMode::class,
 		'SMF\\Debug\\DebugUtils'           => DebugUtils::class,
 		'SMF\\Editor'                      => Editor::class,
 		'SMF\\ErrorHandler'                => ErrorHandler::class,

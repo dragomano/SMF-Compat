@@ -67,12 +67,17 @@ class FuncMapper
 		array $columns,
 		array $data,
 		array $keys,
-		int $returnmode = 0
+		int|ReturnMode $returnmode = ReturnMode::Off
 	): int|array|null
 	{
 		// SMF 2.1 still expects a string
 		if ($method instanceof InsertType) {
 			$method = $method->value;
+		}
+
+		// SMF 2.1 still expects an int
+		if ($returnmode instanceof ReturnMode) {
+			$returnmode = $returnmode->value;
 		}
 
 		return Utils::$smcFunc['db_insert']($method, $table, $columns, $data, $keys, $returnmode);
