@@ -8,7 +8,7 @@ class DebugUtils
 {
 	public static function isDebugEnabled(): bool
 	{
-		return isset(Config::$db_show_debug) && Config::$db_show_debug === true;
+		return isset(Config::$db_show_debug) && Config::$db_show_debug;
 	}
 
 	public static function disable(): void

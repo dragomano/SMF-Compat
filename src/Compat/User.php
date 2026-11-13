@@ -33,9 +33,7 @@ class User extends stdClass
 
 	public function __construct(?int $id = null)
 	{
-		if (! isset($GLOBALS['user_profile'])) {
-			$GLOBALS['user_profile'] = [];
-		}
+		$GLOBALS['user_profile'] ??= [];
 
 		self::$profiles = &$GLOBALS['user_profile'];
 

@@ -68,9 +68,7 @@ class Config
 	public function __construct()
 	{
 		foreach ($this->vars as $key => $value) {
-			if (! isset($GLOBALS[$key])) {
-				$GLOBALS[$key] = $value;
-			}
+			$GLOBALS[$key] ??= $value;
 
 			self::${$key} = &$GLOBALS[$key];
 		}

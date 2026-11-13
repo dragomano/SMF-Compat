@@ -12,9 +12,7 @@ class Topic
 
 	public function __construct()
 	{
-		if (! isset($GLOBALS['topic'])) {
-			$GLOBALS['topic'] = 0;
-		}
+		$GLOBALS['topic'] ??= 0;
 
 		$id = (int) $GLOBALS['topic'];
 

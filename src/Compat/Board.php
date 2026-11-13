@@ -31,9 +31,7 @@ class Board extends stdClass
 		}
 
 		foreach ($this->vars as $key => $values) {
-			if (! isset($GLOBALS[$values[0]])) {
-				$GLOBALS[$values[0]] = $values[1];
-			}
+			$GLOBALS[$values[0]] ??= $values[1];
 
 			self::${$key} = &$GLOBALS[$values[0]];
 		}

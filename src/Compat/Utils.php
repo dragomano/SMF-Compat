@@ -20,9 +20,7 @@ class Utils
 
 	public function __construct()
 	{
-		if (! isset($GLOBALS['context'])) {
-			$GLOBALS['context'] = [];
-		}
+		$GLOBALS['context'] ??= [];
 
 		self::$context = &$GLOBALS['context'];
 

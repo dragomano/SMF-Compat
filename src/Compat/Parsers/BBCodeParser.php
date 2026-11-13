@@ -12,9 +12,7 @@ class BBCodeParser extends Parser
 
 	public static function load(bool $for_print = false): object
 	{
-		if (! isset(self::$parsers[(int) $for_print])) {
-			self::$parsers[(int) $for_print] = new self();
-		}
+		self::$parsers[(int) $for_print] ??= new self();
 
 		return self::$parsers[(int) $for_print];
 	}
